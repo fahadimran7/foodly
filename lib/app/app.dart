@@ -1,12 +1,18 @@
 import 'package:stacked/stacked_annotations.dart';
-import 'package:stacked_architecture/ui/second/second_view.dart';
+import 'package:stacked_architecture/ui/address_selection/address_selection_view.dart';
+import 'package:stacked_architecture/ui/create_account/create_account_view.dart';
+import 'package:stacked_architecture/ui/login/login_view.dart';
 import 'package:stacked_architecture/ui/startup/startup_view.dart';
+import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 @StackedApp(routes: [
-  MaterialRoute(page: StartupView, initial: true),
-  CupertinoRoute(page: SecondView),
+  MaterialRoute(page: StartupView),
+  CupertinoRoute(page: AddressSelectionView),
+  CupertinoRoute(page: CreateAccountView),
+  CupertinoRoute(page: LoginView, initial: true),
 ], dependencies: [
-  LazySingleton(classType: NavigationService)
+  LazySingleton(classType: NavigationService),
+  Singleton(classType: FirebaseAuthenticationService)
 ])
 class AppSetup {}
