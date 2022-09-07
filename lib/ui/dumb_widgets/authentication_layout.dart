@@ -39,7 +39,7 @@ class AuthenticationLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListView(
         children: [
           if (onBackPressed == null) verticalSpaceLarge,
@@ -82,11 +82,11 @@ class AuthenticationLayout extends StatelessWidget {
               child: GestureDetector(
                 onTap: onForgotPassword,
                 child: Text(
-                  'Forgot Password?',
+                  'Forget Password?',
                   style: ktsMediumGreyBodyText.copyWith(
-                      fontSize: kBodyTextSmall,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w500),
+                    fontSize: kBodyTextSmall,
+                    color: Colors.black54,
+                  ),
                 ),
               ),
             ),
@@ -129,7 +129,10 @@ class AuthenticationLayout extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text('Don\'t have an account?'),
+                  Text(
+                    'Don\'t have an account?',
+                    style: TextStyle(color: Colors.black54),
+                  ),
                   horizontalSpaceTiny,
                   Text(
                     'Create an account',
@@ -144,7 +147,7 @@ class AuthenticationLayout extends StatelessWidget {
           if (showTermsText)
             Text(
               'By signing up you agree to our terms, conditions and privacy policy.',
-              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall),
+              style: ktsMediumGreyBodyText.copyWith(fontSize: 15),
               textAlign: TextAlign.center,
             ),
           verticalSpaceRegular,

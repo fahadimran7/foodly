@@ -36,7 +36,6 @@ class LoginView extends StatelessWidget with $LoginView {
                   verticalSpaceRegular,
                   TextField(
                     decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.email_rounded),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6),
                           borderSide: const BorderSide(

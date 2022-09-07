@@ -29,11 +29,11 @@ class OnboardingPageContent extends StatelessWidget {
         ),
         verticalSpaceRegular,
         SizedBox(
-          width: screenWidthPercentage(context, percentage: 0.8),
+          width: screenWidthPercentage(context, percentage: 0.75),
           child: Text(
             text!,
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.black54),
+            style: const TextStyle(color: Colors.black54, fontSize: 15),
           ),
         ),
       ],

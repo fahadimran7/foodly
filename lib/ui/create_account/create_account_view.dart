@@ -30,6 +30,7 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
               onMainButtonTapped: model.saveData,
               onBackPressed: model.navigateBack,
               validationMessage: model.validationMessage,
+              onSignInWithGoogle: model.useGoogleAuthentication,
               title: 'Create Account',
               subtitle: 'Enter your name, email and password for sign up.',
               form: Column(
@@ -37,7 +38,6 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
                   verticalSpaceRegular,
                   TextField(
                     decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.person_rounded),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6),
                           borderSide: const BorderSide(
@@ -59,7 +59,6 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
                   verticalSpaceRegular,
                   TextField(
                     decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.email_rounded),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6),
                           borderSide: const BorderSide(
