@@ -45,18 +45,22 @@ class AuthenticationLayout extends StatelessWidget {
           if (onBackPressed == null) verticalSpaceLarge,
           if (onBackPressed != null) verticalSpaceRegular,
           if (onBackPressed != null)
-            IconButton(
-              padding: EdgeInsets.zero,
-              alignment: Alignment.centerLeft,
-              onPressed: onBackPressed,
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-              ),
+            Row(
+              children: [
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  alignment: Alignment.centerLeft,
+                  onPressed: onBackPressed,
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
             ),
           Text(
             title,
-            style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w700),
+            style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w500),
           ),
           verticalSpaceSmall,
           Align(
@@ -74,12 +78,15 @@ class AuthenticationLayout extends StatelessWidget {
           verticalSpaceRegular,
           if (onForgotPassword != null)
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.center,
               child: GestureDetector(
                 onTap: onForgotPassword,
                 child: Text(
                   'Forgot Password?',
-                  style: ktsMediumGreyBodyText.copyWith(fontSize: 14),
+                  style: ktsMediumGreyBodyText.copyWith(
+                      fontSize: 12,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -88,7 +95,7 @@ class AuthenticationLayout extends StatelessWidget {
             Text(
               validationMessage!,
               style:
-                  const TextStyle(color: Colors.red, fontSize: kBodyTextSize),
+                  const TextStyle(color: Colors.red, fontSize: kBodyTextSmall),
             ),
           if (validationMessage != null) verticalSpaceRegular,
           GestureDetector(

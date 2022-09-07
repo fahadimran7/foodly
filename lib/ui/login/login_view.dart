@@ -3,6 +3,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/authentication_layout.dart';
 import 'package:stacked_architecture/ui/login/login_viewmodel.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
+import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
 import 'login_view.form.dart';
 
 @FormView(fields: [
@@ -18,31 +20,71 @@ class LoginView extends StatelessWidget with $LoginView {
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => LoginViewModel(),
       builder: (context, model, child) {
-        return Scaffold(
-          body: AuthenticationLayout(
-            busy: model.isBusy,
-            onCreateAccountTapped: model.navigateToCreateAccount,
-            onMainButtonTapped: model.saveData,
-            validationMessage: model.validationMessage,
-            title: 'Welcome',
-            subtitle: 'Enter your email address to sign in. Enjoy your food.',
-            form: Column(
-              children: [
-                TextField(
-                  decoration: const InputDecoration(labelText: 'Email'),
-                  controller: emailController,
-                ),
-                TextField(
-                  decoration: const InputDecoration(labelText: 'Password'),
-                  controller: passwordController,
-                  obscureText: true,
-                ),
-              ],
+        return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            body: AuthenticationLayout(
+              busy: model.isBusy,
+              onCreateAccountTapped: model.navigateToCreateAccount,
+              onMainButtonTapped: model.saveData,
+              validationMessage: model.validationMessage,
+              title: 'Welcome to',
+              subtitle:
+                  'Enter your Email Address or Phone Number to sign in, enjoy your food :)',
+              form: Column(
+                children: [
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.email_rounded),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                              style: BorderStyle.solid, color: kcPrimaryColor),
+                        ),
+                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        filled: true,
+                        labelText: 'Email'),
+                    controller: emailController,
+                  ),
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.visibility),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                              style: BorderStyle.solid, color: kcPrimaryColor),
+                        ),
+                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        filled: true,
+                        labelText: 'Password'),
+                    controller: passwordController,
+                    obscureText: true,
+                  ),
+                ],
+              ),
+              mainButtonTitle: 'SIGN IN',
+              onSignInWithGoogle: model.useGoogleAuthentication,
+              onSignInWithApple: model.useAppleAuthentication,
+              onForgotPassword: () {},
             ),
-            mainButtonTitle: 'SIGN IN',
-            onSignInWithGoogle: model.useGoogleAuthentication,
-            onSignInWithApple: model.useAppleAuthentication,
-            onForgotPassword: () {},
           ),
         );
       },

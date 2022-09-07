@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        fontFamily: 'OpenSans',
+        scaffoldBackgroundColor: Colors.white,
+        fontFamily: 'SFPro',
         primarySwatch: primaryGreen,
       ),
       navigatorKey: StackedService.navigatorKey,

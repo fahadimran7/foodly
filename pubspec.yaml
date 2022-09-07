@@ -35,10 +35,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: OpenSans
+    - family: SFPro
       fonts:
-        - asset: assets/fonts/OpenSans-Light.ttf
-        - asset: assets/fonts/OpenSans-Regular.ttf
-        - asset: assets/fonts/OpenSans-Semibold.ttf
-        - asset: assets/fonts/OpenSans-Bold.ttf
-        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+        - asset: assets/fonts/SFPro-Light.ttf
+        - asset: assets/fonts/SFPro-Regular.ttf
+        - asset: assets/fonts/SFPro-Medium.ttf
+        - asset: assets/fonts/SFPro-Semibold.ttf
+        - asset: assets/fonts/SFPro-Bold.ttf
+        - asset: assets/fonts/SFPro-Heavy.ttf

@@ -4,6 +4,8 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/ui/create_account/create_account_view.form.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/authentication_layout.dart';
 
+import '../shared/styles.dart';
+import '../shared/ui_helpers.dart';
 import 'create_account_viewmodel.dart';
 
 @FormView(fields: [
@@ -20,34 +22,91 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => CreateAccountViewModel(),
       builder: (context, model, child) {
-        return Scaffold(
-          body: AuthenticationLayout(
-            busy: model.isBusy,
-            onMainButtonTapped: model.saveData,
-            onBackPressed: model.navigateBack,
-            validationMessage: model.validationMessage,
-            title: 'Create Account',
-            subtitle: 'Enter your name, email and password for sign up.',
-            form: Column(
-              children: [
-                TextField(
-                  decoration: const InputDecoration(labelText: 'Full Name'),
-                  controller: fullNameController,
-                ),
-                TextField(
-                  decoration: const InputDecoration(labelText: 'Email'),
-                  controller: emailController,
-                ),
-                TextField(
-                  decoration: const InputDecoration(labelText: 'Password'),
-                  controller: passwordController,
-                  obscureText: true,
-                ),
-              ],
+        return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            body: AuthenticationLayout(
+              busy: model.isBusy,
+              onMainButtonTapped: model.saveData,
+              onBackPressed: model.navigateBack,
+              validationMessage: model.validationMessage,
+              title: 'Create Account',
+              subtitle: 'Enter your name, email and password for sign up.',
+              form: Column(
+                children: [
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.person_rounded),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                              style: BorderStyle.solid, color: kcPrimaryColor),
+                        ),
+                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        filled: true,
+                        labelText: 'Full Name'),
+                    controller: fullNameController,
+                  ),
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.email_rounded),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                              style: BorderStyle.solid, color: kcPrimaryColor),
+                        ),
+                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        filled: true,
+                        labelText: 'Email'),
+                    controller: emailController,
+                  ),
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.visibility),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                              style: BorderStyle.solid, color: kcPrimaryColor),
+                        ),
+                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        filled: true,
+                        labelText: 'Password'),
+                    controller: passwordController,
+                    obscureText: true,
+                  ),
+                ],
+              ),
+              mainButtonTitle: 'SIGN UP',
+              showTermsText: true,
+              onForgotPassword: () {},
             ),
-            mainButtonTitle: 'SIGN UP',
-            showTermsText: true,
-            onForgotPassword: () {},
           ),
         );
       },
