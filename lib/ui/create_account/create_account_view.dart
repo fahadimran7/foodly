@@ -41,6 +41,7 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
                 TextField(
                   decoration: const InputDecoration(labelText: 'Password'),
                   controller: passwordController,
+                  obscureText: true,
                 ),
               ],
             ),

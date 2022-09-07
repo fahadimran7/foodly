@@ -22,10 +22,10 @@ class AuthenticationLayout extends StatelessWidget {
   final String mainButtonTitle;
   final Widget form;
   final bool showTermsText;
-  final Function? onMainButtonTapped;
-  final Function? onCreateAccountTapped;
-  final Function? onForgotPassword;
-  final Function? onBackPressed;
+  final void Function()? onMainButtonTapped;
+  final void Function()? onCreateAccountTapped;
+  final void Function()? onForgotPassword;
+  final void Function()? onBackPressed;
   final String? validationMessage;
   final bool busy;
 
@@ -41,7 +41,7 @@ class AuthenticationLayout extends StatelessWidget {
             IconButton(
               padding: EdgeInsets.zero,
               alignment: Alignment.centerLeft,
-              onPressed: () => onBackPressed!(),
+              onPressed: onBackPressed,
               icon: const Icon(
                 Icons.arrow_back_ios,
                 color: Colors.black,
@@ -49,7 +49,7 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           Text(
             title,
-            style: const TextStyle(fontSize: 34),
+            style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w700),
           ),
           verticalSpaceSmall,
           Align(
@@ -58,7 +58,7 @@ class AuthenticationLayout extends StatelessWidget {
               width: screenWidthPercentage(context, percentage: 0.7),
               child: Text(
                 subtitle,
-                style: ktsMediumGreyBodyText,
+                style: ktsMediumGreyBodyText.copyWith(fontSize: 15),
               ),
             ),
           ),
@@ -69,11 +69,10 @@ class AuthenticationLayout extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: GestureDetector(
-                onTap: () => onForgotPassword,
+                onTap: onForgotPassword,
                 child: Text(
-                  'Forgot Password',
-                  style: ktsMediumGreyBodyText.copyWith(
-                      fontWeight: FontWeight.bold),
+                  'Forgot Password?',
+                  style: ktsMediumGreyBodyText.copyWith(fontSize: 14),
                 ),
               ),
             ),
@@ -86,7 +85,7 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           if (validationMessage != null) verticalSpaceRegular,
           GestureDetector(
-            onTap: () => onMainButtonTapped!(),
+            onTap: onMainButtonTapped,
             child: Container(
               width: double.infinity,
               height: 50,
@@ -112,7 +111,7 @@ class AuthenticationLayout extends StatelessWidget {
           verticalSpaceRegular,
           if (onCreateAccountTapped != null)
             GestureDetector(
-              onTap: () => onCreateAccountTapped!(),
+              onTap: onCreateAccountTapped,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -127,11 +126,11 @@ class AuthenticationLayout extends StatelessWidget {
                 ],
               ),
             ),
-          verticalSpaceMedium,
+          verticalSpaceSmall,
           if (showTermsText)
-            const Text(
+            Text(
               'By signing up you agree to our terms, conditions and privacy policy.',
-              style: ktsMediumGreyBodyText,
+              style: ktsMediumGreyBodyText.copyWith(fontSize: 14),
               textAlign: TextAlign.center,
             )
         ],

@@ -35,6 +35,7 @@ class LoginView extends StatelessWidget with $LoginView {
                 TextField(
                   decoration: const InputDecoration(labelText: 'Password'),
                   controller: passwordController,
+                  obscureText: true,
                 ),
               ],
             ),
