@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_architecture/app/app.locator.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/app.router.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'OpenSans',
-        primarySwatch: Colors.blue,
+        primarySwatch: primaryGreen,
       ),
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
