@@ -10,6 +10,9 @@ import 'package:stacked_core/stacked_core.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../api/firestore_api.dart';
+import '../services/user_service.dart';
+
 final locator = StackedLocator.instance;
 
 Future<void> setupLocator(
@@ -20,5 +23,7 @@ Future<void> setupLocator(
 
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
+  locator.registerLazySingleton(() => FirestoreApi());
+  locator.registerLazySingleton(() => UserService());
   locator.registerSingleton(FirebaseAuthenticationService());
 }
