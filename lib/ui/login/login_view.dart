@@ -40,6 +40,8 @@ class LoginView extends StatelessWidget with $LoginView {
               ],
             ),
             mainButtonTitle: 'SIGN IN',
+            onSignInWithGoogle: model.useGoogleAuthentication,
+            onSignInWithApple: model.useAppleAuthentication,
             onForgotPassword: () {},
           ),
         );

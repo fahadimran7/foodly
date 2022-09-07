@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:auth_buttons/auth_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
@@ -15,7 +18,9 @@ class AuthenticationLayout extends StatelessWidget {
       this.onForgotPassword,
       this.onBackPressed,
       this.validationMessage,
-      this.busy = false})
+      this.busy = false,
+      this.onSignInWithApple,
+      this.onSignInWithGoogle})
       : super(key: key);
   final String title;
   final String subtitle;
@@ -26,6 +31,8 @@ class AuthenticationLayout extends StatelessWidget {
   final void Function()? onCreateAccountTapped;
   final void Function()? onForgotPassword;
   final void Function()? onBackPressed;
+  final void Function()? onSignInWithApple;
+  final void Function()? onSignInWithGoogle;
   final String? validationMessage;
   final bool busy;
 
@@ -132,7 +139,40 @@ class AuthenticationLayout extends StatelessWidget {
               'By signing up you agree to our terms, conditions and privacy policy.',
               style: ktsMediumGreyBodyText.copyWith(fontSize: 14),
               textAlign: TextAlign.center,
-            )
+            ),
+          verticalSpaceRegular,
+          const Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Or',
+              style: ktsMediumGreyBodyText,
+            ),
+          ),
+          if (Platform.isIOS) verticalSpaceRegular,
+          if (Platform.isIOS)
+            AppleAuthButton(
+              onPressed: onSignInWithApple ?? () {},
+              text: 'CONTINUE WITH APPLE',
+              style: const AuthButtonStyle(
+                buttonType: AuthButtonType.secondary,
+                iconBackground: Colors.black,
+                iconColor: Colors.white,
+                textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                iconSize: 24,
+                height: 50,
+              ),
+            ),
+          verticalSpaceRegular,
+          GoogleAuthButton(
+            onPressed: onSignInWithGoogle ?? () {},
+            text: 'CONTINUE WITH GOOGLE',
+            style: const AuthButtonStyle(
+              buttonType: AuthButtonType.secondary,
+              textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              iconSize: 24,
+              height: 50,
+            ),
+          ),
         ],
       ),
     );
