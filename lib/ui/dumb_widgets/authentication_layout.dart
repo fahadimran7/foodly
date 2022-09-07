@@ -66,7 +66,7 @@ class AuthenticationLayout extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: SizedBox(
-              width: screenWidthPercentage(context, percentage: 0.7),
+              width: screenWidthPercentage(context, percentage: 0.8),
               child: Text(
                 subtitle,
                 style: ktsMediumGreyBodyText.copyWith(fontSize: 15),
@@ -84,7 +84,7 @@ class AuthenticationLayout extends StatelessWidget {
                 child: Text(
                   'Forgot Password?',
                   style: ktsMediumGreyBodyText.copyWith(
-                      fontSize: 12,
+                      fontSize: kBodyTextSmall,
                       color: Colors.black54,
                       fontWeight: FontWeight.w500),
                 ),
@@ -144,15 +144,15 @@ class AuthenticationLayout extends StatelessWidget {
           if (showTermsText)
             Text(
               'By signing up you agree to our terms, conditions and privacy policy.',
-              style: ktsMediumGreyBodyText.copyWith(fontSize: 14),
+              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall),
               textAlign: TextAlign.center,
             ),
           verticalSpaceRegular,
-          const Align(
+          Align(
             alignment: Alignment.center,
             child: Text(
               'Or',
-              style: ktsMediumGreyBodyText,
+              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall),
             ),
           ),
           if (Platform.isIOS) verticalSpaceRegular,
@@ -164,7 +164,8 @@ class AuthenticationLayout extends StatelessWidget {
                 buttonType: AuthButtonType.secondary,
                 iconBackground: Colors.black,
                 iconColor: Colors.white,
-                textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                textStyle: TextStyle(
+                    fontSize: kBodyTextSmall, fontWeight: FontWeight.w600),
                 iconSize: 24,
                 height: 50,
               ),
@@ -175,7 +176,8 @@ class AuthenticationLayout extends StatelessWidget {
             text: 'CONTINUE WITH GOOGLE',
             style: const AuthButtonStyle(
               buttonType: AuthButtonType.secondary,
-              textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              textStyle: TextStyle(
+                  fontSize: kBodyTextSmall, fontWeight: FontWeight.w600),
               iconSize: 24,
               height: 50,
             ),

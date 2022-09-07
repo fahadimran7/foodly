@@ -14,17 +14,20 @@ import 'package:stacked_services/stacked_services.dart';
 import '../ui/address_selection/address_selection_view.dart';
 import '../ui/create_account/create_account_view.dart';
 import '../ui/login/login_view.dart';
+import '../ui/onboarding/onboarding_view.dart';
 import '../ui/startup/startup_view.dart';
 
 class Routes {
   static const String startupView = '/startup-view';
   static const String addressSelectionView = '/address-selection-view';
   static const String createAccountView = '/create-account-view';
-  static const String loginView = '/';
+  static const String onboardingView = '/';
+  static const String loginView = '/login-view';
   static const all = <String>{
     startupView,
     addressSelectionView,
     createAccountView,
+    onboardingView,
     loginView,
   };
 }
@@ -36,6 +39,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.startupView, page: StartupView),
     RouteDef(Routes.addressSelectionView, page: AddressSelectionView),
     RouteDef(Routes.createAccountView, page: CreateAccountView),
+    RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
   ];
   @override
@@ -59,6 +63,12 @@ class StackedRouter extends RouterBase {
       );
       return CupertinoPageRoute<dynamic>(
         builder: (context) => CreateAccountView(key: args.key),
+        settings: data,
+      );
+    },
+    OnboardingView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const OnboardingView(),
         settings: data,
       );
     },
@@ -138,6 +148,22 @@ extension NavigatorStateExtension on NavigationService {
     return navigateTo(
       Routes.createAccountView,
       arguments: CreateAccountViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> navigateToOnboardingView({
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo(
+      Routes.onboardingView,
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

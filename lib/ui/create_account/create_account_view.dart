@@ -51,7 +51,7 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
                           borderSide: const BorderSide(
                               style: BorderStyle.solid, color: kcPrimaryColor),
                         ),
-                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        fillColor: kcLightGreyColor,
                         filled: true,
                         labelText: 'Full Name'),
                     controller: fullNameController,
@@ -73,7 +73,7 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
                           borderSide: const BorderSide(
                               style: BorderStyle.solid, color: kcPrimaryColor),
                         ),
-                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        fillColor: kcLightGreyColor,
                         filled: true,
                         labelText: 'Email'),
                     controller: emailController,
@@ -95,7 +95,7 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
                           borderSide: const BorderSide(
                               style: BorderStyle.solid, color: kcPrimaryColor),
                         ),
-                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        fillColor: kcLightGreyColor,
                         filled: true,
                         labelText: 'Password'),
                     controller: passwordController,

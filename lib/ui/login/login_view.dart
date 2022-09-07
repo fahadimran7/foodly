@@ -50,7 +50,7 @@ class LoginView extends StatelessWidget with $LoginView {
                           borderSide: const BorderSide(
                               style: BorderStyle.solid, color: kcPrimaryColor),
                         ),
-                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        fillColor: kcLightGreyColor,
                         filled: true,
                         labelText: 'Email'),
                     controller: emailController,
@@ -72,7 +72,7 @@ class LoginView extends StatelessWidget with $LoginView {
                           borderSide: const BorderSide(
                               style: BorderStyle.solid, color: kcPrimaryColor),
                         ),
-                        fillColor: const Color.fromARGB(255, 248, 248, 248),
+                        fillColor: kcLightGreyColor,
                         filled: true,
                         labelText: 'Password'),
                     controller: passwordController,
