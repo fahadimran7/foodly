@@ -20,6 +20,8 @@ class StartupViewModel extends BaseViewModel {
 
       if (!currentUser.hasAddress) {
         _navigationService.navigateTo(Routes.addressSelectionView);
+      } else {
+        _navigationService.navigateTo(Routes.homeView);
       }
     } else {
       log.v('No user on disk, navigate to onboarding view');
