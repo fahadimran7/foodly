@@ -14,7 +14,7 @@ void main() {
 
     group('runStartupLogic -', () {
       test(
-          'When called should check if we have a logged in user on UserService',
+          'When called should check if we have a logged in user on userService',
           () async {
         final userService = getAndRegisterUserService();
         final model = _getModel();
@@ -24,7 +24,7 @@ void main() {
       });
 
       test(
-          'When we have no logged in user, should navigate to the onboarding view',
+          'When we have no logged in user, should navigate to the onboardingView',
           () async {
         final navigationService = getAndRegisterNavigationService();
         final model = _getModel();
@@ -34,7 +34,7 @@ void main() {
       });
 
       test(
-          'When hasLoggedInUser is true, should call syncUserAccount on the UserService',
+          'When hasLoggedInUser is true, should call syncUserAccount on the userService',
           () async {
         final userService = getAndRegisterUserService(hasLoggedInUser: true);
         final model = _getModel();
@@ -44,13 +44,24 @@ void main() {
       });
 
       test(
-          'When hasLoggedInUser is true, should call currentUser from UserService',
+          'When hasLoggedInUser is true, should call currentUser from userService',
           () async {
         final userService = getAndRegisterUserService(hasLoggedInUser: true);
         final model = _getModel();
         await model.runStartUpLogic();
 
         verify(userService.currentUser);
+      });
+
+      test(
+          'When currentUser does NOT have a default address, navigate to addressSelectionView',
+          () async {
+        final navigationService = getAndRegisterNavigationService();
+        getAndRegisterUserService(hasLoggedInUser: true);
+        final model = _getModel();
+        await model.runStartUpLogic();
+
+        verify(navigationService.navigateTo(Routes.addressSelectionView));
       });
     });
   });

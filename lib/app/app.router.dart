@@ -18,10 +18,10 @@ import '../ui/onboarding/onboarding_view.dart';
 import '../ui/startup/startup_view.dart';
 
 class Routes {
-  static const String startupView = '/startup-view';
+  static const String startupView = '/';
   static const String addressSelectionView = '/address-selection-view';
   static const String createAccountView = '/create-account-view';
-  static const String onboardingView = '/';
+  static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
   static const all = <String>{
     startupView,
