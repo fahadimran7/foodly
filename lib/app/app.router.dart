@@ -13,6 +13,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../ui/address_selection/address_selection_view.dart';
 import '../ui/create_account/create_account_view.dart';
+import '../ui/home/home_view.dart';
 import '../ui/login/login_view.dart';
 import '../ui/onboarding/onboarding_view.dart';
 import '../ui/startup/startup_view.dart';
@@ -23,12 +24,14 @@ class Routes {
   static const String createAccountView = '/create-account-view';
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
+  static const String homeView = '/home-view';
   static const all = <String>{
     startupView,
     addressSelectionView,
     createAccountView,
     onboardingView,
     loginView,
+    homeView,
   };
 }
 
@@ -41,6 +44,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createAccountView, page: CreateAccountView),
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.homeView, page: HomeView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -78,6 +82,12 @@ class StackedRouter extends RouterBase {
       );
       return CupertinoPageRoute<dynamic>(
         builder: (context) => LoginView(key: args.key),
+        settings: data,
+      );
+    },
+    HomeView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const HomeView(),
         settings: data,
       );
     },
@@ -182,6 +192,22 @@ extension NavigatorStateExtension on NavigationService {
     return navigateTo(
       Routes.loginView,
       arguments: LoginViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> navigateToHomeView({
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo(
+      Routes.homeView,
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

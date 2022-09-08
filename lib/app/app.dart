@@ -3,6 +3,7 @@ import 'package:stacked_architecture/api/firestore_api.dart';
 import 'package:stacked_architecture/services/user_service.dart';
 import 'package:stacked_architecture/ui/address_selection/address_selection_view.dart';
 import 'package:stacked_architecture/ui/create_account/create_account_view.dart';
+import 'package:stacked_architecture/ui/home/home_view.dart';
 import 'package:stacked_architecture/ui/login/login_view.dart';
 import 'package:stacked_architecture/ui/onboarding/onboarding_view.dart';
 import 'package:stacked_architecture/ui/startup/startup_view.dart';
@@ -15,6 +16,7 @@ import 'package:stacked_services/stacked_services.dart';
   CupertinoRoute(page: CreateAccountView),
   CupertinoRoute(page: OnboardingView),
   CupertinoRoute(page: LoginView),
+  CupertinoRoute(page: HomeView),
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: FirestoreApi),

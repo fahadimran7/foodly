@@ -14,9 +14,8 @@ class StartupView extends StatelessWidget {
         model.runStartUpLogic();
       }),
       viewModelBuilder: () => StartupViewModel(),
-      builder: (context, model, child) => Scaffold(
-        body: const Center(child: Text('Startup View')),
-        floatingActionButton: FloatingActionButton(onPressed: () {}),
+      builder: (context, model, child) => const Scaffold(
+        body: Center(child: Text('Startup View')),
       ),
     );
   }
