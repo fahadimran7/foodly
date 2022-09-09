@@ -9,6 +9,7 @@ import 'package:stacked_architecture/ui/onboarding/onboarding_view.dart';
 import 'package:stacked_architecture/ui/startup/startup_view.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:places_service/places_service.dart';
 
 @StackedApp(routes: [
   MaterialRoute(page: StartupView, initial: true),
@@ -21,6 +22,7 @@ import 'package:stacked_services/stacked_services.dart';
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: FirestoreApi),
   LazySingleton(classType: UserService),
+  LazySingleton(classType: PlacesService),
   Singleton(classType: FirebaseAuthenticationService)
 ], logger: StackedLogger())
 class AppSetup {}

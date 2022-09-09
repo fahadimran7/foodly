@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:stacked_architecture/app/app.locator.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -9,6 +10,7 @@ import 'app/app.router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await dotenv.load(fileName: ".env");
   setupLocator();
   runApp(const MyApp());
 }

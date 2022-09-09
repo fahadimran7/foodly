@@ -56,8 +56,11 @@ class StackedRouter extends RouterBase {
       );
     },
     AddressSelectionView: (data) {
+      var args = data.getArgs<AddressSelectionViewArguments>(
+        orElse: () => AddressSelectionViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const AddressSelectionView(),
+        builder: (context) => AddressSelectionView(key: args.key),
         settings: data,
       );
     },
@@ -98,6 +101,12 @@ class StackedRouter extends RouterBase {
 /// Arguments holder classes
 /// *************************************************************************
 
+/// AddressSelectionView arguments holder class
+class AddressSelectionViewArguments {
+  final Key? key;
+  AddressSelectionViewArguments({this.key});
+}
+
 /// CreateAccountView arguments holder class
 class CreateAccountViewArguments {
   final Key? key;
@@ -132,6 +141,7 @@ extension NavigatorStateExtension on NavigationService {
   }
 
   Future<dynamic> navigateToAddressSelectionView({
+    Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -140,6 +150,7 @@ extension NavigatorStateExtension on NavigationService {
   }) async {
     return navigateTo(
       Routes.addressSelectionView,
+      arguments: AddressSelectionViewArguments(key: key),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
