@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_architecture/ui/dumb_widgets/block_button.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/buttons/block_button.dart';
 import 'package:stacked_architecture/ui/onboarding/components/onboarding_page_content.dart';
 import 'package:stacked_architecture/ui/onboarding/onboarding_viewmodel.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';

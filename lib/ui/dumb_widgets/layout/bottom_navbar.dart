@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../shared/styles.dart';
+import '../../shared/styles.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar(
@@ -18,8 +18,8 @@ class BottomNavBar extends StatelessWidget {
       onTap: onNavItemTapped,
       selectedItemColor: kcPrimaryColor,
       unselectedItemColor: Colors.black54,
-      selectedFontSize: 12,
-      unselectedFontSize: 12,
+      selectedFontSize: kBodyTextTiny,
+      unselectedFontSize: kBodyTextTiny,
       items: const [
         BottomNavigationBarItem(
           label: 'Home',

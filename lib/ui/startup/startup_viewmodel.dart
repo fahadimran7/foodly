@@ -25,8 +25,14 @@ class StartupViewModel extends BaseViewModel {
       log.v('User sync complete. User profile $currentUser');
 
       if (!currentUser.hasAddress) {
+        log.v(
+          'User ${currentUser.id} has no default address. Navigate to addressSelectionView.',
+        );
         _navigationService.navigateTo(Routes.addressSelectionView);
       } else {
+        log.v(
+          'Default address found for user ${currentUser.id}. Take them to homeView...',
+        );
         _navigationService.navigateTo(Routes.homeView);
       }
     } else {

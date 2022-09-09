@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../shared/styles.dart';
-import '../shared/ui_helpers.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
+import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
+  const CustomAppBar({Key? key, required this.location}) : super(key: key);
+  final String location;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
       ],
       title: Column(
-        children: const [
+        children: [
           verticalSpaceSmall,
-          Text(
+          const Text(
             'DELIVERY TO',
             style: TextStyle(
               fontSize: 11,
@@ -39,8 +39,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
           verticalSpaceTiny,
           Text(
-            'San Francisco',
-            style: TextStyle(
+            location,
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 19,
               letterSpacing: 0.6,

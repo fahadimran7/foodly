@@ -1,12 +1,14 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_architecture/ui/dumb_widgets/bottom_navbar.dart';
-import 'package:stacked_architecture/ui/dumb_widgets/custom_app_bar.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading_with_scaffold.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/layout/bottom_navbar.dart';
 import 'package:stacked_architecture/ui/featured_restaurants/featured_restaurants_view.dart';
 import 'package:stacked_architecture/ui/home/home_viewmodel.dart';
 import 'package:stacked_architecture/ui/orders/orders_view.dart';
 import 'package:stacked_architecture/ui/search_restaurants/search_restaurants_view.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
+import '../dumb_widgets/layout/custom_app_bar.dart';
 import '../user_profile/user_profile_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,27 +18,37 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
       viewModelBuilder: () => HomeViewModel(),
-      builder: (context, model, child) => Scaffold(
-        appBar: const CustomAppBar(),
-        bottomNavigationBar: BottomNavBar(
-          currentIndex: model.currentIndex,
-          onNavItemTapped: model.setIndex,
-        ),
-        body: PageTransitionSwitcher(
-          reverse: model.reverse,
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (Widget child, Animation<double> primaryAnimation,
-              Animation<double> secondaryAnimation) {
-            return SharedAxisTransition(
-              animation: primaryAnimation,
-              secondaryAnimation: secondaryAnimation,
-              transitionType: SharedAxisTransitionType.horizontal,
-              child: child,
-            );
-          },
-          child: getViewForIndex(model.currentIndex),
-        ),
-      ),
+      onModelReady: (model) => model.getLocationForCurrentUser(),
+      builder: (context, model, child) {
+        if (!model.isBusy) {
+          return Scaffold(
+            appBar: CustomAppBar(
+              location: model.currentLocation,
+            ),
+            bottomNavigationBar: BottomNavBar(
+              currentIndex: model.currentIndex,
+              onNavItemTapped: model.setIndex,
+            ),
+            body: PageTransitionSwitcher(
+              reverse: model.reverse,
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (Widget child,
+                  Animation<double> primaryAnimation,
+                  Animation<double> secondaryAnimation) {
+                return SharedAxisTransition(
+                  animation: primaryAnimation,
+                  secondaryAnimation: secondaryAnimation,
+                  transitionType: SharedAxisTransitionType.horizontal,
+                  child: child,
+                );
+              },
+              child: getViewForIndex(model.currentIndex),
+            ),
+          );
+        }
+
+        return const AppLoadingWithScaffold();
+      },
     );
   }
 }

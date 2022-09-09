@@ -9,6 +9,8 @@ const TextStyle ktsMediumGreyBodyText =
 
 const double kBodyTextSize = 16;
 const double kBodyTextSmall = 14;
+const double kBodyTextTiny = 12;
+const double kBodyTextLarge = 18;
 
 const MaterialColor primaryGreen = MaterialColor(
   _greenPrimaryValue,

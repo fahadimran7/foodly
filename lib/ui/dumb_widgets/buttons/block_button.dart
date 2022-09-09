@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 
 class BlockButton extends StatelessWidget {
   const BlockButton({Key? key, required this.onPressed, required this.title})
@@ -19,7 +20,7 @@ class BlockButton extends StatelessWidget {
       child: Text(
         title,
         style: const TextStyle(
-          fontSize: 14,
+          fontSize: kBodyTextSmall,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/ui/create_account/create_account_view.form.dart';
-import 'package:stacked_architecture/ui/dumb_widgets/authentication_layout.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/layout/authentication_layout.dart';
 
 import '../shared/styles.dart';
 import '../shared/ui_helpers.dart';
