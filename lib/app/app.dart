@@ -23,6 +23,7 @@ import 'package:places_service/places_service.dart';
   LazySingleton(classType: FirestoreApi),
   LazySingleton(classType: UserService),
   LazySingleton(classType: PlacesService),
+  LazySingleton(classType: DialogService),
   Singleton(classType: FirebaseAuthenticationService)
 ], logger: StackedLogger())
 class AppSetup {}

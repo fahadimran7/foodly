@@ -27,5 +27,6 @@ Future<void> setupLocator(
   locator.registerLazySingleton(() => FirestoreApi());
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => PlacesService());
+  locator.registerLazySingleton(() => DialogService());
   locator.registerSingleton(FirebaseAuthenticationService());
 }

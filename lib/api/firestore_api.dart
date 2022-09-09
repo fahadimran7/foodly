@@ -48,4 +48,8 @@ class FirestoreApi {
       );
     }
   }
+
+  Future<bool> saveAddress({required Address address}) async {
+    return true;
+  }
 }
