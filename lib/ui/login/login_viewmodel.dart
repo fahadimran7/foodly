@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:stacked_architecture/ui/base/authentication_viewmodel.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'login_view.form.dart';
@@ -18,6 +19,7 @@ class LoginViewModel extends AuthenticationViewModel {
         password: passwordValue!,
       );
 
-  void navigateToCreateAccount() =>
-      navigationService.navigateTo(Routes.createAccountView);
+  void navigateToCreateAccount() {
+    navigationService.navigateTo(Routes.createAccountView);
+  }
 }

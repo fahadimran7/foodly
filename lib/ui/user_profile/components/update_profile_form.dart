@@ -57,6 +57,7 @@ class UserProfileForm extends StatelessWidget {
                 color: Colors.black54,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
+                height: 2,
               ),
               floatingLabelStyle: TextStyle(
                 color: Colors.black54,
@@ -93,8 +94,10 @@ class UserProfileForm extends StatelessWidget {
                 ),
               ),
               labelText: 'EMAIL ADDRESS',
+              hintText: 'name@example.com',
               hintStyle: TextStyle(
                 color: Colors.black54,
+                height: 2,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),

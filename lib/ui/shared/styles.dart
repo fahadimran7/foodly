@@ -5,6 +5,9 @@ const Color kcMediumGreyColor = Color(0xff868686);
 const Color kcLightGreyColor = Color.fromARGB(255, 243, 243, 243);
 const Color kcInputFillColor = Color.fromARGB(255, 248, 248, 248);
 
+const Color kcRedColor = Color(0xfff44336);
+const Color kcOrangeColor = Color(0xffff9800);
+
 const TextStyle ktsMediumGreyBodyText =
     TextStyle(color: kcMediumGreyColor, fontSize: kBodyTextSize);
 

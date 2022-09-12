@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/buttons/block_button.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/buttons/busy_button.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
 import 'package:stacked_architecture/ui/user_profile/components/update_profile_form.dart';
 import 'package:stacked_architecture/ui/user_profile/user_profile_viewmodel.dart';
@@ -24,6 +25,7 @@ class UserProfileView extends StatelessWidget {
                         left: 20.0, right: 20.0, bottom: 20.0),
                     child: Column(
                       children: [
+                        verticalSpaceRegular,
                         _buildTopRow(onBackPressed: model.navigateBack),
                         verticalSpaceSmall,
                         UserProfileForm(
@@ -36,8 +38,9 @@ class UserProfileView extends StatelessWidget {
                           setTouched: model.setTouched,
                         ),
                         const Spacer(),
-                        BlockButton(
-                          onPressed: () => model.updateUserDetails(),
+                        BusyButton(
+                          busy: model.buttonBusy,
+                          onTapped: () => model.updateUserDetails(),
                           title: 'CHANGE SETTINGS',
                         ),
                       ],

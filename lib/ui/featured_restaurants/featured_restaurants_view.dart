@@ -22,7 +22,10 @@ class FeaturedRestaurantsView extends StatelessWidget {
         if (!model.isBusy) {
           return SafeArea(
             child: Column(
-              children: [_buildTopRow(model.currentLocation)],
+              children: [
+                verticalSpaceSmall,
+                _buildTopRow(model.currentLocation)
+              ],
             ),
           );
         }
@@ -66,6 +69,9 @@ Widget _buildTopRow(String location) {
         onPressed: () {},
         child: const Text(
           'Filter',
+          style: TextStyle(
+            color: kcMediumGreyColor,
+          ),
         ),
       )
     ],

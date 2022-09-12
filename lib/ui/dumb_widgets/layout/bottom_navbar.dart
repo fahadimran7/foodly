@@ -11,45 +11,64 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.white,
-      currentIndex: currentIndex,
-      onTap: onNavItemTapped,
-      selectedItemColor: kcPrimaryColor,
-      unselectedItemColor: Colors.black54,
-      selectedFontSize: kBodyTextTiny,
-      unselectedFontSize: kBodyTextTiny,
-      items: const [
-        BottomNavigationBarItem(
-          label: 'Home',
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: Icon(Icons.restaurant),
-          ),
+    return Card(
+      margin: EdgeInsets.zero,
+      elevation: 3,
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: BottomNavigationBar(
+          elevation: 0,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
+          currentIndex: currentIndex,
+          onTap: onNavItemTapped,
+          selectedItemColor: kcPrimaryColor,
+          unselectedItemColor: Colors.black54,
+          selectedFontSize: 11,
+          unselectedFontSize: 11,
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Home',
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4),
+                child: Icon(
+                  Icons.restaurant,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Search',
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4),
+                child: Icon(
+                  Icons.search,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Orders',
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4),
+                child: Icon(
+                  Icons.history,
+                  size: 19,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: 'Profile',
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4),
+                child: Icon(
+                  Icons.person,
+                  size: 19,
+                ),
+              ),
+            )
+          ],
         ),
-        BottomNavigationBarItem(
-          label: 'Search',
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: Icon(Icons.search),
-          ),
-        ),
-        BottomNavigationBarItem(
-          label: 'Orders',
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: Icon(Icons.history),
-          ),
-        ),
-        BottomNavigationBarItem(
-          label: 'Profile',
-          icon: Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: Icon(Icons.person),
-          ),
-        )
-      ],
+      ),
     );
   }
 }

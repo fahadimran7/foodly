@@ -62,6 +62,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
       await userService.syncOrCreateUserAccount(
         user: User(id: user!.uid, email: user.email),
       );
+
       navigationService.replaceWith(successRoute);
     } else {
       if (authResult.hasError == false && authResult.user == null) {

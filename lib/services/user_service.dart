@@ -68,9 +68,12 @@ class UserService {
       );
 
       return true;
+    } on FirebaseAuthException catch (e) {
+      log.e('Firebase exception raised $e');
+      return e.message;
     } catch (e) {
       log.e('Sorry, we were unable to update your profile $e');
-      return null;
+      return e;
     }
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/ui/account_settings.dart/account_settings_viewmodel.dart';
-import 'package:stacked_architecture/ui/dumb_widgets/buttons/busy_button.dart';
-
 import '../shared/styles.dart';
 import '../shared/ui_helpers.dart';
 
@@ -19,7 +17,8 @@ class AccountSettingsView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              verticalSpaceRegular,
+              verticalSpaceMedium,
+              verticalSpaceSmall,
               const Text(
                 'Account Settings',
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
@@ -43,25 +42,56 @@ class AccountSettingsView extends StatelessWidget {
                 Icons.person,
                 model.navigateToProfileView,
               ),
-              verticalSpaceMedium,
+              verticalSpaceSmall,
+              const Divider(),
+              verticalSpaceSmall,
               _buildDetailsRow(
                 'Change Password',
                 'Change your password',
                 Icons.lock,
                 model.navigateToProfileView,
               ),
-              verticalSpaceMedium,
+              verticalSpaceSmall,
+              const Divider(),
+              verticalSpaceSmall,
               _buildDetailsRow(
                 'Payment Methods',
                 'Add your debit and credit cards',
                 Icons.payment_rounded,
                 model.navigateToProfileView,
               ),
-              const Spacer(),
-              BusyButton(
-                onTapped: model.logoutUser,
-                busy: model.isBusy,
-                title: 'Log out',
+              verticalSpaceSmall,
+              const Divider(),
+              verticalSpaceMedium,
+              const Text(
+                'MORE',
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              verticalSpaceMedium,
+              _buildDetailsRow(
+                'Rate Us',
+                'Rate us on Google Play or App Store',
+                Icons.star_rate_rounded,
+                () {},
+              ),
+              const Divider(),
+              verticalSpaceSmall,
+              _buildDetailsRow(
+                'FAQ',
+                'Frequently asked questions',
+                Icons.bookmark_rounded,
+                () {},
+              ),
+              const Divider(),
+              verticalSpaceSmall,
+              _buildDetailsRow(
+                'Logout',
+                'Log out from the app',
+                Icons.logout_rounded,
+                model.showLogoutUserDialog,
               )
             ],
           ),
@@ -79,7 +109,7 @@ Widget _buildDetailsRow(
       children: [
         Icon(
           icon,
-          color: const Color.fromARGB(188, 0, 0, 0),
+          color: const Color.fromARGB(187, 46, 46, 46),
         ),
         Expanded(
           child: Padding(
