@@ -17,6 +17,7 @@ import '../ui/home/home_view.dart';
 import '../ui/login/login_view.dart';
 import '../ui/onboarding/onboarding_view.dart';
 import '../ui/startup/startup_view.dart';
+import '../ui/user_profile/user_profile_view.dart';
 
 class Routes {
   static const String startupView = '/';
@@ -25,6 +26,7 @@ class Routes {
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
   static const String homeView = '/home-view';
+  static const String userProfileView = '/user-profile-view';
   static const all = <String>{
     startupView,
     addressSelectionView,
@@ -32,6 +34,7 @@ class Routes {
     onboardingView,
     loginView,
     homeView,
+    userProfileView,
   };
 }
 
@@ -45,6 +48,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.userProfileView, page: UserProfileView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -91,6 +95,12 @@ class StackedRouter extends RouterBase {
     HomeView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const HomeView(),
+        settings: data,
+      );
+    },
+    UserProfileView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const UserProfileView(),
         settings: data,
       );
     },
@@ -219,6 +229,22 @@ extension NavigatorStateExtension on NavigationService {
   }) async {
     return navigateTo(
       Routes.homeView,
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> navigateToUserProfileView({
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo(
+      Routes.userProfileView,
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

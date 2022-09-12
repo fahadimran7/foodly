@@ -23,6 +23,7 @@ mixin _$User {
   String get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get defaultAddress => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,8 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({String id, String? email, String? defaultAddress});
+  $Res call(
+      {String id, String? email, String? defaultAddress, String? fullName});
 }
 
 /// @nodoc
@@ -49,6 +51,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? id = freezed,
     Object? email = freezed,
     Object? defaultAddress = freezed,
+    Object? fullName = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -63,6 +66,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
               as String?,
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -72,7 +79,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
       __$$_UserCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String? email, String? defaultAddress});
+  $Res call(
+      {String id, String? email, String? defaultAddress, String? fullName});
 }
 
 /// @nodoc
@@ -89,6 +97,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? id = freezed,
     Object? email = freezed,
     Object? defaultAddress = freezed,
+    Object? fullName = freezed,
   }) {
     return _then(_$_User(
       id: id == freezed
@@ -103,6 +112,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.defaultAddress
           : defaultAddress // ignore: cast_nullable_to_non_nullable
               as String?,
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -110,7 +123,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_User extends _User {
-  _$_User({required this.id, this.email, this.defaultAddress}) : super._();
+  _$_User({required this.id, this.email, this.defaultAddress, this.fullName})
+      : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -120,10 +134,12 @@ class _$_User extends _User {
   final String? email;
   @override
   final String? defaultAddress;
+  @override
+  final String? fullName;
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, defaultAddress: $defaultAddress)';
+    return 'User(id: $id, email: $email, defaultAddress: $defaultAddress, fullName: $fullName)';
   }
 
   @override
@@ -134,7 +150,8 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.defaultAddress, defaultAddress));
+                .equals(other.defaultAddress, defaultAddress) &&
+            const DeepCollectionEquality().equals(other.fullName, fullName));
   }
 
   @JsonKey(ignore: true)
@@ -143,7 +160,8 @@ class _$_User extends _User {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(defaultAddress));
+      const DeepCollectionEquality().hash(defaultAddress),
+      const DeepCollectionEquality().hash(fullName));
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +180,8 @@ abstract class _User extends User {
   factory _User(
       {required final String id,
       final String? email,
-      final String? defaultAddress}) = _$_User;
+      final String? defaultAddress,
+      final String? fullName}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -173,6 +192,8 @@ abstract class _User extends User {
   String? get email;
   @override
   String? get defaultAddress;
+  @override
+  String? get fullName;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

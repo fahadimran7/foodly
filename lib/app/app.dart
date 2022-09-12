@@ -7,6 +7,7 @@ import 'package:stacked_architecture/ui/home/home_view.dart';
 import 'package:stacked_architecture/ui/login/login_view.dart';
 import 'package:stacked_architecture/ui/onboarding/onboarding_view.dart';
 import 'package:stacked_architecture/ui/startup/startup_view.dart';
+import 'package:stacked_architecture/ui/user_profile/user_profile_view.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:places_service/places_service.dart';
@@ -18,6 +19,7 @@ import 'package:places_service/places_service.dart';
   CupertinoRoute(page: OnboardingView),
   CupertinoRoute(page: LoginView),
   CupertinoRoute(page: HomeView),
+  CupertinoRoute(page: UserProfileView),
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: FirestoreApi),

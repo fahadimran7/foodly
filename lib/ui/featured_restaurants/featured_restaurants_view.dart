@@ -57,7 +57,6 @@ Widget _buildTopRow(String location) {
             style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 21,
-              letterSpacing: 0.6,
             ),
           ),
         ],

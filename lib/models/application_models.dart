@@ -6,8 +6,12 @@ part 'application_models.g.dart';
 abstract class User with _$User {
   User._();
 
-  factory User({required String id, String? email, String? defaultAddress}) =
-      _User;
+  factory User({
+    required String id,
+    String? email,
+    String? defaultAddress,
+    String? fullName,
+  }) = _User;
 
   bool get hasAddress => defaultAddress?.isNotEmpty ?? false;
 

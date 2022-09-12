@@ -102,9 +102,22 @@ class FirestoreApi {
 
     final addressDetails = addressDoc.data();
 
-    final street = addressDetails?['street'] ?? '';
     final city = addressDetails?['city'];
 
-    return "$street $city";
+    return "$city";
+  }
+
+  Future<dynamic> updateUserAccount(
+      {String? userId, String? fullName, required String email}) async {
+    if (fullName != null) {
+      await usersCollection.doc(userId).update(
+        {
+          'fullName': fullName,
+          'email': email,
+        },
+      );
+    }
+
+    await usersCollection.doc(userId).update({'email': email});
   }
 }

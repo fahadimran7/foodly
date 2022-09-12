@@ -48,6 +48,17 @@ class MockUserService extends _i1.Mock implements _i3.UserService {
               returnValue: _i4.Future<void>.value(),
               returnValueForMissingStub: _i4.Future<void>.value())
       as _i4.Future<void>);
+  @override
+  _i4.Future<_i2.User?> getUserAccountDetails() =>
+      (super.noSuchMethod(Invocation.method(#getUserAccountDetails, []),
+          returnValue: _i4.Future<_i2.User?>.value()) as _i4.Future<_i2.User?>);
+  @override
+  _i4.Future<dynamic> updateUserAccountDetails(
+          {String? fullName, String? email}) =>
+      (super.noSuchMethod(
+          Invocation.method(#updateUserAccountDetails, [],
+              {#fullName: fullName, #email: email}),
+          returnValue: _i4.Future<dynamic>.value()) as _i4.Future<dynamic>);
 }
 
 /// A class which mocks [NavigationService].

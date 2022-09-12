@@ -43,4 +43,34 @@ class UserService {
       log.v('_currentUser has been saved');
     }
   }
+
+  Future<User?> getUserAccountDetails() async {
+    final firebaseUserId =
+        _firebaseAuthenticationService.firebaseAuth.currentUser!.uid;
+
+    final userAccount = await _firestoreApi.getUser(userId: firebaseUserId);
+
+    if (userAccount != null) {
+      return userAccount;
+    }
+
+    return null;
+  }
+
+  Future<dynamic> updateUserAccountDetails(
+      {String? fullName, required String email}) async {
+    try {
+      await _firebaseAuthenticationService.updateEmail(email);
+      await _firestoreApi.updateUserAccount(
+        userId: _currentUser!.id,
+        fullName: fullName,
+        email: email,
+      );
+
+      return true;
+    } catch (e) {
+      log.e('Sorry, we were unable to update your profile $e');
+      return null;
+    }
+  }
 }
