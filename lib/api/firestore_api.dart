@@ -97,8 +97,8 @@ class FirestoreApi {
 
     final addressDetails = addressDoc.data();
 
-    final street = addressDetails!['street'] ?? '';
-    final city = addressDetails['city'];
+    final street = addressDetails?['street'] ?? '';
+    final city = addressDetails?['city'];
 
     return "$street $city";
   }

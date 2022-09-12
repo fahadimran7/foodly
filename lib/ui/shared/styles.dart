@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 const Color kcPrimaryColor = Color(0xff22A45D);
 const Color kcMediumGreyColor = Color(0xff868686);
-const Color kcLightGreyColor = Color.fromARGB(255, 248, 248, 248);
+const Color kcLightGreyColor = Color.fromARGB(255, 243, 243, 243);
+const Color kcInputFillColor = Color.fromARGB(255, 248, 248, 248);
 
 const TextStyle ktsMediumGreyBodyText =
     TextStyle(color: kcMediumGreyColor, fontSize: kBodyTextSize);

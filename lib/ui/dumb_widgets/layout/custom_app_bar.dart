@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
               fontSize: 11,
               color: kcPrimaryColor,
               letterSpacing: 0.45,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w500,
             ),
           ),
           verticalSpaceTiny,
@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             location,
             style: const TextStyle(
               fontWeight: FontWeight.w500,
-              fontSize: 19,
+              fontSize: 22,
               letterSpacing: 0.6,
             ),
           ),

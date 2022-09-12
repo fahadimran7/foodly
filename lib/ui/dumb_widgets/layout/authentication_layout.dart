@@ -56,8 +56,19 @@ class AuthenticationLayout extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
+                const Spacer(
+                  flex: 2,
+                ),
+                const Text(
+                  'Sign up',
+                  style: TextStyle(fontWeight: FontWeight.w600),
+                ),
+                const Spacer(
+                  flex: 3,
+                )
               ],
             ),
+          verticalSpaceSmall,
           Text(
             title,
             style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w500),

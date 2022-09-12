@@ -9,7 +9,6 @@ import '../shared/ui_helpers.dart';
 import 'create_account_viewmodel.dart';
 
 @FormView(fields: [
-  FormTextField(name: 'fullName'),
   FormTextField(name: 'email'),
   FormTextField(name: 'password'),
 ])
@@ -32,71 +31,52 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
               validationMessage: model.validationMessage,
               onSignInWithGoogle: model.useGoogleAuthentication,
               title: 'Create Account',
-              subtitle: 'Enter your name, email and password for sign up.',
+              subtitle: 'Enter email and password for sign up.',
               form: Column(
                 children: [
                   verticalSpaceRegular,
                   TextField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                              style: BorderStyle.solid, color: kcPrimaryColor),
-                        ),
-                        fillColor: kcLightGreyColor,
-                        filled: true,
-                        labelText: 'Full Name'),
-                    controller: fullNameController,
-                  ),
-                  verticalSpaceRegular,
-                  TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                              style: BorderStyle.solid, color: kcPrimaryColor),
-                        ),
-                        fillColor: kcLightGreyColor,
-                        filled: true,
-                        labelText: 'Email'),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                            style: BorderStyle.solid, color: kcPrimaryColor),
+                      ),
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                      labelText: 'Email',
+                    ),
                     controller: emailController,
                   ),
                   verticalSpaceRegular,
                   TextField(
                     decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.visibility),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
+                      suffixIcon: const Icon(Icons.visibility),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                              style: BorderStyle.solid, color: kcPrimaryColor),
-                        ),
-                        fillColor: kcLightGreyColor,
-                        filled: true,
-                        labelText: 'Password'),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                            style: BorderStyle.solid, color: kcPrimaryColor),
+                      ),
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                      labelText: 'Password',
+                    ),
                     controller: passwordController,
                     obscureText: true,
                   ),

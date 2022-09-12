@@ -28,6 +28,7 @@ abstract class AuthenticationViewModel extends FormViewModel {
         runAuthentication(),
         throwException: true,
       );
+
       await _handleAuthenticationResponse(result);
     } on FirestoreApiException catch (e) {
       log.e(e.toString());
