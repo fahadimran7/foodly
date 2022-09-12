@@ -18,6 +18,7 @@ class AddressSelectionView extends StatelessWidget with $AddressSelectionView {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AddressSelectionViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
+      onDispose: (model) => disposeForm(),
       viewModelBuilder: () => AddressSelectionViewModel(),
       builder: (context, model, child) => Scaffold(
         body: ListView(

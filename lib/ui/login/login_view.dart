@@ -19,71 +19,69 @@ class LoginView extends StatelessWidget with $LoginView {
     return ViewModelBuilder<LoginViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       viewModelBuilder: () => LoginViewModel(),
+      onDispose: (model) => disposeForm(),
       builder: (context, model, child) {
-        return GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: Scaffold(
-            body: AuthenticationLayout(
-              busy: model.isBusy,
-              onCreateAccountTapped: model.navigateToCreateAccount,
-              onMainButtonTapped: model.saveData,
-              validationMessage: model.validationMessage,
-              title: 'Welcome to',
-              subtitle:
-                  'Enter your Email Address or Phone Number to sign in, enjoy your food :)',
-              form: Column(
-                children: [
-                  verticalSpaceRegular,
-                  TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
+        return Scaffold(
+          body: AuthenticationLayout(
+            busy: model.isBusy,
+            onCreateAccountTapped: model.navigateToCreateAccount,
+            onMainButtonTapped: model.saveData,
+            validationMessage: model.validationMessage,
+            title: 'Welcome to',
+            subtitle:
+                'Enter your Email Address or Phone Number to sign in, enjoy your food :)',
+            form: Column(
+              children: [
+                verticalSpaceRegular,
+                TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
                         ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                              style: BorderStyle.solid, color: kcPrimaryColor),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                            style: BorderStyle.solid, color: kcPrimaryColor),
+                      ),
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                      labelText: 'Email'),
+                  controller: emailController,
+                ),
+                verticalSpaceRegular,
+                TextField(
+                  decoration: InputDecoration(
+                      suffixIcon: const Icon(Icons.visibility),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
                         ),
-                        fillColor: kcLightGreyColor,
-                        filled: true,
-                        labelText: 'Email'),
-                    controller: emailController,
-                  ),
-                  verticalSpaceRegular,
-                  TextField(
-                    decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.visibility),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(6),
-                          borderSide: const BorderSide(
-                              style: BorderStyle.solid, color: kcPrimaryColor),
-                        ),
-                        fillColor: kcLightGreyColor,
-                        filled: true,
-                        labelText: 'Password'),
-                    controller: passwordController,
-                    obscureText: true,
-                  ),
-                ],
-              ),
-              mainButtonTitle: 'SIGN IN',
-              onSignInWithGoogle: model.useGoogleAuthentication,
-              onSignInWithApple: model.useAppleAuthentication,
-              onForgotPassword: () {},
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                            style: BorderStyle.solid, color: kcPrimaryColor),
+                      ),
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                      labelText: 'Password'),
+                  controller: passwordController,
+                  obscureText: true,
+                ),
+              ],
             ),
+            mainButtonTitle: 'SIGN IN',
+            onSignInWithGoogle: model.useGoogleAuthentication,
+            onSignInWithApple: model.useAppleAuthentication,
+            onForgotPassword: () {},
           ),
         );
       },

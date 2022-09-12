@@ -18,6 +18,8 @@ class StartupViewModel extends BaseViewModel {
       apiKey: dotenv.env['GOOGLE_PLACES_API_KEY']!,
     );
     if (_userService.hasLoggedInUser) {
+      log.v(
+          'ERROR! User is logged out but still we have ${_userService.hasLoggedInUser}');
       log.v('We have a user session on disk. Sync the user profile...');
       await _userService.syncUserAccount();
 

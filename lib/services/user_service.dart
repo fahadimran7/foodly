@@ -76,4 +76,8 @@ class UserService {
       return e;
     }
   }
+
+  void deleteUserSessionOnLogOut() {
+    _currentUser = null;
+  }
 }

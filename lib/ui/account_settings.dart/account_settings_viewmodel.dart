@@ -1,5 +1,6 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/app/app.router.dart';
+import 'package:stacked_architecture/ui/shared/setup_dialog_ui.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -33,7 +34,17 @@ class AccountSettingsViewModel extends BaseViewModel {
   }
 
   Future<void> _logoutUser() async {
+    await resetLocator();
     await runBusyFuture(_authenticationService.logout());
-    _navigationService.clearStackAndShow(Routes.onboardingView);
+    _navigationService.replaceWith(Routes.startupView);
+  }
+
+  // Need to reset singletons on logout otherwise bad things will happen
+  // For instance we will get the old versions of user service and firebase service and
+  // the old user account will be synced by the syncOrCreateUserAccount method
+  resetLocator() async {
+    await locator.reset(dispose: true);
+    setupLocator();
+    setupDialogUi();
   }
 }

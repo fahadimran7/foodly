@@ -59,6 +59,10 @@ class MockUserService extends _i1.Mock implements _i3.UserService {
           Invocation.method(#updateUserAccountDetails, [],
               {#fullName: fullName, #email: email}),
           returnValue: _i4.Future<dynamic>.value()) as _i4.Future<dynamic>);
+  @override
+  void deleteUserSessionOnLogOut() =>
+      super.noSuchMethod(Invocation.method(#deleteUserSessionOnLogOut, []),
+          returnValueForMissingStub: null);
 }
 
 /// A class which mocks [NavigationService].
