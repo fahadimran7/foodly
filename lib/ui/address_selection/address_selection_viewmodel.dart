@@ -89,6 +89,7 @@ class AddressSelectionViewModel extends FormViewModel {
         );
       } else {
         log.v('Address saved successfully. Redirecting to the home view');
+
         _navigationService.clearStackAndShow(Routes.homeView);
       }
 

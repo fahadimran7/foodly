@@ -88,11 +88,16 @@ class FirestoreApi {
     return usersCollection.doc(userId).collection(addressesFirestoreKey);
   }
 
-  Future<String> getFormattedLocationForUser(User user) async {
+  Future<String> getFormattedLocationForUser(String userId) async {
+    // We need to get updated user information from firestore
+    final userInfo = await usersCollection.doc(userId).get();
+    final addressId =
+        (userInfo.data() as Map<String, dynamic>)['defaultAddress'];
+
     final addressDoc = await usersCollection
-        .doc(user.id)
+        .doc(userId)
         .collection(addressesFirestoreKey)
-        .doc(user.defaultAddress)
+        .doc(addressId)
         .get();
 
     final addressDetails = addressDoc.data();

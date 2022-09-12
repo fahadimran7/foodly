@@ -13,7 +13,7 @@ class FeaturedRestaurantsViewModel extends BaseViewModel {
   Future<void> getLocationForCurrentUser() async {
     setBusy(true);
     final location = await _fireStoreApi
-        .getFormattedLocationForUser(_userService.currentUser);
+        .getFormattedLocationForUser(_userService.currentUser.id);
     _currentLocation = location;
     notifyListeners();
 

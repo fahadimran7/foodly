@@ -7,7 +7,9 @@ import '../shared/styles.dart';
 import '../shared/ui_helpers.dart';
 
 class FeaturedRestaurantsView extends StatelessWidget {
-  const FeaturedRestaurantsView({Key? key}) : super(key: key);
+  const FeaturedRestaurantsView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
