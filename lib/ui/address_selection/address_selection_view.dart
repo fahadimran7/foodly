@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/ui/address_selection/address_selection_viewmodel.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/buttons/block_button.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
+import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
 
 import 'address_selection_view.form.dart';
 
@@ -20,41 +23,123 @@ class AddressSelectionView extends StatelessWidget with $AddressSelectionView {
       onModelReady: (model) => listenToFormUpdated(model),
       onDispose: (model) => disposeForm(),
       viewModelBuilder: () => AddressSelectionViewModel(),
-      builder: (context, model, child) => Scaffold(
-        body: ListView(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(hintText: 'Enter your address'),
-              controller: addressController,
+      builder: (context, model, child) => SafeArea(
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+              child: Column(
+                children: [
+                  verticalSpaceLarge,
+                  const Text(
+                    'Find restaurants near you',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  verticalSpaceRegular,
+                  const Text(
+                    'Please enter your location or allow access to your location to find restaurants near you.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: kcMediumGreyColor, height: 1.4),
+                  ),
+                  verticalSpaceMedium,
+                  TextField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(16),
+                      prefixIcon: const Icon(Icons.location_on_rounded),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          style: BorderStyle.solid,
+                          color: kcPrimaryColor,
+                        ),
+                      ),
+                      hintText: 'Enter a new address',
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                    ),
+                    controller: addressController,
+                  ),
+                  verticalSpaceRegular,
+                  if (!model.hasSelectedPlace &&
+                      !model.hasAutoCompleteResults &&
+                      !model.isBusy)
+                    Column(
+                      children: const [
+                        Text(
+                          'We have no suggestions for you :(',
+                          style: TextStyle(
+                            color: kcMediumGreyColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  if (model.hasAutoCompleteResults)
+                    ...model.autoCompleteResults.map(
+                      (autoCompleteResult) => Column(
+                        children: [
+                          ListTile(
+                            leading:
+                                const FaIcon(FontAwesomeIcons.locationArrow),
+                            title: Text(autoCompleteResult.mainText ?? ''),
+                            subtitle: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child:
+                                  Text(autoCompleteResult.secondaryText ?? ''),
+                            ),
+                            onTap: () => model.setSelectedSuggestion(
+                              autoCompleteResult,
+                            ),
+                          ),
+                          const Divider(
+                            height: 3,
+                            indent: 22,
+                          )
+                        ],
+                      ),
+                    ),
+                  if (model.isBusy)
+                    Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          verticalSpaceMedium,
+                          Text(
+                            'Saving your address...',
+                            style: TextStyle(color: kcMediumGreyColor),
+                          ),
+                          verticalSpaceRegular,
+                          CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation(kcPrimaryColor),
+                          )
+                        ],
+                      ),
+                    ),
+                  verticalSpaceMedium,
+                  BlockButton(
+                    onPressed: model.hasSelectedPlace
+                        ? () => model.selectAddressSuggestion()
+                        : () {},
+                    title: 'Continue',
+                  )
+                ],
+              ),
             ),
-            if (!model.hasAutoCompleteResults && !model.isBusy)
-              const Text('We have no suggestions for you'),
-            if (model.hasAutoCompleteResults)
-              ...model.autoCompleteResults.map(
-                (autoCompleteResult) => ListTile(
-                  title: Text(autoCompleteResult.mainText ?? ''),
-                  subtitle: Text(autoCompleteResult.secondaryText ?? ''),
-                  onTap: () => model.setSelectedSuggestion(autoCompleteResult),
-                ),
-              ),
-            if (model.isBusy)
-              Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text('Saving your address'),
-                    CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation(kcPrimaryColor),
-                    )
-                  ],
-                ),
-              ),
-            ElevatedButton(
-              onPressed: () => model.selectAddressSuggestion(),
-              child: Text('Continue'),
-            )
-          ],
+          ),
         ),
       ),
     );
