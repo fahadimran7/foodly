@@ -14,6 +14,12 @@ class FirestoreApi {
   final CollectionReference regionsCollection =
       FirebaseFirestore.instance.collection(regionsFirestoreKey);
 
+  final CollectionReference featuredRestaurantsCollection =
+      FirebaseFirestore.instance.collection(featuredRestaurantsFirestoreKey);
+
+  final CollectionReference editorsPickRestaurantsCollection =
+      FirebaseFirestore.instance.collection(editorsPickRestaurantsFirestoreKey);
+
   Future<void> createUser({required User user}) async {
     log.i('user: $user');
 
@@ -128,5 +134,40 @@ class FirestoreApi {
     log.i('city: $city');
     final cityDocument = await regionsCollection.doc(city).get();
     return cityDocument.exists;
+  }
+
+  Stream<List<FeaturedRestaurant>> getListOfFeaturedRestaurants() {
+    final featuredRestaurantsStream = featuredRestaurantsCollection.snapshots();
+
+    final streamToPublish = featuredRestaurantsStream.map((snapshot) {
+      final featuredRestaurantsMap = snapshot.docs;
+
+      final featuredRestaurantsList = featuredRestaurantsMap
+          .map((featuredRestaurant) => FeaturedRestaurant.fromJson(
+              featuredRestaurant.data() as Map<String, dynamic>))
+          .toList();
+
+      return featuredRestaurantsList;
+    });
+
+    return streamToPublish;
+  }
+
+  Stream<List<EditorsPickRestaurant>> getListOfEditorsPickRestaurants() {
+    final editorsPickRestaurantsStream =
+        editorsPickRestaurantsCollection.snapshots();
+
+    final streamToPublish = editorsPickRestaurantsStream.map((snapshot) {
+      final editorsPickRestaurantsMap = snapshot.docs;
+
+      final editorsPickRestaurantsList = editorsPickRestaurantsMap
+          .map((editorsPickRestaurant) => EditorsPickRestaurant.fromJson(
+              editorsPickRestaurant.data() as Map<String, dynamic>))
+          .toList();
+
+      return editorsPickRestaurantsList;
+    });
+
+    return streamToPublish;
   }
 }

@@ -478,3 +478,541 @@ abstract class _Address implements Address {
   _$$_AddressCopyWith<_$_Address> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+FeaturedRestaurant _$FeaturedRestaurantFromJson(Map<String, dynamic> json) {
+  return _FeaturedRestaurant.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FeaturedRestaurant {
+  String? get area => throw _privateConstructorUsedError;
+  String get city => throw _privateConstructorUsedError;
+  String get deliveryTime => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  bool get offersFreeDelivery => throw _privateConstructorUsedError;
+  String get rating => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FeaturedRestaurantCopyWith<FeaturedRestaurant> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FeaturedRestaurantCopyWith<$Res> {
+  factory $FeaturedRestaurantCopyWith(
+          FeaturedRestaurant value, $Res Function(FeaturedRestaurant) then) =
+      _$FeaturedRestaurantCopyWithImpl<$Res>;
+  $Res call(
+      {String? area,
+      String city,
+      String deliveryTime,
+      String imageUrl,
+      String name,
+      bool offersFreeDelivery,
+      String rating});
+}
+
+/// @nodoc
+class _$FeaturedRestaurantCopyWithImpl<$Res>
+    implements $FeaturedRestaurantCopyWith<$Res> {
+  _$FeaturedRestaurantCopyWithImpl(this._value, this._then);
+
+  final FeaturedRestaurant _value;
+  // ignore: unused_field
+  final $Res Function(FeaturedRestaurant) _then;
+
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? city = freezed,
+    Object? deliveryTime = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? offersFreeDelivery = freezed,
+    Object? rating = freezed,
+  }) {
+    return _then(_value.copyWith(
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveryTime: deliveryTime == freezed
+          ? _value.deliveryTime
+          : deliveryTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      offersFreeDelivery: offersFreeDelivery == freezed
+          ? _value.offersFreeDelivery
+          : offersFreeDelivery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_FeaturedRestaurantCopyWith<$Res>
+    implements $FeaturedRestaurantCopyWith<$Res> {
+  factory _$$_FeaturedRestaurantCopyWith(_$_FeaturedRestaurant value,
+          $Res Function(_$_FeaturedRestaurant) then) =
+      __$$_FeaturedRestaurantCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String? area,
+      String city,
+      String deliveryTime,
+      String imageUrl,
+      String name,
+      bool offersFreeDelivery,
+      String rating});
+}
+
+/// @nodoc
+class __$$_FeaturedRestaurantCopyWithImpl<$Res>
+    extends _$FeaturedRestaurantCopyWithImpl<$Res>
+    implements _$$_FeaturedRestaurantCopyWith<$Res> {
+  __$$_FeaturedRestaurantCopyWithImpl(
+      _$_FeaturedRestaurant _value, $Res Function(_$_FeaturedRestaurant) _then)
+      : super(_value, (v) => _then(v as _$_FeaturedRestaurant));
+
+  @override
+  _$_FeaturedRestaurant get _value => super._value as _$_FeaturedRestaurant;
+
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? city = freezed,
+    Object? deliveryTime = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? offersFreeDelivery = freezed,
+    Object? rating = freezed,
+  }) {
+    return _then(_$_FeaturedRestaurant(
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveryTime: deliveryTime == freezed
+          ? _value.deliveryTime
+          : deliveryTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      offersFreeDelivery: offersFreeDelivery == freezed
+          ? _value.offersFreeDelivery
+          : offersFreeDelivery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FeaturedRestaurant implements _FeaturedRestaurant {
+  _$_FeaturedRestaurant(
+      {this.area,
+      required this.city,
+      required this.deliveryTime,
+      required this.imageUrl,
+      required this.name,
+      required this.offersFreeDelivery,
+      required this.rating});
+
+  factory _$_FeaturedRestaurant.fromJson(Map<String, dynamic> json) =>
+      _$$_FeaturedRestaurantFromJson(json);
+
+  @override
+  final String? area;
+  @override
+  final String city;
+  @override
+  final String deliveryTime;
+  @override
+  final String imageUrl;
+  @override
+  final String name;
+  @override
+  final bool offersFreeDelivery;
+  @override
+  final String rating;
+
+  @override
+  String toString() {
+    return 'FeaturedRestaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FeaturedRestaurant &&
+            const DeepCollectionEquality().equals(other.area, area) &&
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality()
+                .equals(other.deliveryTime, deliveryTime) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.offersFreeDelivery, offersFreeDelivery) &&
+            const DeepCollectionEquality().equals(other.rating, rating));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(area),
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(deliveryTime),
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(offersFreeDelivery),
+      const DeepCollectionEquality().hash(rating));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FeaturedRestaurantCopyWith<_$_FeaturedRestaurant> get copyWith =>
+      __$$_FeaturedRestaurantCopyWithImpl<_$_FeaturedRestaurant>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_FeaturedRestaurantToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FeaturedRestaurant implements FeaturedRestaurant {
+  factory _FeaturedRestaurant(
+      {final String? area,
+      required final String city,
+      required final String deliveryTime,
+      required final String imageUrl,
+      required final String name,
+      required final bool offersFreeDelivery,
+      required final String rating}) = _$_FeaturedRestaurant;
+
+  factory _FeaturedRestaurant.fromJson(Map<String, dynamic> json) =
+      _$_FeaturedRestaurant.fromJson;
+
+  @override
+  String? get area;
+  @override
+  String get city;
+  @override
+  String get deliveryTime;
+  @override
+  String get imageUrl;
+  @override
+  String get name;
+  @override
+  bool get offersFreeDelivery;
+  @override
+  String get rating;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FeaturedRestaurantCopyWith<_$_FeaturedRestaurant> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+EditorsPickRestaurant _$EditorsPickRestaurantFromJson(
+    Map<String, dynamic> json) {
+  return _EditorsPickRestaurant.fromJson(json);
+}
+
+/// @nodoc
+mixin _$EditorsPickRestaurant {
+  String? get area => throw _privateConstructorUsedError;
+  String get city => throw _privateConstructorUsedError;
+  String get deliveryTime => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  bool get offersFreeDelivery => throw _privateConstructorUsedError;
+  String get rating => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EditorsPickRestaurantCopyWith<EditorsPickRestaurant> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditorsPickRestaurantCopyWith<$Res> {
+  factory $EditorsPickRestaurantCopyWith(EditorsPickRestaurant value,
+          $Res Function(EditorsPickRestaurant) then) =
+      _$EditorsPickRestaurantCopyWithImpl<$Res>;
+  $Res call(
+      {String? area,
+      String city,
+      String deliveryTime,
+      String imageUrl,
+      String name,
+      bool offersFreeDelivery,
+      String rating});
+}
+
+/// @nodoc
+class _$EditorsPickRestaurantCopyWithImpl<$Res>
+    implements $EditorsPickRestaurantCopyWith<$Res> {
+  _$EditorsPickRestaurantCopyWithImpl(this._value, this._then);
+
+  final EditorsPickRestaurant _value;
+  // ignore: unused_field
+  final $Res Function(EditorsPickRestaurant) _then;
+
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? city = freezed,
+    Object? deliveryTime = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? offersFreeDelivery = freezed,
+    Object? rating = freezed,
+  }) {
+    return _then(_value.copyWith(
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveryTime: deliveryTime == freezed
+          ? _value.deliveryTime
+          : deliveryTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      offersFreeDelivery: offersFreeDelivery == freezed
+          ? _value.offersFreeDelivery
+          : offersFreeDelivery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_EditorsPickRestaurantCopyWith<$Res>
+    implements $EditorsPickRestaurantCopyWith<$Res> {
+  factory _$$_EditorsPickRestaurantCopyWith(_$_EditorsPickRestaurant value,
+          $Res Function(_$_EditorsPickRestaurant) then) =
+      __$$_EditorsPickRestaurantCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String? area,
+      String city,
+      String deliveryTime,
+      String imageUrl,
+      String name,
+      bool offersFreeDelivery,
+      String rating});
+}
+
+/// @nodoc
+class __$$_EditorsPickRestaurantCopyWithImpl<$Res>
+    extends _$EditorsPickRestaurantCopyWithImpl<$Res>
+    implements _$$_EditorsPickRestaurantCopyWith<$Res> {
+  __$$_EditorsPickRestaurantCopyWithImpl(_$_EditorsPickRestaurant _value,
+      $Res Function(_$_EditorsPickRestaurant) _then)
+      : super(_value, (v) => _then(v as _$_EditorsPickRestaurant));
+
+  @override
+  _$_EditorsPickRestaurant get _value =>
+      super._value as _$_EditorsPickRestaurant;
+
+  @override
+  $Res call({
+    Object? area = freezed,
+    Object? city = freezed,
+    Object? deliveryTime = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? offersFreeDelivery = freezed,
+    Object? rating = freezed,
+  }) {
+    return _then(_$_EditorsPickRestaurant(
+      area: area == freezed
+          ? _value.area
+          : area // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveryTime: deliveryTime == freezed
+          ? _value.deliveryTime
+          : deliveryTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      offersFreeDelivery: offersFreeDelivery == freezed
+          ? _value.offersFreeDelivery
+          : offersFreeDelivery // ignore: cast_nullable_to_non_nullable
+              as bool,
+      rating: rating == freezed
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_EditorsPickRestaurant implements _EditorsPickRestaurant {
+  _$_EditorsPickRestaurant(
+      {this.area,
+      required this.city,
+      required this.deliveryTime,
+      required this.imageUrl,
+      required this.name,
+      required this.offersFreeDelivery,
+      required this.rating});
+
+  factory _$_EditorsPickRestaurant.fromJson(Map<String, dynamic> json) =>
+      _$$_EditorsPickRestaurantFromJson(json);
+
+  @override
+  final String? area;
+  @override
+  final String city;
+  @override
+  final String deliveryTime;
+  @override
+  final String imageUrl;
+  @override
+  final String name;
+  @override
+  final bool offersFreeDelivery;
+  @override
+  final String rating;
+
+  @override
+  String toString() {
+    return 'EditorsPickRestaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_EditorsPickRestaurant &&
+            const DeepCollectionEquality().equals(other.area, area) &&
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality()
+                .equals(other.deliveryTime, deliveryTime) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.offersFreeDelivery, offersFreeDelivery) &&
+            const DeepCollectionEquality().equals(other.rating, rating));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(area),
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(deliveryTime),
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(offersFreeDelivery),
+      const DeepCollectionEquality().hash(rating));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_EditorsPickRestaurantCopyWith<_$_EditorsPickRestaurant> get copyWith =>
+      __$$_EditorsPickRestaurantCopyWithImpl<_$_EditorsPickRestaurant>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EditorsPickRestaurantToJson(
+      this,
+    );
+  }
+}
+
+abstract class _EditorsPickRestaurant implements EditorsPickRestaurant {
+  factory _EditorsPickRestaurant(
+      {final String? area,
+      required final String city,
+      required final String deliveryTime,
+      required final String imageUrl,
+      required final String name,
+      required final bool offersFreeDelivery,
+      required final String rating}) = _$_EditorsPickRestaurant;
+
+  factory _EditorsPickRestaurant.fromJson(Map<String, dynamic> json) =
+      _$_EditorsPickRestaurant.fromJson;
+
+  @override
+  String? get area;
+  @override
+  String get city;
+  @override
+  String get deliveryTime;
+  @override
+  String get imageUrl;
+  @override
+  String get name;
+  @override
+  bool get offersFreeDelivery;
+  @override
+  String get rating;
+  @override
+  @JsonKey(ignore: true)
+  _$$_EditorsPickRestaurantCopyWith<_$_EditorsPickRestaurant> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -12,6 +12,7 @@ import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../api/firestore_api.dart';
+import '../services/restaurant_service.dart';
 import '../services/user_service.dart';
 
 final locator = StackedLocator.instance;
@@ -28,5 +29,6 @@ Future<void> setupLocator(
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => PlacesService());
   locator.registerLazySingleton(() => DialogService());
+  locator.registerLazySingleton(() => RestaurantService());
   locator.registerSingleton(FirebaseAuthenticationService());
 }

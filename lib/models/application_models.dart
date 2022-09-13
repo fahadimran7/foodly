@@ -33,3 +33,35 @@ abstract class Address with _$Address {
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
 }
+
+@freezed
+abstract class FeaturedRestaurant with _$FeaturedRestaurant {
+  factory FeaturedRestaurant({
+    String? area,
+    required String city,
+    required String deliveryTime,
+    required String imageUrl,
+    required String name,
+    required bool offersFreeDelivery,
+    required String rating,
+  }) = _FeaturedRestaurant;
+
+  factory FeaturedRestaurant.fromJson(Map<String, dynamic> json) =>
+      _$FeaturedRestaurantFromJson(json);
+}
+
+@freezed
+abstract class EditorsPickRestaurant with _$EditorsPickRestaurant {
+  factory EditorsPickRestaurant({
+    String? area,
+    required String city,
+    required String deliveryTime,
+    required String imageUrl,
+    required String name,
+    required bool offersFreeDelivery,
+    required String rating,
+  }) = _EditorsPickRestaurant;
+
+  factory EditorsPickRestaurant.fromJson(Map<String, dynamic> json) =>
+      _$EditorsPickRestaurantFromJson(json);
+}
