@@ -11,6 +11,9 @@ class FirestoreApi {
   final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection(usersFirestoreKey);
 
+  final CollectionReference regionsCollection =
+      FirebaseFirestore.instance.collection(regionsFirestoreKey);
+
   Future<void> createUser({required User user}) async {
     log.i('user: $user');
 
@@ -119,5 +122,11 @@ class FirestoreApi {
     }
 
     await usersCollection.doc(userId).update({'email': email});
+  }
+
+  Future<bool> isCityServiced({required String city}) async {
+    log.i('city: $city');
+    final cityDocument = await regionsCollection.doc(city).get();
+    return cityDocument.exists;
   }
 }

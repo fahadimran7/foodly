@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -50,6 +51,10 @@ class AddressSelectionView extends StatelessWidget with $AddressSelectionView {
                   TextField(
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(16),
+                      suffixIcon: IconButton(
+                        onPressed: () => addressController.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       prefixIcon: const Icon(Icons.location_on_rounded),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6),
@@ -74,43 +79,45 @@ class AddressSelectionView extends StatelessWidget with $AddressSelectionView {
                   ),
                   verticalSpaceRegular,
                   if (!model.hasSelectedPlace &&
-                      !model.hasAutoCompleteResults &&
+                      !model.hasAddress &&
                       !model.isBusy)
                     Column(
                       children: const [
                         Text(
-                          'We have no suggestions for you :(',
+                          'We currently have no suggestions for you :(',
                           style: TextStyle(
                             color: kcMediumGreyColor,
                           ),
                         ),
                       ],
                     ),
-                  if (model.hasAutoCompleteResults)
-                    ...model.autoCompleteResults.map(
-                      (autoCompleteResult) => Column(
+                  if (model.hasAutoCompleteResults && !model.isBusy)
+                    for (var autoCompleteResult in model.autoCompleteResults)
+                      Column(
                         children: [
                           ListTile(
-                            leading:
-                                const FaIcon(FontAwesomeIcons.locationArrow),
-                            title: Text(autoCompleteResult.mainText ?? ''),
-                            subtitle: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child:
-                                  Text(autoCompleteResult.secondaryText ?? ''),
-                            ),
-                            onTap: () => model.setSelectedSuggestion(
-                              autoCompleteResult,
-                            ),
-                          ),
+                              leading:
+                                  const FaIcon(FontAwesomeIcons.locationArrow),
+                              title: Text(autoCompleteResult.mainText ?? ''),
+                              subtitle: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text(
+                                    autoCompleteResult.secondaryText ?? ''),
+                              ),
+                              onTap: () {
+                                SystemChannels.textInput
+                                    .invokeMethod('TextInput.hide');
+                                model.setSelectedSuggestion(autoCompleteResult);
+                                addressController.text =
+                                    "${autoCompleteResult.mainText}";
+                              }),
                           const Divider(
                             height: 3,
                             indent: 22,
                           )
                         ],
                       ),
-                    ),
                   if (model.isBusy)
                     Center(
                       child: Column(

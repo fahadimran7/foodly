@@ -7,7 +7,10 @@ import 'package:stacked_architecture/services/user_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../app/app.logger.dart';
 import '../../app/app.router.dart';
+import '../../enums/basic_dialog_status.dart';
+import '../../enums/dialog_type.dart';
 import 'address_selection_view.form.dart';
+import '../../extensions/string_extensions.dart';
 
 class AddressSelectionViewModel extends FormViewModel {
   final log = getLogger('AddressSelectionViewModel');
@@ -66,31 +69,48 @@ class AddressSelectionViewModel extends FormViewModel {
 
       log.v('Place details: $placeDetails');
 
-      final address = Address(
-          placeId: placeDetails.placeId!,
-          lattitude: placeDetails.lat ?? -1,
-          longitude: placeDetails.lng ?? -1,
-          city: placeDetails.city,
-          postalCode: placeDetails.zip,
-          state: placeDetails.state,
-          street: placeDetails.streetLong ?? placeDetails.streetShort);
+      final city = placeDetails.city ?? '';
 
-      final user = _userService.currentUser;
+      final cityServiced =
+          await _fireStoreApi.isCityServiced(city: city.toCityDocument);
 
-      final saveSuccess =
-          await _fireStoreApi.saveAddress(address: address, user: user);
-
-      if (!saveSuccess) {
-        log.v('Address save failed. Notify user to try again...');
-        _dialogService.showDialog(
-          title: 'Address save failed',
+      if (!cityServiced) {
+        await _dialogService.showCustomDialog(
+          variant: DialogType.basic,
+          customData: BasicDialogStatus.error,
+          title: 'We don\'t service this area',
           description:
-              'We were not able to save the address you\'ve selected. Sorry for the inconvenience.',
+              'At the moment we do not service your area. Please select a different address. If you want to see our serviced cities please select "View serviced areas" below.',
+          mainButtonTitle: 'Got it',
+          secondaryButtonTitle: 'View areas',
         );
       } else {
-        log.v('Address saved successfully. Redirecting to the home view');
+        final address = Address(
+            placeId: placeDetails.placeId!,
+            lattitude: placeDetails.lat ?? -1,
+            longitude: placeDetails.lng ?? -1,
+            city: placeDetails.city,
+            postalCode: placeDetails.zip,
+            state: placeDetails.state,
+            street: placeDetails.streetLong ?? placeDetails.streetShort);
 
-        _navigationService.clearStackAndShow(Routes.homeView);
+        final user = _userService.currentUser;
+
+        final saveSuccess =
+            await _fireStoreApi.saveAddress(address: address, user: user);
+
+        if (!saveSuccess) {
+          log.v('Address save failed. Notify user to try again...');
+          _dialogService.showDialog(
+            title: 'Address save failed',
+            description:
+                'We were not able to save the address you\'ve selected. Sorry for the inconvenience.',
+          );
+        } else {
+          log.v('Address saved successfully. Redirecting to the home view');
+
+          _navigationService.clearStackAndShow(Routes.homeView);
+        }
       }
 
       setBusy(false);
@@ -98,10 +118,12 @@ class AddressSelectionViewModel extends FormViewModel {
   }
 
   void setSelectedSuggestion(PlacesAutoCompleteResult autoCompleteResult) {
-    log.i('autoCompleteResult: $autoCompleteResults');
+    log.i('autoCompleteResult: $autoCompleteResult');
     _selectedResult = autoCompleteResult;
 
     _autoCompleteResults.clear();
+
+    log.v(autoCompleteResults);
 
     notifyListeners();
   }
