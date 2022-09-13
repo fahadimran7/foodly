@@ -48,7 +48,10 @@ class FeaturedRestaurantsView extends StatelessWidget {
                         const Text(
                           'Featured Partners',
                           style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w600),
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: -0.5,
+                          ),
                         ),
                         TextButton(
                             onPressed: () {}, child: const Text('See all'))
@@ -78,6 +81,7 @@ class FeaturedRestaurantsView extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w600,
+                            letterSpacing: -0.5,
                           ),
                         ),
                         TextButton(
