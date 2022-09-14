@@ -136,14 +136,14 @@ class FirestoreApi {
     return cityDocument.exists;
   }
 
-  Stream<List<FeaturedRestaurant>> getListOfFeaturedRestaurants() {
+  Stream<List<Restaurant>> getListOfFeaturedRestaurants() {
     final featuredRestaurantsStream = featuredRestaurantsCollection.snapshots();
 
     final streamToPublish = featuredRestaurantsStream.map((snapshot) {
       final featuredRestaurantsMap = snapshot.docs;
 
       final featuredRestaurantsList = featuredRestaurantsMap
-          .map((featuredRestaurant) => FeaturedRestaurant.fromJson(
+          .map((featuredRestaurant) => Restaurant.fromJson(
               featuredRestaurant.data() as Map<String, dynamic>))
           .toList();
 
@@ -153,7 +153,7 @@ class FirestoreApi {
     return streamToPublish;
   }
 
-  Stream<List<EditorsPickRestaurant>> getListOfEditorsPickRestaurants() {
+  Stream<List<Restaurant>> getListOfEditorsPickRestaurants() {
     final editorsPickRestaurantsStream =
         editorsPickRestaurantsCollection.snapshots();
 
@@ -161,7 +161,7 @@ class FirestoreApi {
       final editorsPickRestaurantsMap = snapshot.docs;
 
       final editorsPickRestaurantsList = editorsPickRestaurantsMap
-          .map((editorsPickRestaurant) => EditorsPickRestaurant.fromJson(
+          .map((editorsPickRestaurant) => Restaurant.fromJson(
               editorsPickRestaurant.data() as Map<String, dynamic>))
           .toList();
 

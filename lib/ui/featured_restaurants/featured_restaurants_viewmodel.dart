@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/app/app.router.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -19,32 +20,62 @@ class FeaturedRestaurantsViewModel extends MultipleStreamViewModel {
   final _navigationService = locator<NavigationService>();
 
   String? _currentLocation;
+  late PageController _pageController;
+  String? _currentImage;
 
-  Future<void> getLocationForCurrentUser() async {
+  final List<String> _imagesList = [
+    'assets/images/banner-top.jpeg',
+    'assets/images/banner-top-2.jpeg',
+    'assets/images/banner-top-3.jpeg',
+  ];
+
+  initialize() async {
+    await _getLocationForCurrentUser();
+    _createPageController();
+    _setStartingImage();
+  }
+
+  Future<void> _getLocationForCurrentUser() async {
     setBusy(true);
     final location = await _fireStoreApi
         .getFormattedLocationForUser(_userService.currentUser.id);
     _currentLocation = location;
     notifyListeners();
-
     setBusy(false);
   }
 
-  get currentLocation => _currentLocation;
+  setCurrentPage(page) {
+    _currentImage = _imagesList[page];
+    notifyListeners();
+  }
 
-  List<FeaturedRestaurant>? get featuredRestaurants =>
+  void _createPageController() {
+    _pageController = PageController(viewportFraction: 0.8, initialPage: 1);
+    notifyListeners();
+  }
+
+  void _setStartingImage() {
+    _currentImage = _imagesList[1];
+    notifyListeners();
+  }
+
+  get currentLocation => _currentLocation;
+  get pageController => _pageController;
+  get currentImage => _currentImage;
+  get imagesList => _imagesList;
+
+  List<Restaurant>? get featuredRestaurants =>
       dataMap![_featuredRestaurantsStreamKey];
 
-  List<EditorsPickRestaurant>? get editorsPickRestaurants =>
+  List<Restaurant>? get editorsPickRestaurants =>
       dataMap![_editorsPickRestaurantsStreamKey];
 
   @override
   Map<String, StreamData> get streamsMap => {
-        _featuredRestaurantsStreamKey: StreamData<List<FeaturedRestaurant>>(
+        _featuredRestaurantsStreamKey: StreamData<List<Restaurant>>(
           _restaurantService.streamOfFeaturedRestaurants(),
         ),
-        _editorsPickRestaurantsStreamKey:
-            StreamData<List<EditorsPickRestaurant>>(
+        _editorsPickRestaurantsStreamKey: StreamData<List<Restaurant>>(
           _restaurantService.streamOfEditorsPickRestaurants(),
         ),
       };

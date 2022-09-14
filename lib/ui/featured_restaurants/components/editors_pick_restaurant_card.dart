@@ -7,7 +7,7 @@ import '../../shared/ui_helpers.dart';
 class EditorsPickRestaurantCard extends StatelessWidget {
   const EditorsPickRestaurantCard({Key? key, required this.restaurantDetails})
       : super(key: key);
-  final EditorsPickRestaurant restaurantDetails;
+  final Restaurant restaurantDetails;
 
   @override
   Widget build(BuildContext context) {

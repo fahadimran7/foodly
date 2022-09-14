@@ -43,9 +43,8 @@ Map<String, dynamic> _$$_AddressToJson(_$_Address instance) =>
       'longitude': instance.longitude,
     };
 
-_$_FeaturedRestaurant _$$_FeaturedRestaurantFromJson(
-        Map<String, dynamic> json) =>
-    _$_FeaturedRestaurant(
+_$_Restaurant _$$_RestaurantFromJson(Map<String, dynamic> json) =>
+    _$_Restaurant(
       area: json['area'] as String?,
       city: json['city'] as String,
       deliveryTime: json['deliveryTime'] as String,
@@ -56,34 +55,7 @@ _$_FeaturedRestaurant _$$_FeaturedRestaurantFromJson(
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$_FeaturedRestaurantToJson(
-        _$_FeaturedRestaurant instance) =>
-    <String, dynamic>{
-      'area': instance.area,
-      'city': instance.city,
-      'deliveryTime': instance.deliveryTime,
-      'imageUrl': instance.imageUrl,
-      'name': instance.name,
-      'offersFreeDelivery': instance.offersFreeDelivery,
-      'rating': instance.rating,
-      'tags': instance.tags,
-    };
-
-_$_EditorsPickRestaurant _$$_EditorsPickRestaurantFromJson(
-        Map<String, dynamic> json) =>
-    _$_EditorsPickRestaurant(
-      area: json['area'] as String?,
-      city: json['city'] as String,
-      deliveryTime: json['deliveryTime'] as String,
-      imageUrl: json['imageUrl'] as String,
-      name: json['name'] as String,
-      offersFreeDelivery: json['offersFreeDelivery'] as bool,
-      rating: json['rating'] as String,
-      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-    );
-
-Map<String, dynamic> _$$_EditorsPickRestaurantToJson(
-        _$_EditorsPickRestaurant instance) =>
+Map<String, dynamic> _$$_RestaurantToJson(_$_Restaurant instance) =>
     <String, dynamic>{
       'area': instance.area,
       'city': instance.city,

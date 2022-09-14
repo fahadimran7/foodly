@@ -20,13 +20,13 @@ class FeaturedRestaurantsView extends StatelessWidget {
       viewModelBuilder: () => FeaturedRestaurantsViewModel(),
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
-      onModelReady: (model) => model.getLocationForCurrentUser(),
+      onModelReady: (model) => model.initialize(),
       builder: (context, model, child) {
         if (!model.isBusy) {
           final featuredRestaurants =
-              model.featuredRestaurants as List<FeaturedRestaurant>;
+              model.featuredRestaurants as List<Restaurant>;
           final editorsPickRestaurants =
-              model.editorsPickRestaurants as List<EditorsPickRestaurant>;
+              model.editorsPickRestaurants as List<Restaurant>;
 
           return SafeArea(
             child: Padding(
@@ -43,8 +43,23 @@ class FeaturedRestaurantsView extends StatelessWidget {
                   Expanded(
                     child: ListView(
                       children: [
-                        _buildBannerCard(
-                            context, 'assets/images/banner-top-2.jpeg'),
+                        SizedBox(
+                          height:
+                              screenHeightPercentage(context, percentage: 0.26),
+                          child: PageView.builder(
+                            controller: model.pageController,
+                            itemCount: 3,
+                            pageSnapping: true,
+                            onPageChanged: (page) => model.setCurrentPage(page),
+                            itemBuilder: (context, pagePosition) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: _buildBannerCard(
+                                    context, model.imagesList[pagePosition]),
+                              );
+                            },
+                          ),
+                        ),
                         verticalSpaceRegular,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,7 +152,7 @@ class FeaturedRestaurantsView extends StatelessWidget {
 Widget _buildBannerCard(context, imageUrl) {
   return Container(
     width: screenWidthPercentage(context, percentage: 1),
-    height: screenWidthPercentage(context, percentage: 0.45),
+    height: screenHeightPercentage(context, percentage: 0.25),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
       image: DecorationImage(

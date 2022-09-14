@@ -35,8 +35,8 @@ abstract class Address with _$Address {
 }
 
 @freezed
-abstract class FeaturedRestaurant with _$FeaturedRestaurant {
-  factory FeaturedRestaurant({
+abstract class Restaurant with _$Restaurant {
+  factory Restaurant({
     String? area,
     required String city,
     required String deliveryTime,
@@ -45,25 +45,8 @@ abstract class FeaturedRestaurant with _$FeaturedRestaurant {
     required bool offersFreeDelivery,
     required String rating,
     required List<String> tags,
-  }) = _FeaturedRestaurant;
+  }) = _Restaurant;
 
-  factory FeaturedRestaurant.fromJson(Map<String, dynamic> json) =>
-      _$FeaturedRestaurantFromJson(json);
-}
-
-@freezed
-abstract class EditorsPickRestaurant with _$EditorsPickRestaurant {
-  factory EditorsPickRestaurant({
-    String? area,
-    required String city,
-    required String deliveryTime,
-    required String imageUrl,
-    required String name,
-    required bool offersFreeDelivery,
-    required String rating,
-    required List<String> tags,
-  }) = _EditorsPickRestaurant;
-
-  factory EditorsPickRestaurant.fromJson(Map<String, dynamic> json) =>
-      _$EditorsPickRestaurantFromJson(json);
+  factory Restaurant.fromJson(Map<String, dynamic> json) =>
+      _$RestaurantFromJson(json);
 }

@@ -9,11 +9,11 @@ class RestaurantService {
 
   final _firestoreApi = locator<FirestoreApi>();
 
-  Stream<List<FeaturedRestaurant>> streamOfFeaturedRestaurants() {
+  Stream<List<Restaurant>> streamOfFeaturedRestaurants() {
     return _firestoreApi.getListOfFeaturedRestaurants();
   }
 
-  Stream<List<EditorsPickRestaurant>> streamOfEditorsPickRestaurants() {
+  Stream<List<Restaurant>> streamOfEditorsPickRestaurants() {
     return _firestoreApi.getListOfEditorsPickRestaurants();
   }
 }
