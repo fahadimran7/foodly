@@ -111,7 +111,7 @@ Widget _buildDetailsRow(
       children: [
         Icon(
           icon,
-          color: kcIconColorDark,
+          color: kcDarkGreyColor,
         ),
         Expanded(
           child: Padding(

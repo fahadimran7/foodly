@@ -4,28 +4,11 @@ const Color kcPrimaryColor = Color(0xff22A45D);
 const Color kcMediumGreyColor = Color(0xff868686);
 const Color kcLightGreyColor = Color.fromARGB(255, 243, 243, 243);
 const Color kcInputFillColor = Color.fromARGB(255, 248, 248, 248);
-const Color kcIconColorDark = Color.fromARGB(187, 46, 46, 46);
+const Color kcDarkGreyColor = Color.fromARGB(187, 46, 46, 46);
 const Color kcLightGreyColor2 = Color.fromARGB(255, 219, 219, 219);
 const Color kcLightGreyColor3 = Color.fromARGB(255, 233, 233, 233);
-
 const Color kcRedColor = Color(0xfff44336);
 const Color kcOrangeColor = Color(0xffff9800);
-
-const TextStyle ktsMediumGreyBodyText =
-    TextStyle(color: kcMediumGreyColor, fontSize: kBodyTextNormal);
-
-const double kBodyTextTiny = 11;
-const double kBodyTextCaption = 12;
-const double kBodyTextSmall1 = 14;
-const double kBodyTextSmall2 = 15;
-const double kBodyTextNormal = 16;
-const double kBodyTextLarge1 = 18;
-const double kBodyTextLarge2 = 19;
-const double kH4Title = 22;
-const double kH3Title = 24;
-const double kH2Title = 28;
-const double kH1Title = 34;
-const double kHeadline = 30;
 
 const MaterialColor primaryGreen = MaterialColor(
   _greenPrimaryValue,
@@ -43,3 +26,19 @@ const MaterialColor primaryGreen = MaterialColor(
   },
 );
 const int _greenPrimaryValue = 0xFF22A45D;
+
+const TextStyle ktsMediumGreyBodyText =
+    TextStyle(color: kcMediumGreyColor, fontSize: kBodyTextNormal);
+
+const double kBodyTextTiny = 11;
+const double kBodyTextCaption = 12;
+const double kBodyTextSmall1 = 14;
+const double kBodyTextSmall2 = 15;
+const double kBodyTextNormal = 16;
+const double kBodyTextLarge1 = 18;
+const double kBodyTextLarge2 = 19;
+const double kH4Title = 22;
+const double kH3Title = 24;
+const double kH2Title = 28;
+const double kH1Title = 34;
+const double kHeadline = 30;

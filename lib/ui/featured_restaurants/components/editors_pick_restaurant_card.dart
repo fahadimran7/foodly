@@ -73,7 +73,7 @@ class EditorsPickRestaurantCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: kBodyTextCaption,
                 fontWeight: FontWeight.w500,
-                color: kcIconColorDark,
+                color: kcDarkGreyColor,
               ),
             ),
             horizontalSpaceSmall,
@@ -84,7 +84,7 @@ class EditorsPickRestaurantCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: kBodyTextCaption,
                 fontWeight: FontWeight.w500,
-                color: kcIconColorDark,
+                color: kcDarkGreyColor,
               ),
             )
           ],
