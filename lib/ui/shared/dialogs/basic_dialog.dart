@@ -74,7 +74,7 @@ class _BasicDialogContent extends StatelessWidget {
                       child: Text(
                         request.secondaryButtonTitle!,
                         style: const TextStyle(
-                          color: Color.fromARGB(221, 43, 43, 43),
+                          color: kcIconColorDark,
                         ),
                       ),
                     ),

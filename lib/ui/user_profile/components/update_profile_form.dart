@@ -39,17 +39,17 @@ class UserProfileForm extends StatelessWidget {
             decoration: const InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color.fromARGB(255, 233, 233, 233),
+                  color: kcLightGreyColor3,
                 ),
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color.fromARGB(255, 233, 233, 233),
+                  color: kcLightGreyColor3,
                 ),
               ),
               border: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color.fromARGB(255, 233, 233, 233),
+                  color: kcLightGreyColor3,
                 ),
               ),
               labelText: 'FULL NAME',
@@ -81,17 +81,17 @@ class UserProfileForm extends StatelessWidget {
             decoration: const InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color.fromARGB(255, 233, 233, 233),
+                  color: kcLightGreyColor3,
                 ),
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color.fromARGB(255, 233, 233, 233),
+                  color: kcLightGreyColor3,
                 ),
               ),
               border: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Color.fromARGB(255, 233, 233, 233),
+                  color: kcLightGreyColor3,
                 ),
               ),
               labelText: 'EMAIL ADDRESS',

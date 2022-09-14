@@ -25,8 +25,8 @@ class BottomNavBar extends StatelessWidget {
           onTap: onNavItemTapped,
           selectedItemColor: kcPrimaryColor,
           unselectedItemColor: Colors.black54,
-          selectedFontSize: kBodyTextCaption,
-          unselectedFontSize: kBodyTextCaption,
+          selectedFontSize: kBodyTextTiny,
+          unselectedFontSize: kBodyTextTiny,
           items: const [
             BottomNavigationBarItem(
               label: 'Home',

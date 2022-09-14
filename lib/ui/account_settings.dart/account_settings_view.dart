@@ -111,7 +111,7 @@ Widget _buildDetailsRow(
       children: [
         Icon(
           icon,
-          color: const Color.fromARGB(187, 46, 46, 46),
+          color: kcIconColorDark,
         ),
         Expanded(
           child: Padding(
@@ -122,7 +122,7 @@ Widget _buildDetailsRow(
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 17,
+                    fontSize: kBodyTextLarge1,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

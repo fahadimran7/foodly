@@ -20,9 +20,8 @@ class OnboardingView extends StatelessWidget {
             height: 6,
             width: model.currentPage == index ? 20 : 6,
             decoration: BoxDecoration(
-              color: model.currentPage == index
-                  ? primaryGreen
-                  : const Color.fromARGB(255, 219, 219, 219),
+              color:
+                  model.currentPage == index ? primaryGreen : kcLightGreyColor2,
               borderRadius: BorderRadius.circular(3),
             ),
           );
