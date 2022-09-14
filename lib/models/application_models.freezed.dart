@@ -492,6 +492,7 @@ mixin _$FeaturedRestaurant {
   String get name => throw _privateConstructorUsedError;
   bool get offersFreeDelivery => throw _privateConstructorUsedError;
   String get rating => throw _privateConstructorUsedError;
+  List<String> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -511,7 +512,8 @@ abstract class $FeaturedRestaurantCopyWith<$Res> {
       String imageUrl,
       String name,
       bool offersFreeDelivery,
-      String rating});
+      String rating,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -532,6 +534,7 @@ class _$FeaturedRestaurantCopyWithImpl<$Res>
     Object? name = freezed,
     Object? offersFreeDelivery = freezed,
     Object? rating = freezed,
+    Object? tags = freezed,
   }) {
     return _then(_value.copyWith(
       area: area == freezed
@@ -562,6 +565,10 @@ class _$FeaturedRestaurantCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      tags: tags == freezed
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -580,7 +587,8 @@ abstract class _$$_FeaturedRestaurantCopyWith<$Res>
       String imageUrl,
       String name,
       bool offersFreeDelivery,
-      String rating});
+      String rating,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -603,6 +611,7 @@ class __$$_FeaturedRestaurantCopyWithImpl<$Res>
     Object? name = freezed,
     Object? offersFreeDelivery = freezed,
     Object? rating = freezed,
+    Object? tags = freezed,
   }) {
     return _then(_$_FeaturedRestaurant(
       area: area == freezed
@@ -633,6 +642,10 @@ class __$$_FeaturedRestaurantCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      tags: tags == freezed
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -647,7 +660,9 @@ class _$_FeaturedRestaurant implements _FeaturedRestaurant {
       required this.imageUrl,
       required this.name,
       required this.offersFreeDelivery,
-      required this.rating});
+      required this.rating,
+      required final List<String> tags})
+      : _tags = tags;
 
   factory _$_FeaturedRestaurant.fromJson(Map<String, dynamic> json) =>
       _$$_FeaturedRestaurantFromJson(json);
@@ -666,10 +681,16 @@ class _$_FeaturedRestaurant implements _FeaturedRestaurant {
   final bool offersFreeDelivery;
   @override
   final String rating;
+  final List<String> _tags;
+  @override
+  List<String> get tags {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
 
   @override
   String toString() {
-    return 'FeaturedRestaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating)';
+    return 'FeaturedRestaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating, tags: $tags)';
   }
 
   @override
@@ -685,7 +706,8 @@ class _$_FeaturedRestaurant implements _FeaturedRestaurant {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.offersFreeDelivery, offersFreeDelivery) &&
-            const DeepCollectionEquality().equals(other.rating, rating));
+            const DeepCollectionEquality().equals(other.rating, rating) &&
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @JsonKey(ignore: true)
@@ -698,7 +720,8 @@ class _$_FeaturedRestaurant implements _FeaturedRestaurant {
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(offersFreeDelivery),
-      const DeepCollectionEquality().hash(rating));
+      const DeepCollectionEquality().hash(rating),
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -722,7 +745,8 @@ abstract class _FeaturedRestaurant implements FeaturedRestaurant {
       required final String imageUrl,
       required final String name,
       required final bool offersFreeDelivery,
-      required final String rating}) = _$_FeaturedRestaurant;
+      required final String rating,
+      required final List<String> tags}) = _$_FeaturedRestaurant;
 
   factory _FeaturedRestaurant.fromJson(Map<String, dynamic> json) =
       _$_FeaturedRestaurant.fromJson;
@@ -741,6 +765,8 @@ abstract class _FeaturedRestaurant implements FeaturedRestaurant {
   bool get offersFreeDelivery;
   @override
   String get rating;
+  @override
+  List<String> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_FeaturedRestaurantCopyWith<_$_FeaturedRestaurant> get copyWith =>
@@ -761,6 +787,7 @@ mixin _$EditorsPickRestaurant {
   String get name => throw _privateConstructorUsedError;
   bool get offersFreeDelivery => throw _privateConstructorUsedError;
   String get rating => throw _privateConstructorUsedError;
+  List<String> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -780,7 +807,8 @@ abstract class $EditorsPickRestaurantCopyWith<$Res> {
       String imageUrl,
       String name,
       bool offersFreeDelivery,
-      String rating});
+      String rating,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -801,6 +829,7 @@ class _$EditorsPickRestaurantCopyWithImpl<$Res>
     Object? name = freezed,
     Object? offersFreeDelivery = freezed,
     Object? rating = freezed,
+    Object? tags = freezed,
   }) {
     return _then(_value.copyWith(
       area: area == freezed
@@ -831,6 +860,10 @@ class _$EditorsPickRestaurantCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      tags: tags == freezed
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -849,7 +882,8 @@ abstract class _$$_EditorsPickRestaurantCopyWith<$Res>
       String imageUrl,
       String name,
       bool offersFreeDelivery,
-      String rating});
+      String rating,
+      List<String> tags});
 }
 
 /// @nodoc
@@ -873,6 +907,7 @@ class __$$_EditorsPickRestaurantCopyWithImpl<$Res>
     Object? name = freezed,
     Object? offersFreeDelivery = freezed,
     Object? rating = freezed,
+    Object? tags = freezed,
   }) {
     return _then(_$_EditorsPickRestaurant(
       area: area == freezed
@@ -903,6 +938,10 @@ class __$$_EditorsPickRestaurantCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      tags: tags == freezed
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -917,7 +956,9 @@ class _$_EditorsPickRestaurant implements _EditorsPickRestaurant {
       required this.imageUrl,
       required this.name,
       required this.offersFreeDelivery,
-      required this.rating});
+      required this.rating,
+      required final List<String> tags})
+      : _tags = tags;
 
   factory _$_EditorsPickRestaurant.fromJson(Map<String, dynamic> json) =>
       _$$_EditorsPickRestaurantFromJson(json);
@@ -936,10 +977,16 @@ class _$_EditorsPickRestaurant implements _EditorsPickRestaurant {
   final bool offersFreeDelivery;
   @override
   final String rating;
+  final List<String> _tags;
+  @override
+  List<String> get tags {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
 
   @override
   String toString() {
-    return 'EditorsPickRestaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating)';
+    return 'EditorsPickRestaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating, tags: $tags)';
   }
 
   @override
@@ -955,7 +1002,8 @@ class _$_EditorsPickRestaurant implements _EditorsPickRestaurant {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.offersFreeDelivery, offersFreeDelivery) &&
-            const DeepCollectionEquality().equals(other.rating, rating));
+            const DeepCollectionEquality().equals(other.rating, rating) &&
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @JsonKey(ignore: true)
@@ -968,7 +1016,8 @@ class _$_EditorsPickRestaurant implements _EditorsPickRestaurant {
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(offersFreeDelivery),
-      const DeepCollectionEquality().hash(rating));
+      const DeepCollectionEquality().hash(rating),
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -992,7 +1041,8 @@ abstract class _EditorsPickRestaurant implements EditorsPickRestaurant {
       required final String imageUrl,
       required final String name,
       required final bool offersFreeDelivery,
-      required final String rating}) = _$_EditorsPickRestaurant;
+      required final String rating,
+      required final List<String> tags}) = _$_EditorsPickRestaurant;
 
   factory _EditorsPickRestaurant.fromJson(Map<String, dynamic> json) =
       _$_EditorsPickRestaurant.fromJson;
@@ -1011,6 +1061,8 @@ abstract class _EditorsPickRestaurant implements EditorsPickRestaurant {
   bool get offersFreeDelivery;
   @override
   String get rating;
+  @override
+  List<String> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_EditorsPickRestaurantCopyWith<_$_EditorsPickRestaurant> get copyWith =>

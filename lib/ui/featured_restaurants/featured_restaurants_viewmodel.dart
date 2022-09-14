@@ -1,4 +1,6 @@
 import 'package:stacked/stacked.dart';
+import 'package:stacked_architecture/app/app.router.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import '../../api/firestore_api.dart';
 import '../../app/app.locator.dart';
@@ -14,6 +16,7 @@ class FeaturedRestaurantsViewModel extends MultipleStreamViewModel {
   final _fireStoreApi = locator<FirestoreApi>();
   final _userService = locator<UserService>();
   final _restaurantService = locator<RestaurantService>();
+  final _navigationService = locator<NavigationService>();
 
   String? _currentLocation;
 
@@ -45,4 +48,22 @@ class FeaturedRestaurantsViewModel extends MultipleStreamViewModel {
           _restaurantService.streamOfEditorsPickRestaurants(),
         ),
       };
+
+  navigateToFeaturedRestaurantsListView() {
+    _navigationService.navigateTo(
+      Routes.restaurantsListView,
+      arguments: RestaurantsListViewArguments(
+        restaurantsList: featuredRestaurants as List<dynamic>,
+      ),
+    );
+  }
+
+  navigateToEditorsPickRestaurantsListView() {
+    _navigationService.navigateTo(
+      Routes.restaurantsListView,
+      arguments: RestaurantsListViewArguments(
+        restaurantsList: editorsPickRestaurants as List<dynamic>,
+      ),
+    );
+  }
 }

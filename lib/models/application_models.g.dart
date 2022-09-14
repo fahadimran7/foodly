@@ -53,6 +53,7 @@ _$_FeaturedRestaurant _$$_FeaturedRestaurantFromJson(
       name: json['name'] as String,
       offersFreeDelivery: json['offersFreeDelivery'] as bool,
       rating: json['rating'] as String,
+      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$_FeaturedRestaurantToJson(
@@ -65,6 +66,7 @@ Map<String, dynamic> _$$_FeaturedRestaurantToJson(
       'name': instance.name,
       'offersFreeDelivery': instance.offersFreeDelivery,
       'rating': instance.rating,
+      'tags': instance.tags,
     };
 
 _$_EditorsPickRestaurant _$$_EditorsPickRestaurantFromJson(
@@ -77,6 +79,7 @@ _$_EditorsPickRestaurant _$$_EditorsPickRestaurantFromJson(
       name: json['name'] as String,
       offersFreeDelivery: json['offersFreeDelivery'] as bool,
       rating: json['rating'] as String,
+      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$_EditorsPickRestaurantToJson(
@@ -89,4 +92,5 @@ Map<String, dynamic> _$$_EditorsPickRestaurantToJson(
       'name': instance.name,
       'offersFreeDelivery': instance.offersFreeDelivery,
       'rating': instance.rating,
+      'tags': instance.tags,
     };

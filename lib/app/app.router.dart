@@ -16,6 +16,7 @@ import '../ui/create_account/create_account_view.dart';
 import '../ui/home/home_view.dart';
 import '../ui/login/login_view.dart';
 import '../ui/onboarding/onboarding_view.dart';
+import '../ui/restaurants_list/restaurants_list_view.dart';
 import '../ui/startup/startup_view.dart';
 import '../ui/user_profile/user_profile_view.dart';
 
@@ -26,6 +27,7 @@ class Routes {
   static const String onboardingView = '/onboarding-view';
   static const String loginView = '/login-view';
   static const String homeView = '/home-view';
+  static const String restaurantsListView = '/restaurants-list-view';
   static const String userProfileView = '/user-profile-view';
   static const all = <String>{
     startupView,
@@ -34,6 +36,7 @@ class Routes {
     onboardingView,
     loginView,
     homeView,
+    restaurantsListView,
     userProfileView,
   };
 }
@@ -48,6 +51,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.onboardingView, page: OnboardingView),
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.restaurantsListView, page: RestaurantsListView),
     RouteDef(Routes.userProfileView, page: UserProfileView),
   ];
   @override
@@ -98,6 +102,16 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    RestaurantsListView: (data) {
+      var args = data.getArgs<RestaurantsListViewArguments>(nullOk: false);
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => RestaurantsListView(
+          key: args.key,
+          restaurantsList: args.restaurantsList,
+        ),
+        settings: data,
+      );
+    },
     UserProfileView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const UserProfileView(),
@@ -127,6 +141,13 @@ class CreateAccountViewArguments {
 class LoginViewArguments {
   final Key? key;
   LoginViewArguments({this.key});
+}
+
+/// RestaurantsListView arguments holder class
+class RestaurantsListViewArguments {
+  final Key? key;
+  final List<dynamic> restaurantsList;
+  RestaurantsListViewArguments({this.key, required this.restaurantsList});
 }
 
 /// ************************************************************************
@@ -229,6 +250,26 @@ extension NavigatorStateExtension on NavigationService {
   }) async {
     return navigateTo(
       Routes.homeView,
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> navigateToRestaurantsListView({
+    Key? key,
+    required List<dynamic> restaurantsList,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo(
+      Routes.restaurantsListView,
+      arguments: RestaurantsListViewArguments(
+          key: key, restaurantsList: restaurantsList),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

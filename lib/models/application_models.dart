@@ -44,6 +44,7 @@ abstract class FeaturedRestaurant with _$FeaturedRestaurant {
     required String name,
     required bool offersFreeDelivery,
     required String rating,
+    required List<String> tags,
   }) = _FeaturedRestaurant;
 
   factory FeaturedRestaurant.fromJson(Map<String, dynamic> json) =>
@@ -60,6 +61,7 @@ abstract class EditorsPickRestaurant with _$EditorsPickRestaurant {
     required String name,
     required bool offersFreeDelivery,
     required String rating,
+    required List<String> tags,
   }) = _EditorsPickRestaurant;
 
   factory EditorsPickRestaurant.fromJson(Map<String, dynamic> json) =>
