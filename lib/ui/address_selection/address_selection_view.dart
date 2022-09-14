@@ -28,8 +28,10 @@ class AddressSelectionView extends StatelessWidget with $AddressSelectionView {
         child: Scaffold(
           body: SingleChildScrollView(
             child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+              padding: const EdgeInsets.only(
+                  left: kpscreenPaddingHorizontal,
+                  right: kpscreenPaddingHorizontal,
+                  bottom: kpscreenPaddingVertical),
               child: Column(
                 children: [
                   verticalSpaceLarge,

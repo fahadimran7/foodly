@@ -34,12 +34,14 @@ class FeaturedRestaurantCard extends StatelessWidget {
         verticalSpaceSmall,
         Text(
           restaurantDetails.name,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+              fontSize: kBodyTextLarge1, fontWeight: FontWeight.w600),
         ),
         verticalSpaceTiny,
         Text(
           '${restaurantDetails.area ?? ''}, ${restaurantDetails.city}',
-          style: const TextStyle(color: kcMediumGreyColor, fontSize: 15),
+          style: const TextStyle(
+              color: kcMediumGreyColor, fontSize: kBodyTextSmall2),
         ),
         verticalSpaceSmall,
         Row(

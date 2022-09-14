@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/layout/page_top_bar_secondary.dart';
 import 'package:stacked_architecture/ui/restaurants_list/components/restaurant_list_card.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 
@@ -14,12 +15,14 @@ class RestaurantsListView extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(
+            left: kpscreenPaddingHorizontal, right: kpscreenPaddingHorizontal),
         child: Column(
           children: [
-            verticalSpaceRegular,
-            _buildTopRow(onBackPressed: () {}),
-            verticalSpaceMedium,
+            PageTopBarSecondary(
+              title: 'Featured Restaurants',
+              onBackPressed: () {},
+            ),
             Expanded(
               child: ListView.builder(
                   itemCount: restaurantsList.length,
@@ -34,33 +37,4 @@ class RestaurantsListView extends StatelessWidget {
       ),
     ));
   }
-}
-
-Widget _buildTopRow({required Function onBackPressed}) {
-  return Row(
-    children: [
-      IconButton(
-        padding: EdgeInsets.zero,
-        alignment: Alignment.centerLeft,
-        onPressed: () => onBackPressed(),
-        icon: const Icon(
-          Icons.arrow_back_ios,
-          color: Colors.black,
-        ),
-      ),
-      const Spacer(
-        flex: 2,
-      ),
-      const Text(
-        'Featured Restaurants',
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: kBodyTextNormal,
-        ),
-      ),
-      const Spacer(
-        flex: 3,
-      )
-    ],
-  );
 }

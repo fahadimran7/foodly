@@ -42,3 +42,6 @@ const double kH3Title = 24;
 const double kH2Title = 28;
 const double kH1Title = 34;
 const double kHeadline = 30;
+
+const double kpscreenPaddingHorizontal = 20;
+const double kpscreenPaddingVertical = 20;

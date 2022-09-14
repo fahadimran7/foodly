@@ -13,7 +13,10 @@ class AccountSettingsView extends StatelessWidget {
       viewModelBuilder: () => AccountSettingsViewModel(),
       builder: (context, model, child) => SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          padding: const EdgeInsets.only(
+              left: kpscreenPaddingHorizontal,
+              right: kpscreenPaddingHorizontal,
+              bottom: kpscreenPaddingVertical),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

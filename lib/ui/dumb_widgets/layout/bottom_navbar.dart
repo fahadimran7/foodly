@@ -16,7 +16,8 @@ class BottomNavBar extends StatelessWidget {
       elevation: 3,
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+        padding: const EdgeInsets.symmetric(
+            vertical: 8.0, horizontal: kpscreenPaddingHorizontal),
         child: BottomNavigationBar(
           elevation: 0,
           type: BottomNavigationBarType.fixed,
