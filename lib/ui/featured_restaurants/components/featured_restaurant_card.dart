@@ -58,7 +58,7 @@ class FeaturedRestaurantCard extends StatelessWidget {
                 child: Text(
                   restaurantDetails.rating,
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: kBodyTextCaption,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -69,7 +69,7 @@ class FeaturedRestaurantCard extends StatelessWidget {
             Text(
               '${restaurantDetails.deliveryTime} min',
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: kBodyTextCaption,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(167, 0, 0, 0),
               ),
@@ -80,7 +80,7 @@ class FeaturedRestaurantCard extends StatelessWidget {
                   ? 'Free Delivery'
                   : 'Paid Delivery',
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: kBodyTextCaption,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(167, 0, 0, 0),
               ),

@@ -21,7 +21,8 @@ class AccountSettingsView extends StatelessWidget {
               verticalSpaceSmall,
               const Text(
                 'Account Settings',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+                style:
+                    TextStyle(fontSize: kH2Title, fontWeight: FontWeight.w500),
               ),
               verticalSpaceSmall,
               Align(
@@ -30,7 +31,8 @@ class AccountSettingsView extends StatelessWidget {
                   width: screenWidthPercentage(context, percentage: 0.8),
                   child: Text(
                     'Update your settings like notifications, payments, profile edit etc.',
-                    style: ktsMediumGreyBodyText.copyWith(fontSize: 15),
+                    style: ktsMediumGreyBodyText.copyWith(
+                        fontSize: kBodyTextSmall2),
                   ),
                 ),
               ),

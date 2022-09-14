@@ -55,8 +55,8 @@ class _BasicDialogContent extends StatelessWidget {
               verticalSpaceSmall,
               Text(
                 request.title ?? '',
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                    fontSize: kBodyTextLarge1, fontWeight: FontWeight.w500),
               ),
               verticalSpaceSmall,
               Text(

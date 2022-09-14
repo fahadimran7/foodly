@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
 
 class OnboardingPageContent extends StatelessWidget {
@@ -23,7 +24,7 @@ class OnboardingPageContent extends StatelessWidget {
         Text(
           title!,
           style: const TextStyle(
-            fontSize: 26,
+            fontSize: kH2Title,
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -33,7 +34,8 @@ class OnboardingPageContent extends StatelessWidget {
           child: Text(
             text!,
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.black54, fontSize: 15),
+            style: const TextStyle(
+                color: Colors.black54, fontSize: kBodyTextSmall2),
           ),
         ),
       ],

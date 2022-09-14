@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 
 import '../../shared/ui_helpers.dart';
 import '../../shared/validators.dart';
@@ -55,18 +56,18 @@ class UserProfileForm extends StatelessWidget {
               hintText: 'John Doe',
               hintStyle: TextStyle(
                 color: Colors.black54,
-                fontSize: 14,
+                fontSize: kBodyTextSmall1,
                 fontWeight: FontWeight.w500,
                 height: 2,
               ),
               floatingLabelStyle: TextStyle(
                 color: Colors.black54,
-                fontSize: 15,
+                fontSize: kBodyTextSmall2,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0.7,
               ),
               labelStyle: TextStyle(
-                fontSize: 13,
+                fontSize: kBodyTextSmall1,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0.7,
               ),
@@ -98,17 +99,17 @@ class UserProfileForm extends StatelessWidget {
               hintStyle: TextStyle(
                 color: Colors.black54,
                 height: 2,
-                fontSize: 14,
+                fontSize: kBodyTextSmall1,
                 fontWeight: FontWeight.w500,
               ),
               floatingLabelStyle: TextStyle(
                 color: Colors.black54,
-                fontSize: 15,
+                fontSize: kBodyTextSmall2,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0.7,
               ),
               labelStyle: TextStyle(
-                fontSize: 13,
+                fontSize: kBodyTextSmall1,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0.7,
               ),

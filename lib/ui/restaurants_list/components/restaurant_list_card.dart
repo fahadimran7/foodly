@@ -35,7 +35,7 @@ class RestaurantListCard extends StatelessWidget {
         Text(
           restaurantDetails.name,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: kBodyTextLarge2,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -64,14 +64,14 @@ class RestaurantListCard extends StatelessWidget {
             horizontalSpaceSmall,
             Container(
               padding: const EdgeInsets.all(2),
-              height: 19,
-              width: 19,
+              height: 18,
+              width: 18,
               decoration: BoxDecoration(
                   color: Colors.black38,
                   borderRadius: BorderRadius.circular(20)),
               child: const Icon(
                 Icons.attach_money_rounded,
-                size: 16,
+                size: 15,
                 color: Colors.white,
               ),
             ),
@@ -97,7 +97,7 @@ _buildTagRow(List<String> tags) {
             tag,
             style: const TextStyle(
               color: kcMediumGreyColor,
-              fontSize: 16,
+              fontSize: kBodyTextNormal,
             ),
           ),
           horizontalSpaceSmall,

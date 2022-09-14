@@ -21,7 +21,7 @@ class FeaturedScreenHeader extends StatelessWidget {
             const Text(
               'DELIVERY TO',
               style: TextStyle(
-                fontSize: 11,
+                fontSize: kBodyTextCaption,
                 color: kcPrimaryColor,
                 letterSpacing: 0.45,
                 fontWeight: FontWeight.w500,
@@ -32,7 +32,7 @@ class FeaturedScreenHeader extends StatelessWidget {
               location,
               style: const TextStyle(
                 fontWeight: FontWeight.w500,
-                fontSize: 21,
+                fontSize: kH4Title,
               ),
             ),
           ],

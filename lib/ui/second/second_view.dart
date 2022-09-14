@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/ui/second/second_viewmodel.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 
 class SecondView extends StatelessWidget {
   const SecondView({Key? key}) : super(key: key);
@@ -21,7 +22,8 @@ class SecondView extends StatelessWidget {
             child: Center(
               child: Text(
                 model.count.toString(),
-                style: const TextStyle(color: Colors.white, fontSize: 20),
+                style: const TextStyle(
+                    color: Colors.white, fontSize: kBodyTextLarge2),
               ),
             ),
           ),

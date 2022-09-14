@@ -9,12 +9,19 @@ const Color kcRedColor = Color(0xfff44336);
 const Color kcOrangeColor = Color(0xffff9800);
 
 const TextStyle ktsMediumGreyBodyText =
-    TextStyle(color: kcMediumGreyColor, fontSize: kBodyTextSize);
+    TextStyle(color: kcMediumGreyColor, fontSize: kBodyTextNormal);
 
-const double kBodyTextSize = 16;
-const double kBodyTextSmall = 14;
-const double kBodyTextTiny = 12;
-const double kBodyTextLarge = 18;
+const double kBodyTextSmall1 = 14;
+const double kBodyTextSmall2 = 15;
+const double kBodyTextCaption = 12;
+const double kBodyTextNormal = 16;
+const double kBodyTextLarge1 = 18;
+const double kBodyTextLarge2 = 19;
+const double kH4Title = 22;
+const double kH3Title = 24;
+const double kH2Title = 28;
+const double kH1Title = 34;
+const double kHeadline = 30;
 
 const MaterialColor primaryGreen = MaterialColor(
   _greenPrimaryValue,

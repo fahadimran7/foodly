@@ -71,7 +71,8 @@ class AuthenticationLayout extends StatelessWidget {
           verticalSpaceSmall,
           Text(
             title,
-            style: const TextStyle(fontSize: 34, fontWeight: FontWeight.w500),
+            style: const TextStyle(
+                fontSize: kH1Title, fontWeight: FontWeight.w500),
           ),
           verticalSpaceSmall,
           Align(
@@ -80,7 +81,8 @@ class AuthenticationLayout extends StatelessWidget {
               width: screenWidthPercentage(context, percentage: 0.8),
               child: Text(
                 subtitle,
-                style: ktsMediumGreyBodyText.copyWith(fontSize: 15),
+                style:
+                    ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall2),
               ),
             ),
           ),
@@ -95,7 +97,7 @@ class AuthenticationLayout extends StatelessWidget {
                 child: Text(
                   'Forget Password?',
                   style: ktsMediumGreyBodyText.copyWith(
-                    fontSize: kBodyTextSmall,
+                    fontSize: kBodyTextSmall1,
                     color: Colors.black54,
                   ),
                 ),
@@ -106,7 +108,7 @@ class AuthenticationLayout extends StatelessWidget {
             Text(
               validationMessage!,
               style:
-                  const TextStyle(color: Colors.red, fontSize: kBodyTextSmall),
+                  const TextStyle(color: Colors.red, fontSize: kBodyTextSmall1),
             ),
           if (validationMessage != null) verticalSpaceRegular,
           GestureDetector(
@@ -128,7 +130,7 @@ class AuthenticationLayout extends StatelessWidget {
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: kBodyTextTiny,
+                        fontSize: kBodyTextCaption,
                       ),
                     ),
             ),
@@ -158,7 +160,7 @@ class AuthenticationLayout extends StatelessWidget {
           if (showTermsText)
             Text(
               'By signing up you agree to our terms, conditions and privacy policy.',
-              style: ktsMediumGreyBodyText.copyWith(fontSize: 15),
+              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall2),
               textAlign: TextAlign.center,
             ),
           verticalSpaceRegular,
@@ -166,7 +168,7 @@ class AuthenticationLayout extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               'Or',
-              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall),
+              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall1),
             ),
           ),
           if (Platform.isIOS) verticalSpaceRegular,
@@ -179,7 +181,7 @@ class AuthenticationLayout extends StatelessWidget {
                 iconBackground: Colors.black,
                 iconColor: Colors.white,
                 textStyle: TextStyle(
-                    fontSize: kBodyTextSmall, fontWeight: FontWeight.w600),
+                    fontSize: kBodyTextSmall1, fontWeight: FontWeight.w600),
                 iconSize: 24,
                 height: 50,
               ),
@@ -191,7 +193,7 @@ class AuthenticationLayout extends StatelessWidget {
             style: const AuthButtonStyle(
               buttonType: AuthButtonType.secondary,
               textStyle: TextStyle(
-                  fontSize: kBodyTextSmall, fontWeight: FontWeight.w600),
+                  fontSize: kBodyTextSmall1, fontWeight: FontWeight.w600),
               iconSize: 24,
               height: 50,
             ),

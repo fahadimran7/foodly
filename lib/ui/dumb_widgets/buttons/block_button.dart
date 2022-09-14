@@ -20,7 +20,7 @@ class BlockButton extends StatelessWidget {
       child: Text(
         title,
         style: const TextStyle(
-          fontSize: kBodyTextSmall,
+          fontSize: kBodyTextSmall1,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),

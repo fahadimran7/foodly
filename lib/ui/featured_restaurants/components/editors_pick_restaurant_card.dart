@@ -34,12 +34,14 @@ class EditorsPickRestaurantCard extends StatelessWidget {
         verticalSpaceSmall,
         Text(
           restaurantDetails.name,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+              fontSize: kBodyTextLarge1, fontWeight: FontWeight.w600),
         ),
         verticalSpaceTiny,
         Text(
           '${restaurantDetails.area ?? ''}, ${restaurantDetails.city}',
-          style: const TextStyle(color: kcMediumGreyColor, fontSize: 15),
+          style: const TextStyle(
+              color: kcMediumGreyColor, fontSize: kBodyTextSmall2),
         ),
         verticalSpaceSmall,
         Row(
@@ -58,7 +60,7 @@ class EditorsPickRestaurantCard extends StatelessWidget {
                 child: Text(
                   restaurantDetails.rating,
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: kBodyTextCaption,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -69,7 +71,7 @@ class EditorsPickRestaurantCard extends StatelessWidget {
             Text(
               '${restaurantDetails.deliveryTime} min',
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: kBodyTextCaption,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(167, 0, 0, 0),
               ),
@@ -80,7 +82,7 @@ class EditorsPickRestaurantCard extends StatelessWidget {
                   ? 'Free Delivery'
                   : 'Paid Delivery',
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: kBodyTextCaption,
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(167, 0, 0, 0),
               ),

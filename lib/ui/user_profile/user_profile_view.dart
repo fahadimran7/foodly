@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/buttons/block_button.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/buttons/busy_button.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
 import 'package:stacked_architecture/ui/user_profile/components/update_profile_form.dart';
 import 'package:stacked_architecture/ui/user_profile/user_profile_viewmodel.dart';
@@ -72,7 +73,7 @@ Widget _buildTopRow({required Function onBackPressed}) {
         'Profile Settings',
         style: TextStyle(
           fontWeight: FontWeight.w600,
-          fontSize: 16,
+          fontSize: kBodyTextNormal,
         ),
       ),
       const Spacer(

@@ -6,6 +6,7 @@ import 'package:stacked_architecture/ui/featured_restaurants/components/editors_
 import 'package:stacked_architecture/ui/featured_restaurants/components/featured_restaurant_card.dart';
 import 'package:stacked_architecture/ui/featured_restaurants/components/featured_screen_header.dart';
 import 'package:stacked_architecture/ui/featured_restaurants/featured_restaurants_viewmodel.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 import '../shared/ui_helpers.dart';
 
 class FeaturedRestaurantsView extends StatelessWidget {
@@ -49,7 +50,7 @@ class FeaturedRestaurantsView extends StatelessWidget {
                             const Text(
                               'Featured Partners',
                               style: TextStyle(
-                                fontSize: 22,
+                                fontSize: kH4Title,
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: -0.5,
                               ),
@@ -86,7 +87,7 @@ class FeaturedRestaurantsView extends StatelessWidget {
                             const Text(
                               'Best Picks \nRestaurants by team',
                               style: TextStyle(
-                                fontSize: 22,
+                                fontSize: kH4Title,
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: -0.5,
                               ),

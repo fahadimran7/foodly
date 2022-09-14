@@ -37,7 +37,7 @@ class AddressSelectionView extends StatelessWidget with $AddressSelectionView {
                     'Find restaurants near you',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: kH3Title,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

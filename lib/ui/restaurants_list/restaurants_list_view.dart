@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_architecture/ui/restaurants_list/components/restaurant_list_card.dart';
+import 'package:stacked_architecture/ui/shared/styles.dart';
 
 import '../shared/ui_helpers.dart';
 
@@ -54,7 +55,7 @@ Widget _buildTopRow({required Function onBackPressed}) {
         'Featured Restaurants',
         style: TextStyle(
           fontWeight: FontWeight.w600,
-          fontSize: 16,
+          fontSize: kBodyTextNormal,
         ),
       ),
       const Spacer(
