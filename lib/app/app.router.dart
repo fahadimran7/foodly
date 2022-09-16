@@ -16,6 +16,7 @@ import '../ui/create_account/create_account_view.dart';
 import '../ui/home/home_view.dart';
 import '../ui/login/login_view.dart';
 import '../ui/onboarding/onboarding_view.dart';
+import '../ui/restaurant_details/restaurant_details_view.dart';
 import '../ui/restaurants_list/restaurants_list_view.dart';
 import '../ui/startup/startup_view.dart';
 import '../ui/user_profile/user_profile_view.dart';
@@ -28,6 +29,7 @@ class Routes {
   static const String loginView = '/login-view';
   static const String homeView = '/home-view';
   static const String restaurantsListView = '/restaurants-list-view';
+  static const String restaurantDetailsView = '/restaurant-details-view';
   static const String userProfileView = '/user-profile-view';
   static const all = <String>{
     startupView,
@@ -37,6 +39,7 @@ class Routes {
     loginView,
     homeView,
     restaurantsListView,
+    restaurantDetailsView,
     userProfileView,
   };
 }
@@ -52,6 +55,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.loginView, page: LoginView),
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.restaurantsListView, page: RestaurantsListView),
+    RouteDef(Routes.restaurantDetailsView, page: RestaurantDetailsView),
     RouteDef(Routes.userProfileView, page: UserProfileView),
   ];
   @override
@@ -109,6 +113,12 @@ class StackedRouter extends RouterBase {
           key: args.key,
           restaurantsList: args.restaurantsList,
         ),
+        settings: data,
+      );
+    },
+    RestaurantDetailsView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const RestaurantDetailsView(),
         settings: data,
       );
     },
@@ -270,6 +280,22 @@ extension NavigatorStateExtension on NavigationService {
       Routes.restaurantsListView,
       arguments: RestaurantsListViewArguments(
           key: key, restaurantsList: restaurantsList),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> navigateToRestaurantDetailsView({
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo(
+      Routes.restaurantDetailsView,
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

@@ -7,6 +7,7 @@ import 'package:stacked_architecture/ui/create_account/create_account_view.dart'
 import 'package:stacked_architecture/ui/home/home_view.dart';
 import 'package:stacked_architecture/ui/login/login_view.dart';
 import 'package:stacked_architecture/ui/onboarding/onboarding_view.dart';
+import 'package:stacked_architecture/ui/restaurant_details/restaurant_details_view.dart';
 import 'package:stacked_architecture/ui/restaurants_list/restaurants_list_view.dart';
 import 'package:stacked_architecture/ui/startup/startup_view.dart';
 import 'package:stacked_architecture/ui/user_profile/user_profile_view.dart';
@@ -22,6 +23,7 @@ import 'package:places_service/places_service.dart';
   CupertinoRoute(page: LoginView),
   CupertinoRoute(page: HomeView),
   CupertinoRoute(page: RestaurantsListView),
+  CupertinoRoute(page: RestaurantDetailsView),
   CupertinoRoute(page: UserProfileView),
 ], dependencies: [
   LazySingleton(classType: NavigationService),

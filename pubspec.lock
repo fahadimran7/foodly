@@ -218,6 +218,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.3"
+  easy_debounce:
+    dependency: transitive
+    description:
+      name: easy_debounce
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2+1"
   fake_async:
     dependency: transitive
     description:
@@ -779,6 +786,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.5"
+  scrollable_list_tab_scroller:
+    dependency: "direct main"
+    description:
+      name: scrollable_list_tab_scroller
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
+  scrollable_positioned_list:
+    dependency: transitive
+    description:
+      name: scrollable_positioned_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.3"
   shelf:
     dependency: transitive
     description:

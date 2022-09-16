@@ -26,6 +26,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   font_awesome_flutter: ^10.2.1
   cached_network_image: ^3.2.1
+  scrollable_list_tab_scroller: ^0.2.0
 
 dev_dependencies:
   flutter_test:

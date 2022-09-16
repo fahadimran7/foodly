@@ -31,6 +31,7 @@ class RestaurantsListView extends StatelessWidget {
                     itemCount: restaurantsList.length,
                     itemBuilder: (context, index) {
                       return RestaurantListCard(
+                        handleOnTap: model.navigateToDetailsView,
                         restaurantDetails: restaurantsList[index],
                       );
                     },
