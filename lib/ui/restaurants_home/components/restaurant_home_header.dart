@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../shared/styles.dart';
 import '../../shared/ui_helpers.dart';
 
-class FeaturedScreenHeader extends StatelessWidget {
-  const FeaturedScreenHeader({Key? key, required this.location})
+class RestaurantHomeHeader extends StatelessWidget {
+  const RestaurantHomeHeader({Key? key, required this.location})
       : super(key: key);
   final String location;
 

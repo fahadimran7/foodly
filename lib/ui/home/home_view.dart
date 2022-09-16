@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/ui/account_settings.dart/account_settings_view.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/layout/bottom_navbar.dart';
-import 'package:stacked_architecture/ui/featured_restaurants/featured_restaurants_view.dart';
 import 'package:stacked_architecture/ui/home/home_viewmodel.dart';
 import 'package:stacked_architecture/ui/orders/orders_view.dart';
+import 'package:stacked_architecture/ui/restaurants_home/restaurants_home_view.dart';
 import 'package:stacked_architecture/ui/search_restaurants/search_restaurants_view.dart';
-import '../user_profile/user_profile_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({
@@ -50,7 +49,7 @@ class HomeView extends StatelessWidget {
   Widget getViewForIndex(int index) {
     switch (index) {
       case 0:
-        return const FeaturedRestaurantsView();
+        return const RestaurantsHomeView();
       case 1:
         return const SearchRestaurantsView();
       case 2:
@@ -58,7 +57,7 @@ class HomeView extends StatelessWidget {
       case 3:
         return const AccountSettingsView();
       default:
-        return const FeaturedRestaurantsView();
+        return const RestaurantsHomeView();
     }
   }
 }

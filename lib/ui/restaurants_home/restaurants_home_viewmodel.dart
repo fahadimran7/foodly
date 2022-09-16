@@ -13,7 +13,7 @@ const String _featuredRestaurantsStreamKey = 'featured-restaurants-stream';
 const String _editorsPickRestaurantsStreamKey =
     'editors-pick-restaurants-stream';
 
-class FeaturedRestaurantsViewModel extends MultipleStreamViewModel {
+class RestaurantsHomeViewModel extends MultipleStreamViewModel {
   final _fireStoreApi = locator<FirestoreApi>();
   final _userService = locator<UserService>();
   final _restaurantService = locator<RestaurantService>();

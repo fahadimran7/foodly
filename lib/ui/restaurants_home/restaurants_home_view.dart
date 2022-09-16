@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading.dart';
-import 'package:stacked_architecture/ui/featured_restaurants/components/editors_pick_restaurant_card.dart';
-import 'package:stacked_architecture/ui/featured_restaurants/components/featured_restaurant_card.dart';
-import 'package:stacked_architecture/ui/featured_restaurants/components/featured_screen_header.dart';
-import 'package:stacked_architecture/ui/featured_restaurants/featured_restaurants_viewmodel.dart';
+import 'package:stacked_architecture/ui/restaurants_home/components/restaurant_card.dart';
+import 'package:stacked_architecture/ui/restaurants_home/components/restaurant_home_header.dart';
+import 'package:stacked_architecture/ui/restaurants_home/restaurants_home_viewmodel.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import '../shared/ui_helpers.dart';
 
-class FeaturedRestaurantsView extends StatelessWidget {
-  const FeaturedRestaurantsView({
+class RestaurantsHomeView extends StatelessWidget {
+  const RestaurantsHomeView({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<FeaturedRestaurantsViewModel>.reactive(
-      viewModelBuilder: () => FeaturedRestaurantsViewModel(),
+    return ViewModelBuilder<RestaurantsHomeViewModel>.reactive(
+      viewModelBuilder: () => RestaurantsHomeViewModel(),
       disposeViewModel: false,
       initialiseSpecialViewModelsOnce: true,
       onModelReady: (model) => model.initialize(),
@@ -36,7 +35,7 @@ class FeaturedRestaurantsView extends StatelessWidget {
               child: Column(
                 children: [
                   verticalSpaceSmall,
-                  FeaturedScreenHeader(location: model.currentLocation),
+                  RestaurantHomeHeader(location: model.currentLocation),
                   verticalSpaceTiny,
                   const Divider(),
                   verticalSpaceSmall,
@@ -93,7 +92,7 @@ class FeaturedRestaurantsView extends StatelessWidget {
                               return horizontalSpaceRegular;
                             },
                             itemBuilder: (BuildContext context, int index) =>
-                                FeaturedRestaurantCard(
+                                RestaurantCard(
                               restaurantDetails: featuredRestaurants[index],
                             ),
                           ),
@@ -127,7 +126,7 @@ class FeaturedRestaurantsView extends StatelessWidget {
                               return horizontalSpaceRegular;
                             },
                             itemBuilder: (BuildContext context, int index) =>
-                                EditorsPickRestaurantCard(
+                                RestaurantCard(
                               restaurantDetails: editorsPickRestaurants[index],
                             ),
                           ),

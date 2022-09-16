@@ -4,8 +4,8 @@ import 'package:stacked_architecture/models/application_models.dart';
 import '../../shared/styles.dart';
 import '../../shared/ui_helpers.dart';
 
-class FeaturedRestaurantCard extends StatelessWidget {
-  const FeaturedRestaurantCard({Key? key, required this.restaurantDetails})
+class RestaurantCard extends StatelessWidget {
+  const RestaurantCard({Key? key, required this.restaurantDetails})
       : super(key: key);
   final Restaurant restaurantDetails;
 
