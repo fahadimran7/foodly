@@ -3,6 +3,8 @@ import 'package:stacked_architecture/app/app.locator.dart';
 import 'package:stacked_architecture/app/app.router.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../models/application_models.dart';
+
 class RestaurantListViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
@@ -10,7 +12,9 @@ class RestaurantListViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
-  void navigateToDetailsView() {
-    _navigationService.navigateTo(Routes.restaurantDetailsView);
+  void navigateToDetailsView({required Restaurant restaurantDetails}) {
+    _navigationService.navigateTo(Routes.restaurantDetailsView,
+        arguments: RestaurantDetailsViewArguments(
+            restaurantDetails: restaurantDetails));
   }
 }

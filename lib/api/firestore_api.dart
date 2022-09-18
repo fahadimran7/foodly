@@ -20,6 +20,9 @@ class FirestoreApi {
   final CollectionReference editorsPickRestaurantsCollection =
       FirebaseFirestore.instance.collection(editorsPickRestaurantsFirestoreKey);
 
+  final CollectionReference restaurantsCollection =
+      FirebaseFirestore.instance.collection(restaurantsFirestoreKey);
+
   Future<void> createUser({required User user}) async {
     log.i('user: $user');
 
@@ -167,6 +170,35 @@ class FirestoreApi {
 
       return editorsPickRestaurantsList;
     });
+
+    return streamToPublish;
+  }
+
+  Stream<List<Menu>> getMenuForRestaurant({
+    required String restaurantId,
+  }) {
+    log.v('restaurantId: $restaurantId');
+
+    final restaurantMenuStream = restaurantsCollection
+        .doc(restaurantId)
+        .collection(restaurantMenuFirestoreKey)
+        .snapshots();
+
+    final streamToPublish = restaurantMenuStream.map(
+      (snapshot) {
+        final restaurantMenuMap = snapshot.docs;
+
+        log.v('restaurantMenuMap: $restaurantMenuMap');
+
+        final restaurantMenuList = restaurantMenuMap
+            .map((restaurantMenu) => Menu.fromJson(restaurantMenu.data()))
+            .toList();
+
+        log.v('restaurantMenuList: $restaurantMenuList');
+
+        return restaurantMenuList;
+      },
+    );
 
     return streamToPublish;
   }

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../models/application_models.dart';
 import '../ui/address_selection/address_selection_view.dart';
 import '../ui/create_account/create_account_view.dart';
 import '../ui/home/home_view.dart';
@@ -117,8 +118,12 @@ class StackedRouter extends RouterBase {
       );
     },
     RestaurantDetailsView: (data) {
+      var args = data.getArgs<RestaurantDetailsViewArguments>(nullOk: false);
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const RestaurantDetailsView(),
+        builder: (context) => RestaurantDetailsView(
+          key: args.key,
+          restaurantDetails: args.restaurantDetails,
+        ),
         settings: data,
       );
     },
@@ -158,6 +163,13 @@ class RestaurantsListViewArguments {
   final Key? key;
   final List<dynamic> restaurantsList;
   RestaurantsListViewArguments({this.key, required this.restaurantsList});
+}
+
+/// RestaurantDetailsView arguments holder class
+class RestaurantDetailsViewArguments {
+  final Key? key;
+  final Restaurant restaurantDetails;
+  RestaurantDetailsViewArguments({this.key, required this.restaurantDetails});
 }
 
 /// ************************************************************************
@@ -288,6 +300,8 @@ extension NavigatorStateExtension on NavigationService {
   }
 
   Future<dynamic> navigateToRestaurantDetailsView({
+    Key? key,
+    required Restaurant restaurantDetails,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -296,6 +310,8 @@ extension NavigatorStateExtension on NavigationService {
   }) async {
     return navigateTo(
       Routes.restaurantDetailsView,
+      arguments: RestaurantDetailsViewArguments(
+          key: key, restaurantDetails: restaurantDetails),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

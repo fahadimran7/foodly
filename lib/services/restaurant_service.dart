@@ -16,4 +16,10 @@ class RestaurantService {
   Stream<List<Restaurant>> streamOfEditorsPickRestaurants() {
     return _firestoreApi.getListOfEditorsPickRestaurants();
   }
+
+  Stream<List<Menu>> streamOfMenuForRestaurant({required String restaurantId}) {
+    return _firestoreApi.getMenuForRestaurant(
+      restaurantId: restaurantId,
+    );
+  }
 }

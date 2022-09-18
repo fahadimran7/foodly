@@ -492,6 +492,7 @@ mixin _$Restaurant {
   String get name => throw _privateConstructorUsedError;
   bool get offersFreeDelivery => throw _privateConstructorUsedError;
   String get rating => throw _privateConstructorUsedError;
+  String get restaurantId => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -513,6 +514,7 @@ abstract class $RestaurantCopyWith<$Res> {
       String name,
       bool offersFreeDelivery,
       String rating,
+      String restaurantId,
       List<String> tags});
 }
 
@@ -533,6 +535,7 @@ class _$RestaurantCopyWithImpl<$Res> implements $RestaurantCopyWith<$Res> {
     Object? name = freezed,
     Object? offersFreeDelivery = freezed,
     Object? rating = freezed,
+    Object? restaurantId = freezed,
     Object? tags = freezed,
   }) {
     return _then(_value.copyWith(
@@ -564,6 +567,10 @@ class _$RestaurantCopyWithImpl<$Res> implements $RestaurantCopyWith<$Res> {
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      restaurantId: restaurantId == freezed
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
+              as String,
       tags: tags == freezed
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -587,6 +594,7 @@ abstract class _$$_RestaurantCopyWith<$Res>
       String name,
       bool offersFreeDelivery,
       String rating,
+      String restaurantId,
       List<String> tags});
 }
 
@@ -609,6 +617,7 @@ class __$$_RestaurantCopyWithImpl<$Res> extends _$RestaurantCopyWithImpl<$Res>
     Object? name = freezed,
     Object? offersFreeDelivery = freezed,
     Object? rating = freezed,
+    Object? restaurantId = freezed,
     Object? tags = freezed,
   }) {
     return _then(_$_Restaurant(
@@ -640,6 +649,10 @@ class __$$_RestaurantCopyWithImpl<$Res> extends _$RestaurantCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      restaurantId: restaurantId == freezed
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
+              as String,
       tags: tags == freezed
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -659,6 +672,7 @@ class _$_Restaurant implements _Restaurant {
       required this.name,
       required this.offersFreeDelivery,
       required this.rating,
+      required this.restaurantId,
       required final List<String> tags})
       : _tags = tags;
 
@@ -679,6 +693,8 @@ class _$_Restaurant implements _Restaurant {
   final bool offersFreeDelivery;
   @override
   final String rating;
+  @override
+  final String restaurantId;
   final List<String> _tags;
   @override
   List<String> get tags {
@@ -688,7 +704,7 @@ class _$_Restaurant implements _Restaurant {
 
   @override
   String toString() {
-    return 'Restaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating, tags: $tags)';
+    return 'Restaurant(area: $area, city: $city, deliveryTime: $deliveryTime, imageUrl: $imageUrl, name: $name, offersFreeDelivery: $offersFreeDelivery, rating: $rating, restaurantId: $restaurantId, tags: $tags)';
   }
 
   @override
@@ -705,6 +721,8 @@ class _$_Restaurant implements _Restaurant {
             const DeepCollectionEquality()
                 .equals(other.offersFreeDelivery, offersFreeDelivery) &&
             const DeepCollectionEquality().equals(other.rating, rating) &&
+            const DeepCollectionEquality()
+                .equals(other.restaurantId, restaurantId) &&
             const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
@@ -719,6 +737,7 @@ class _$_Restaurant implements _Restaurant {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(offersFreeDelivery),
       const DeepCollectionEquality().hash(rating),
+      const DeepCollectionEquality().hash(restaurantId),
       const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
@@ -743,6 +762,7 @@ abstract class _Restaurant implements Restaurant {
       required final String name,
       required final bool offersFreeDelivery,
       required final String rating,
+      required final String restaurantId,
       required final List<String> tags}) = _$_Restaurant;
 
   factory _Restaurant.fromJson(Map<String, dynamic> json) =
@@ -763,9 +783,247 @@ abstract class _Restaurant implements Restaurant {
   @override
   String get rating;
   @override
+  String get restaurantId;
+  @override
   List<String> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_RestaurantCopyWith<_$_Restaurant> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+Menu _$MenuFromJson(Map<String, dynamic> json) {
+  return _Menu.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Menu {
+  String get name => throw _privateConstructorUsedError;
+  String get price => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  bool get isFeatured => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $MenuCopyWith<Menu> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MenuCopyWith<$Res> {
+  factory $MenuCopyWith(Menu value, $Res Function(Menu) then) =
+      _$MenuCopyWithImpl<$Res>;
+  $Res call(
+      {String name,
+      String price,
+      String category,
+      String description,
+      String imageUrl,
+      bool isFeatured});
+}
+
+/// @nodoc
+class _$MenuCopyWithImpl<$Res> implements $MenuCopyWith<$Res> {
+  _$MenuCopyWithImpl(this._value, this._then);
+
+  final Menu _value;
+  // ignore: unused_field
+  final $Res Function(Menu) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? price = freezed,
+    Object? category = freezed,
+    Object? description = freezed,
+    Object? imageUrl = freezed,
+    Object? isFeatured = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      isFeatured: isFeatured == freezed
+          ? _value.isFeatured
+          : isFeatured // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_MenuCopyWith<$Res> implements $MenuCopyWith<$Res> {
+  factory _$$_MenuCopyWith(_$_Menu value, $Res Function(_$_Menu) then) =
+      __$$_MenuCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String name,
+      String price,
+      String category,
+      String description,
+      String imageUrl,
+      bool isFeatured});
+}
+
+/// @nodoc
+class __$$_MenuCopyWithImpl<$Res> extends _$MenuCopyWithImpl<$Res>
+    implements _$$_MenuCopyWith<$Res> {
+  __$$_MenuCopyWithImpl(_$_Menu _value, $Res Function(_$_Menu) _then)
+      : super(_value, (v) => _then(v as _$_Menu));
+
+  @override
+  _$_Menu get _value => super._value as _$_Menu;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? price = freezed,
+    Object? category = freezed,
+    Object? description = freezed,
+    Object? imageUrl = freezed,
+    Object? isFeatured = freezed,
+  }) {
+    return _then(_$_Menu(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      category: category == freezed
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      isFeatured: isFeatured == freezed
+          ? _value.isFeatured
+          : isFeatured // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Menu implements _Menu {
+  _$_Menu(
+      {required this.name,
+      required this.price,
+      required this.category,
+      required this.description,
+      required this.imageUrl,
+      required this.isFeatured});
+
+  factory _$_Menu.fromJson(Map<String, dynamic> json) => _$$_MenuFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final String price;
+  @override
+  final String category;
+  @override
+  final String description;
+  @override
+  final String imageUrl;
+  @override
+  final bool isFeatured;
+
+  @override
+  String toString() {
+    return 'Menu(name: $name, price: $price, category: $category, description: $description, imageUrl: $imageUrl, isFeatured: $isFeatured)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Menu &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.isFeatured, isFeatured));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(isFeatured));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_MenuCopyWith<_$_Menu> get copyWith =>
+      __$$_MenuCopyWithImpl<_$_Menu>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_MenuToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Menu implements Menu {
+  factory _Menu(
+      {required final String name,
+      required final String price,
+      required final String category,
+      required final String description,
+      required final String imageUrl,
+      required final bool isFeatured}) = _$_Menu;
+
+  factory _Menu.fromJson(Map<String, dynamic> json) = _$_Menu.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get price;
+  @override
+  String get category;
+  @override
+  String get description;
+  @override
+  String get imageUrl;
+  @override
+  bool get isFeatured;
+  @override
+  @JsonKey(ignore: true)
+  _$$_MenuCopyWith<_$_Menu> get copyWith => throw _privateConstructorUsedError;
 }

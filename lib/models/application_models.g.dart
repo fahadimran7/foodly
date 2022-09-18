@@ -52,6 +52,7 @@ _$_Restaurant _$$_RestaurantFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       offersFreeDelivery: json['offersFreeDelivery'] as bool,
       rating: json['rating'] as String,
+      restaurantId: json['restaurantId'] as String,
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
@@ -64,5 +65,24 @@ Map<String, dynamic> _$$_RestaurantToJson(_$_Restaurant instance) =>
       'name': instance.name,
       'offersFreeDelivery': instance.offersFreeDelivery,
       'rating': instance.rating,
+      'restaurantId': instance.restaurantId,
       'tags': instance.tags,
+    };
+
+_$_Menu _$$_MenuFromJson(Map<String, dynamic> json) => _$_Menu(
+      name: json['name'] as String,
+      price: json['price'] as String,
+      category: json['category'] as String,
+      description: json['description'] as String,
+      imageUrl: json['imageUrl'] as String,
+      isFeatured: json['isFeatured'] as bool,
+    );
+
+Map<String, dynamic> _$$_MenuToJson(_$_Menu instance) => <String, dynamic>{
+      'name': instance.name,
+      'price': instance.price,
+      'category': instance.category,
+      'description': instance.description,
+      'imageUrl': instance.imageUrl,
+      'isFeatured': instance.isFeatured,
     };
