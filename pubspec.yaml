@@ -27,6 +27,7 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   cached_network_image: ^3.2.1
   scrollable_list_tab_scroller: ^0.2.0
+  flutter_native_splash: ^2.2.9
 
 dev_dependencies:
   flutter_test:
@@ -55,3 +56,13 @@ flutter:
         - asset: assets/fonts/SFPro-Semibold.ttf
         - asset: assets/fonts/SFPro-Bold.ttf
         - asset: assets/fonts/SFPro-Heavy.ttf
+
+flutter_native_splash:
+  color: '#ffffff'
+  image: assets/images/onboarding-2.png
+
+  android_12:
+    image: assets/images/onboarding-2.png
+    color: '#ffffff'
+
+  fullscreen: true
