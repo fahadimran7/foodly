@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+const String FullNameValueKey = 'fullName';
 const String EmailValueKey = 'email';
 const String PasswordValueKey = 'password';
 
@@ -19,15 +20,19 @@ final Map<String, FocusNode> _CreateAccountViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?>
     _CreateAccountViewTextValidations = {
+  FullNameValueKey: null,
   EmailValueKey: null,
   PasswordValueKey: null,
 };
 
 mixin $CreateAccountView on StatelessWidget {
+  TextEditingController get fullNameController =>
+      _getFormTextEditingController(FullNameValueKey);
   TextEditingController get emailController =>
       _getFormTextEditingController(EmailValueKey);
   TextEditingController get passwordController =>
       _getFormTextEditingController(PasswordValueKey);
+  FocusNode get fullNameFocusNode => _getFormFocusNode(FullNameValueKey);
   FocusNode get emailFocusNode => _getFormFocusNode(EmailValueKey);
   FocusNode get passwordFocusNode => _getFormFocusNode(PasswordValueKey);
 
@@ -52,6 +57,7 @@ mixin $CreateAccountView on StatelessWidget {
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void listenToFormUpdated(FormViewModel model) {
+    fullNameController.addListener(() => _updateFormData(model));
     emailController.addListener(() => _updateFormData(model));
     passwordController.addListener(() => _updateFormData(model));
   }
@@ -67,6 +73,7 @@ mixin $CreateAccountView on StatelessWidget {
     model.setData(
       model.formValueMap
         ..addAll({
+          FullNameValueKey: fullNameController.text,
           EmailValueKey: emailController.text,
           PasswordValueKey: passwordController.text,
         }),
@@ -79,6 +86,7 @@ mixin $CreateAccountView on StatelessWidget {
   /// Updates the fieldsValidationMessages on the FormViewModel
   void _updateValidationData(FormViewModel model) =>
       model.setValidationMessages({
+        FullNameValueKey: _getValidationMessage(FullNameValueKey),
         EmailValueKey: _getValidationMessage(EmailValueKey),
         PasswordValueKey: _getValidationMessage(PasswordValueKey),
       });
@@ -111,17 +119,23 @@ mixin $CreateAccountView on StatelessWidget {
 extension ValueProperties on FormViewModel {
   bool get isFormValid =>
       this.fieldsValidationMessages.values.every((element) => element == null);
+  String? get fullNameValue => this.formValueMap[FullNameValueKey] as String?;
   String? get emailValue => this.formValueMap[EmailValueKey] as String?;
   String? get passwordValue => this.formValueMap[PasswordValueKey] as String?;
 
+  bool get hasFullName => this.formValueMap.containsKey(FullNameValueKey);
   bool get hasEmail => this.formValueMap.containsKey(EmailValueKey);
   bool get hasPassword => this.formValueMap.containsKey(PasswordValueKey);
 
+  bool get hasFullNameValidationMessage =>
+      this.fieldsValidationMessages[FullNameValueKey]?.isNotEmpty ?? false;
   bool get hasEmailValidationMessage =>
       this.fieldsValidationMessages[EmailValueKey]?.isNotEmpty ?? false;
   bool get hasPasswordValidationMessage =>
       this.fieldsValidationMessages[PasswordValueKey]?.isNotEmpty ?? false;
 
+  String? get fullNameValidationMessage =>
+      this.fieldsValidationMessages[FullNameValueKey];
   String? get emailValidationMessage =>
       this.fieldsValidationMessages[EmailValueKey];
   String? get passwordValidationMessage =>
@@ -129,6 +143,8 @@ extension ValueProperties on FormViewModel {
 }
 
 extension Methods on FormViewModel {
+  setFullNameValidationMessage(String? validationMessage) =>
+      this.fieldsValidationMessages[FullNameValueKey] = validationMessage;
   setEmailValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[EmailValueKey] = validationMessage;
   setPasswordValidationMessage(String? validationMessage) =>

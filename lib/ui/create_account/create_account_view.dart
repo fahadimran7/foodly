@@ -9,6 +9,7 @@ import '../shared/ui_helpers.dart';
 import 'create_account_viewmodel.dart';
 
 @FormView(fields: [
+  FormTextField(name: 'fullName'),
   FormTextField(name: 'email'),
   FormTextField(name: 'password'),
 ])
@@ -33,6 +34,28 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
             subtitle: 'Enter email and password for sign up.',
             form: Column(
               children: [
+                verticalSpaceRegular,
+                TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: const BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
+                    ),
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: const BorderSide(
+                          style: BorderStyle.solid, color: kcPrimaryColor),
+                    ),
+                    fillColor: kcLightGreyColor,
+                    filled: true,
+                    labelText: 'Full Name',
+                  ),
+                  controller: fullNameController,
+                ),
                 verticalSpaceRegular,
                 TextField(
                   decoration: InputDecoration(
