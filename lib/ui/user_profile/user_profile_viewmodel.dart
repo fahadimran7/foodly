@@ -3,43 +3,31 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/app/app.locator.dart';
 import 'package:stacked_architecture/app/app.logger.dart';
 import 'package:stacked_architecture/services/user_service.dart';
+import 'package:stacked_architecture/ui/shared/validators.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../enums/basic_dialog_status.dart';
 import '../../enums/dialog_type.dart';
 
-class UserProfileViewModel extends BaseViewModel {
+class UserProfileViewModel extends FormViewModel {
   final log = getLogger('UserProfileViewModel');
+  void Function(Map<String, String> data)? _onInitialValues;
+
+  listenToInitialValues(
+      void Function(Map<String, String> data)? onInitialValues) {
+    _onInitialValues = onInitialValues;
+  }
+
+  getInitialValues(Map<String, String> data) {
+    _onInitialValues?.call(data);
+  }
 
   final _userService = locator<UserService>();
   final _navigationService = locator<NavigationService>();
   final _dialogService = locator<DialogService>();
 
-  String? _fullName = '';
-  String _email = '';
-  final _formKey = GlobalKey<FormState>();
-  bool _touched = false;
   bool _buttonBusy = false;
 
-  get fullName => _fullName;
-  get email => _email;
-  get formKey => _formKey;
-  get touched => _touched;
   get buttonBusy => _buttonBusy;
-
-  void setEmail(String email) {
-    _email = email;
-    notifyListeners();
-  }
-
-  void setFullName(String fullName) {
-    _fullName = fullName;
-    notifyListeners();
-  }
-
-  void setTouched() {
-    _touched = true;
-    notifyListeners();
-  }
 
   void setButtonBusy(bool value) {
     _buttonBusy = value;
@@ -56,8 +44,7 @@ class UserProfileViewModel extends BaseViewModel {
     final res = await _userService.getUserAccountDetails();
 
     if (res != null) {
-      _email = res.email!;
-      _fullName = res.fullName;
+      getInitialValues.call({'fullName': res.fullName!, 'email': res.email!});
       setBusy(false);
       notifyListeners();
     } else {
@@ -68,11 +55,21 @@ class UserProfileViewModel extends BaseViewModel {
   }
 
   Future<void> updateUserDetails() async {
-    if (_formKey.currentState!.validate()) {
-      setButtonBusy(true);
+    setButtonBusy(true);
+
+    final nameValid =
+        InputValidators.validateFullName(formValueMap['fullName']);
+    final emailValid =
+        InputValidators.validateEmailAddress(formValueMap['email']);
+
+    if (!nameValid || !emailValid) {
+      setValidationMessage('Enter a valid email address and full name.');
+      setButtonBusy(false);
+      notifyListeners();
+    } else {
       final res = await _userService.updateUserAccountDetails(
-        email: _email,
-        fullName: _fullName == '' ? null : _fullName,
+        email: formValueMap['email'],
+        fullName: formValueMap['fullName'],
       );
 
       if (res is bool) {
@@ -102,4 +99,7 @@ class UserProfileViewModel extends BaseViewModel {
       }
     }
   }
+
+  @override
+  void setFormStatus() {}
 }

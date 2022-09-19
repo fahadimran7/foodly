@@ -128,8 +128,11 @@ class StackedRouter extends RouterBase {
       );
     },
     UserProfileView: (data) {
+      var args = data.getArgs<UserProfileViewArguments>(
+        orElse: () => UserProfileViewArguments(),
+      );
       return CupertinoPageRoute<dynamic>(
-        builder: (context) => const UserProfileView(),
+        builder: (context) => UserProfileView(key: args.key),
         settings: data,
       );
     },
@@ -170,6 +173,12 @@ class RestaurantDetailsViewArguments {
   final Key? key;
   final Restaurant restaurantDetails;
   RestaurantDetailsViewArguments({this.key, required this.restaurantDetails});
+}
+
+/// UserProfileView arguments holder class
+class UserProfileViewArguments {
+  final Key? key;
+  UserProfileViewArguments({this.key});
 }
 
 /// ************************************************************************
@@ -320,6 +329,7 @@ extension NavigatorStateExtension on NavigationService {
   }
 
   Future<dynamic> navigateToUserProfileView({
+    Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -328,6 +338,7 @@ extension NavigatorStateExtension on NavigationService {
   }) async {
     return navigateTo(
       Routes.userProfileView,
+      arguments: UserProfileViewArguments(key: key),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

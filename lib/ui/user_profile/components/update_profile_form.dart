@@ -5,37 +5,22 @@ import '../../shared/ui_helpers.dart';
 import '../../shared/validators.dart';
 
 class UserProfileForm extends StatelessWidget {
-  const UserProfileForm(
-      {Key? key,
-      this.formKey,
-      this.fullName,
-      this.email,
-      required this.setFullName,
-      required this.setEmail,
-      required this.touched,
-      required this.setTouched})
-      : super(key: key);
-  final Key? formKey;
-  final String? fullName;
-  final String? email;
-  final bool touched;
-  final void Function(String) setFullName;
-  final void Function(String) setEmail;
-  final void Function() setTouched;
+  const UserProfileForm({
+    Key? key,
+    this.fullNameController,
+    this.emailController,
+  }) : super(key: key);
+  final TextEditingController? fullNameController;
+  final TextEditingController? emailController;
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
       child: Column(
         children: [
           TextFormField(
-            onTap: () => setTouched(),
-            validator: touched
-                ? (value) => InputValidators.validateFullName(value)
-                : null,
-            initialValue: fullName,
-            onChanged: (value) => setFullName(value),
+            controller: fullNameController,
+            validator: (value) => InputValidators.validateFullName(value),
             decoration: const InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
@@ -75,9 +60,8 @@ class UserProfileForm extends StatelessWidget {
           ),
           verticalSpaceSmall,
           TextFormField(
+            controller: emailController,
             validator: (value) => InputValidators.validateEmailAddress(value),
-            onChanged: (value) => setEmail(value),
-            initialValue: email,
             decoration: const InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
