@@ -33,6 +33,9 @@ abstract class AuthenticationViewModel extends FormViewModel {
     } on FirestoreApiException catch (e) {
       log.e(e.toString());
       setValidationMessage(e.toString());
+    } catch (e) {
+      setValidationMessage('Authentication failure. Please try again.');
+      notifyListeners();
     }
   }
 

@@ -84,8 +84,8 @@ class RestaurantsHomeViewModel extends MultipleStreamViewModel {
     _navigationService.navigateTo(
       Routes.restaurantsListView,
       arguments: RestaurantsListViewArguments(
-        restaurantsList: featuredRestaurants as List<dynamic>,
-      ),
+          restaurantsList: featuredRestaurants as List<dynamic>,
+          appBarText: 'Featured Partners'),
     );
   }
 
@@ -93,7 +93,17 @@ class RestaurantsHomeViewModel extends MultipleStreamViewModel {
     _navigationService.navigateTo(
       Routes.restaurantsListView,
       arguments: RestaurantsListViewArguments(
-        restaurantsList: editorsPickRestaurants as List<dynamic>,
+          restaurantsList: editorsPickRestaurants as List<dynamic>,
+          appBarText: 'Editors Choice'),
+    );
+  }
+
+  void navigateToRestaurantDetailsView(
+      {required Restaurant restaurantDetails}) {
+    _navigationService.navigateTo(
+      Routes.restaurantDetailsView,
+      arguments: RestaurantDetailsViewArguments(
+        restaurantDetails: restaurantDetails,
       ),
     );
   }

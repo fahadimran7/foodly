@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading.dart';
@@ -39,14 +40,19 @@ class UserProfileView extends StatelessWidget with $UserProfileView {
               : SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: kpscreenPaddingHorizontal,
-                        right: kpscreenPaddingHorizontal,
-                        bottom: kpscreenPaddingVertical),
+                      left: globalContentPadding,
+                      right: globalContentPadding,
+                      bottom: globalContentPadding,
+                    ),
                     child: Column(
                       children: [
                         PageTopBarSecondary(
                           title: 'Profile Settings',
-                          onBackPressed: () => model.navigateBack(),
+                          onBackPressed: () {
+                            SystemChannels.textInput
+                                .invokeMethod('TextInput.hide');
+                            model.navigateBack();
+                          },
                         ),
                         UserProfileForm(
                           fullNameController: fullNameController,

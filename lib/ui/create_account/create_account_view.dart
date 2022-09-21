@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/ui/create_account/create_account_view.form.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/layout/authentication_layout.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/layout/no_glow_behaviour.dart';
 
 import '../shared/styles.dart';
 import '../shared/ui_helpers.dart';
@@ -23,90 +25,96 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
       onDispose: (model) => disposeForm(),
       viewModelBuilder: () => CreateAccountViewModel(),
       builder: (context, model, child) {
-        return Scaffold(
-          body: AuthenticationLayout(
-            busy: model.isBusy,
-            onMainButtonTapped: model.saveData,
-            onBackPressed: model.navigateBack,
-            validationMessage: model.validationMessage,
-            onSignInWithGoogle: model.useGoogleAuthentication,
-            title: 'Create Account',
-            subtitle: 'Enter email and password for sign up.',
-            form: Column(
-              children: [
-                verticalSpaceRegular,
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
+        return ScrollConfiguration(
+          behavior: NoGlowBehaviour(),
+          child: Scaffold(
+            body: AuthenticationLayout(
+              busy: model.isBusy,
+              onMainButtonTapped: () {
+                SystemChannels.textInput.invokeMethod('TextInput.hide');
+                model.saveData();
+              },
+              onBackPressed: model.navigateBack,
+              validationMessage: model.validationMessage,
+              onSignInWithGoogle: model.useGoogleAuthentication,
+              title: 'Create Account',
+              subtitle: 'Enter email and password for sign up.',
+              form: Column(
+                children: [
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
                       ),
-                    ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                          style: BorderStyle.solid, color: kcPrimaryColor),
-                    ),
-                    fillColor: kcLightGreyColor,
-                    filled: true,
-                    labelText: 'Full Name',
-                  ),
-                  controller: fullNameController,
-                ),
-                verticalSpaceRegular,
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                            style: BorderStyle.solid, color: kcPrimaryColor),
                       ),
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                      labelText: 'Full Name',
                     ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                          style: BorderStyle.solid, color: kcPrimaryColor),
-                    ),
-                    fillColor: kcLightGreyColor,
-                    filled: true,
-                    labelText: 'Email',
+                    controller: fullNameController,
                   ),
-                  controller: emailController,
-                ),
-                verticalSpaceRegular,
-                TextField(
-                  decoration: InputDecoration(
-                    suffixIcon: const Icon(Icons.visibility),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
                       ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                            style: BorderStyle.solid, color: kcPrimaryColor),
+                      ),
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                      labelText: 'Email',
                     ),
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      borderSide: const BorderSide(
-                          style: BorderStyle.solid, color: kcPrimaryColor),
-                    ),
-                    fillColor: kcLightGreyColor,
-                    filled: true,
-                    labelText: 'Password',
+                    controller: emailController,
                   ),
-                  controller: passwordController,
-                  obscureText: true,
-                ),
-              ],
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: const Icon(Icons.visibility),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        borderSide: const BorderSide(
+                            style: BorderStyle.solid, color: kcPrimaryColor),
+                      ),
+                      fillColor: kcLightGreyColor,
+                      filled: true,
+                      labelText: 'Password',
+                    ),
+                    controller: passwordController,
+                    obscureText: true,
+                  ),
+                ],
+              ),
+              mainButtonTitle: 'SIGN UP',
+              showTermsText: true,
+              onForgotPassword: () {},
             ),
-            mainButtonTitle: 'SIGN UP',
-            showTermsText: true,
-            onForgotPassword: () {},
           ),
         );
       },

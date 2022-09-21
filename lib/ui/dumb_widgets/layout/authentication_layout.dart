@@ -39,8 +39,7 @@ class AuthenticationLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.symmetric(horizontal: kpscreenPaddingHorizontal),
+      padding: const EdgeInsets.symmetric(horizontal: globalContentPadding),
       child: ListView(
         children: [
           if (onBackPressed == null) verticalSpaceLarge,
@@ -82,8 +81,10 @@ class AuthenticationLayout extends StatelessWidget {
               width: screenWidthPercentage(context, percentage: 0.8),
               child: Text(
                 subtitle,
-                style:
-                    ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall2),
+                style: const TextStyle(
+                  color: kcMediumGreyColor,
+                  fontSize: kBodyTextSmall2,
+                ),
               ),
             ),
           ),
@@ -95,9 +96,9 @@ class AuthenticationLayout extends StatelessWidget {
               alignment: Alignment.center,
               child: GestureDetector(
                 onTap: onForgotPassword,
-                child: Text(
+                child: const Text(
                   'Forget Password?',
-                  style: ktsMediumGreyBodyText.copyWith(
+                  style: TextStyle(
                     fontSize: kBodyTextSmall1,
                     color: Colors.black54,
                   ),
@@ -159,17 +160,19 @@ class AuthenticationLayout extends StatelessWidget {
             ),
           verticalSpaceSmall,
           if (showTermsText)
-            Text(
+            const Text(
               'By signing up you agree to our terms, conditions and privacy policy.',
-              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall2),
+              style: TextStyle(
+                  color: kcMediumGreyColor, fontSize: kBodyTextSmall2),
               textAlign: TextAlign.center,
             ),
           verticalSpaceRegular,
-          Align(
+          const Align(
             alignment: Alignment.center,
             child: Text(
               'Or',
-              style: ktsMediumGreyBodyText.copyWith(fontSize: kBodyTextSmall1),
+              style: TextStyle(
+                  color: kcMediumGreyColor, fontSize: kBodyTextSmall1),
             ),
           ),
           if (Platform.isIOS) verticalSpaceRegular,

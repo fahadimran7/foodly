@@ -13,8 +13,11 @@ class RestaurantListViewModel extends BaseViewModel {
   }
 
   void navigateToDetailsView({required Restaurant restaurantDetails}) {
-    _navigationService.navigateTo(Routes.restaurantDetailsView,
-        arguments: RestaurantDetailsViewArguments(
-            restaurantDetails: restaurantDetails));
+    _navigationService.navigateTo(
+      Routes.restaurantDetailsView,
+      arguments: RestaurantDetailsViewArguments(
+        restaurantDetails: restaurantDetails,
+      ),
+    );
   }
 }

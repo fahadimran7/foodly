@@ -30,8 +30,7 @@ class RestaurantsHomeView extends StatelessWidget {
           return SafeArea(
             child: Padding(
               padding: const EdgeInsets.only(
-                  left: kpscreenPaddingHorizontal,
-                  right: kpscreenPaddingHorizontal),
+                  left: globalContentPadding, right: globalContentPadding),
               child: Column(
                 children: [
                   verticalSpaceSmall,
@@ -93,6 +92,10 @@ class RestaurantsHomeView extends StatelessWidget {
                             },
                             itemBuilder: (BuildContext context, int index) =>
                                 RestaurantCard(
+                              onTap: () =>
+                                  model.navigateToRestaurantDetailsView(
+                                restaurantDetails: featuredRestaurants[index],
+                              ),
                               restaurantDetails: featuredRestaurants[index],
                             ),
                           ),
@@ -127,6 +130,11 @@ class RestaurantsHomeView extends StatelessWidget {
                             },
                             itemBuilder: (BuildContext context, int index) =>
                                 RestaurantCard(
+                              onTap: () =>
+                                  model.navigateToRestaurantDetailsView(
+                                restaurantDetails:
+                                    editorsPickRestaurants[index],
+                              ),
                               restaurantDetails: editorsPickRestaurants[index],
                             ),
                           ),

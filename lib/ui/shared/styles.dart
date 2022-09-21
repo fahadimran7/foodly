@@ -27,9 +27,6 @@ const MaterialColor primaryGreen = MaterialColor(
 );
 const int _greenPrimaryValue = 0xFF22A45D;
 
-const TextStyle ktsMediumGreyBodyText =
-    TextStyle(color: kcMediumGreyColor, fontSize: kBodyTextNormal);
-
 const double kBodyTextTiny = 11;
 const double kBodyTextCaption = 12;
 const double kBodyTextSmall1 = 14;
@@ -43,5 +40,4 @@ const double kH2Title = 28;
 const double kH1Title = 34;
 const double kHeadline = 30;
 
-const double kpscreenPaddingHorizontal = 20;
-const double kpscreenPaddingVertical = 20;
+const double globalContentPadding = 20;

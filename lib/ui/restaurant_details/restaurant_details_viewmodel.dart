@@ -1,11 +1,12 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/services/restaurant_service.dart';
-
+import 'package:stacked_services/stacked_services.dart';
 import '../../app/app.locator.dart';
 
 class RestaurantDetailsViewModel extends StreamViewModel {
   final _restaurantService = locator<RestaurantService>();
+  final _navigationService = locator<NavigationService>();
 
   String restaurantId;
 
@@ -43,6 +44,8 @@ class RestaurantDetailsViewModel extends StreamViewModel {
 
     return featuredItemsList;
   }
+
+  void navigateBack() => _navigationService.back();
 
   @override
   Stream<List<Menu>> get stream {

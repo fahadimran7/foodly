@@ -39,7 +39,7 @@ class OnboardingView extends StatelessWidget {
                   flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 0, horizontal: kpscreenPaddingHorizontal),
+                        vertical: 0, horizontal: globalContentPadding),
                     child: PageView.builder(
                       onPageChanged: (value) {
                         model.setCurrentPage(value);
@@ -56,7 +56,7 @@ class OnboardingView extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: kpscreenPaddingHorizontal),
+                        horizontal: globalContentPadding),
                     child: Column(
                       children: <Widget>[
                         Row(

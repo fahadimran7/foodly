@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/layout/authentication_layout.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/layout/no_glow_behaviour.dart';
 import 'package:stacked_architecture/ui/login/login_viewmodel.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
@@ -21,67 +23,73 @@ class LoginView extends StatelessWidget with $LoginView {
       viewModelBuilder: () => LoginViewModel(),
       onDispose: (model) => disposeForm(),
       builder: (context, model, child) {
-        return Scaffold(
-          body: AuthenticationLayout(
-            busy: model.isBusy,
-            onCreateAccountTapped: model.navigateToCreateAccount,
-            onMainButtonTapped: model.saveData,
-            validationMessage: model.validationMessage,
-            title: 'Welcome to',
-            subtitle:
-                'Enter your Email Address or Phone Number to sign in, enjoy your food :)',
-            form: Column(
-              children: [
-                verticalSpaceRegular,
-                TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
+        return ScrollConfiguration(
+          behavior: NoGlowBehaviour(),
+          child: Scaffold(
+            body: AuthenticationLayout(
+              busy: model.isBusy,
+              onCreateAccountTapped: model.navigateToCreateAccount,
+              onMainButtonTapped: () {
+                SystemChannels.textInput.invokeMethod('TextInput.hide');
+                model.saveData();
+              },
+              validationMessage: model.validationMessage,
+              title: 'Welcome to',
+              subtitle:
+                  'Enter your Email Address or Phone Number to sign in, enjoy your food :)',
+              form: Column(
+                children: [
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
                         ),
-                      ),
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                        borderSide: const BorderSide(
-                            style: BorderStyle.solid, color: kcPrimaryColor),
-                      ),
-                      fillColor: kcLightGreyColor,
-                      filled: true,
-                      labelText: 'Email'),
-                  controller: emailController,
-                ),
-                verticalSpaceRegular,
-                TextField(
-                  decoration: InputDecoration(
-                      suffixIcon: const Icon(Icons.visibility),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                        borderSide: const BorderSide(
-                          width: 0,
-                          style: BorderStyle.none,
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                              style: BorderStyle.solid, color: kcPrimaryColor),
                         ),
-                      ),
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6),
-                        borderSide: const BorderSide(
-                            style: BorderStyle.solid, color: kcPrimaryColor),
-                      ),
-                      fillColor: kcLightGreyColor,
-                      filled: true,
-                      labelText: 'Password'),
-                  controller: passwordController,
-                  obscureText: true,
-                ),
-              ],
+                        fillColor: kcLightGreyColor,
+                        filled: true,
+                        labelText: 'Email'),
+                    controller: emailController,
+                  ),
+                  verticalSpaceRegular,
+                  TextField(
+                    decoration: InputDecoration(
+                        suffixIcon: const Icon(Icons.visibility),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                            width: 0,
+                            style: BorderStyle.none,
+                          ),
+                        ),
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(6),
+                          borderSide: const BorderSide(
+                              style: BorderStyle.solid, color: kcPrimaryColor),
+                        ),
+                        fillColor: kcLightGreyColor,
+                        filled: true,
+                        labelText: 'Password'),
+                    controller: passwordController,
+                    obscureText: true,
+                  ),
+                ],
+              ),
+              mainButtonTitle: 'SIGN IN',
+              onSignInWithGoogle: model.useGoogleAuthentication,
+              onSignInWithApple: model.useAppleAuthentication,
+              onForgotPassword: () {},
             ),
-            mainButtonTitle: 'SIGN IN',
-            onSignInWithGoogle: model.useGoogleAuthentication,
-            onSignInWithApple: model.useAppleAuthentication,
-            onForgotPassword: () {},
           ),
         );
       },

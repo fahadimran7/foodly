@@ -113,6 +113,7 @@ class StackedRouter extends RouterBase {
         builder: (context) => RestaurantsListView(
           key: args.key,
           restaurantsList: args.restaurantsList,
+          appBarText: args.appBarText,
         ),
         settings: data,
       );
@@ -165,7 +166,9 @@ class LoginViewArguments {
 class RestaurantsListViewArguments {
   final Key? key;
   final List<dynamic> restaurantsList;
-  RestaurantsListViewArguments({this.key, required this.restaurantsList});
+  final String appBarText;
+  RestaurantsListViewArguments(
+      {this.key, required this.restaurantsList, required this.appBarText});
 }
 
 /// RestaurantDetailsView arguments holder class
@@ -291,6 +294,7 @@ extension NavigatorStateExtension on NavigationService {
   Future<dynamic> navigateToRestaurantsListView({
     Key? key,
     required List<dynamic> restaurantsList,
+    required String appBarText,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -300,7 +304,7 @@ extension NavigatorStateExtension on NavigationService {
     return navigateTo(
       Routes.restaurantsListView,
       arguments: RestaurantsListViewArguments(
-          key: key, restaurantsList: restaurantsList),
+          key: key, restaurantsList: restaurantsList, appBarText: appBarText),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
