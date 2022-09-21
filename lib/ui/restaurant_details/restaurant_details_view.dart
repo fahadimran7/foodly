@@ -54,6 +54,24 @@ class RestaurantDetailsView extends StatelessWidget {
                     ],
                   ),
                   verticalSpaceMedium,
+                  SizedBox(
+                    width: 220,
+                    height: 200,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: CachedNetworkImage(
+                        imageUrl: restaurantDetails.imageUrl,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: CircularProgressIndicator(
+                            value: downloadProgress.progress,
+                          ),
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  verticalSpaceMedium,
                   Text(
                     restaurantDetails.name,
                     style: const TextStyle(
