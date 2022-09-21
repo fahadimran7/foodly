@@ -20,6 +20,7 @@ import '../ui/onboarding/onboarding_view.dart';
 import '../ui/restaurant_details/restaurant_details_view.dart';
 import '../ui/restaurants_list/restaurants_list_view.dart';
 import '../ui/startup/startup_view.dart';
+import '../ui/update_password/update_password_view.dart';
 import '../ui/user_profile/user_profile_view.dart';
 
 class Routes {
@@ -32,6 +33,7 @@ class Routes {
   static const String restaurantsListView = '/restaurants-list-view';
   static const String restaurantDetailsView = '/restaurant-details-view';
   static const String userProfileView = '/user-profile-view';
+  static const String updatePasswordView = '/update-password-view';
   static const all = <String>{
     startupView,
     addressSelectionView,
@@ -42,6 +44,7 @@ class Routes {
     restaurantsListView,
     restaurantDetailsView,
     userProfileView,
+    updatePasswordView,
   };
 }
 
@@ -58,6 +61,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.restaurantsListView, page: RestaurantsListView),
     RouteDef(Routes.restaurantDetailsView, page: RestaurantDetailsView),
     RouteDef(Routes.userProfileView, page: UserProfileView),
+    RouteDef(Routes.updatePasswordView, page: UpdatePasswordView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -134,6 +138,12 @@ class StackedRouter extends RouterBase {
       );
       return CupertinoPageRoute<dynamic>(
         builder: (context) => UserProfileView(key: args.key),
+        settings: data,
+      );
+    },
+    UpdatePasswordView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const UpdatePasswordView(),
         settings: data,
       );
     },
@@ -343,6 +353,22 @@ extension NavigatorStateExtension on NavigationService {
     return navigateTo(
       Routes.userProfileView,
       arguments: UserProfileViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> navigateToUpdatePasswordView({
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  }) async {
+    return navigateTo(
+      Routes.updatePasswordView,
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

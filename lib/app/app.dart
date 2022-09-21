@@ -10,6 +10,7 @@ import 'package:stacked_architecture/ui/onboarding/onboarding_view.dart';
 import 'package:stacked_architecture/ui/restaurant_details/restaurant_details_view.dart';
 import 'package:stacked_architecture/ui/restaurants_list/restaurants_list_view.dart';
 import 'package:stacked_architecture/ui/startup/startup_view.dart';
+import 'package:stacked_architecture/ui/update_password/update_password_view.dart';
 import 'package:stacked_architecture/ui/user_profile/user_profile_view.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -25,6 +26,7 @@ import 'package:places_service/places_service.dart';
   CupertinoRoute(page: RestaurantsListView),
   CupertinoRoute(page: RestaurantDetailsView),
   CupertinoRoute(page: UserProfileView),
+  CupertinoRoute(page: UpdatePasswordView),
 ], dependencies: [
   LazySingleton(classType: NavigationService),
   LazySingleton(classType: FirestoreApi),

@@ -58,7 +58,7 @@ class AccountSettingsView extends StatelessWidget {
                   'Change Password',
                   'Change your password',
                   Icons.lock,
-                  model.navigateToProfileView,
+                  model.navigateToUpdatePasswordView,
                 ),
                 verticalSpaceSmall,
                 const Divider(),

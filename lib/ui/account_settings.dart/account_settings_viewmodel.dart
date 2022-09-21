@@ -17,6 +17,10 @@ class AccountSettingsViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.userProfileView);
   }
 
+  void navigateToUpdatePasswordView() {
+    _navigationService.navigateTo(Routes.updatePasswordView);
+  }
+
   void showLogoutUserDialog() async {
     final dialogResult = await _dialogService.showCustomDialog(
       variant: DialogType.basic,
