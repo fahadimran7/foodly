@@ -54,14 +54,14 @@ abstract class Restaurant with _$Restaurant {
 
 @freezed
 abstract class Menu with _$Menu {
-  factory Menu({
-    required String name,
-    required String price,
-    required String category,
-    required String description,
-    required String imageUrl,
-    required bool isFeatured,
-  }) = _Menu;
+  factory Menu(
+      {required String name,
+      required String price,
+      required String category,
+      required String description,
+      required String imageUrl,
+      required bool isFeatured,
+      Map<String, dynamic>? choices}) = _Menu;
 
   factory Menu.fromJson(Map<String, dynamic> json) => _$MenuFromJson(json);
 }

@@ -33,6 +33,7 @@ import 'package:places_service/places_service.dart';
   LazySingleton(classType: UserService),
   LazySingleton(classType: PlacesService),
   LazySingleton(classType: DialogService),
+  LazySingleton(classType: BottomSheetService),
   LazySingleton(classType: RestaurantService),
   Singleton(classType: FirebaseAuthenticationService)
 ], logger: StackedLogger())

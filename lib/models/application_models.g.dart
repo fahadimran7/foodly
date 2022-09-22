@@ -76,6 +76,7 @@ _$_Menu _$$_MenuFromJson(Map<String, dynamic> json) => _$_Menu(
       description: json['description'] as String,
       imageUrl: json['imageUrl'] as String,
       isFeatured: json['isFeatured'] as bool,
+      choices: json['choices'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$_MenuToJson(_$_Menu instance) => <String, dynamic>{
@@ -85,4 +86,5 @@ Map<String, dynamic> _$$_MenuToJson(_$_Menu instance) => <String, dynamic>{
       'description': instance.description,
       'imageUrl': instance.imageUrl,
       'isFeatured': instance.isFeatured,
+      'choices': instance.choices,
     };

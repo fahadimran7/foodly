@@ -804,6 +804,7 @@ mixin _$Menu {
   String get description => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   bool get isFeatured => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get choices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -820,7 +821,8 @@ abstract class $MenuCopyWith<$Res> {
       String category,
       String description,
       String imageUrl,
-      bool isFeatured});
+      bool isFeatured,
+      Map<String, dynamic>? choices});
 }
 
 /// @nodoc
@@ -839,6 +841,7 @@ class _$MenuCopyWithImpl<$Res> implements $MenuCopyWith<$Res> {
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? isFeatured = freezed,
+    Object? choices = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -865,6 +868,10 @@ class _$MenuCopyWithImpl<$Res> implements $MenuCopyWith<$Res> {
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool,
+      choices: choices == freezed
+          ? _value.choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -880,7 +887,8 @@ abstract class _$$_MenuCopyWith<$Res> implements $MenuCopyWith<$Res> {
       String category,
       String description,
       String imageUrl,
-      bool isFeatured});
+      bool isFeatured,
+      Map<String, dynamic>? choices});
 }
 
 /// @nodoc
@@ -900,6 +908,7 @@ class __$$_MenuCopyWithImpl<$Res> extends _$MenuCopyWithImpl<$Res>
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? isFeatured = freezed,
+    Object? choices = freezed,
   }) {
     return _then(_$_Menu(
       name: name == freezed
@@ -926,6 +935,10 @@ class __$$_MenuCopyWithImpl<$Res> extends _$MenuCopyWithImpl<$Res>
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool,
+      choices: choices == freezed
+          ? _value._choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -939,7 +952,9 @@ class _$_Menu implements _Menu {
       required this.category,
       required this.description,
       required this.imageUrl,
-      required this.isFeatured});
+      required this.isFeatured,
+      final Map<String, dynamic>? choices})
+      : _choices = choices;
 
   factory _$_Menu.fromJson(Map<String, dynamic> json) => _$$_MenuFromJson(json);
 
@@ -955,10 +970,18 @@ class _$_Menu implements _Menu {
   final String imageUrl;
   @override
   final bool isFeatured;
+  final Map<String, dynamic>? _choices;
+  @override
+  Map<String, dynamic>? get choices {
+    final value = _choices;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'Menu(name: $name, price: $price, category: $category, description: $description, imageUrl: $imageUrl, isFeatured: $isFeatured)';
+    return 'Menu(name: $name, price: $price, category: $category, description: $description, imageUrl: $imageUrl, isFeatured: $isFeatured, choices: $choices)';
   }
 
   @override
@@ -973,7 +996,8 @@ class _$_Menu implements _Menu {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality()
-                .equals(other.isFeatured, isFeatured));
+                .equals(other.isFeatured, isFeatured) &&
+            const DeepCollectionEquality().equals(other._choices, _choices));
   }
 
   @JsonKey(ignore: true)
@@ -985,7 +1009,8 @@ class _$_Menu implements _Menu {
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(imageUrl),
-      const DeepCollectionEquality().hash(isFeatured));
+      const DeepCollectionEquality().hash(isFeatured),
+      const DeepCollectionEquality().hash(_choices));
 
   @JsonKey(ignore: true)
   @override
@@ -1007,7 +1032,8 @@ abstract class _Menu implements Menu {
       required final String category,
       required final String description,
       required final String imageUrl,
-      required final bool isFeatured}) = _$_Menu;
+      required final bool isFeatured,
+      final Map<String, dynamic>? choices}) = _$_Menu;
 
   factory _Menu.fromJson(Map<String, dynamic> json) = _$_Menu.fromJson;
 
@@ -1023,6 +1049,8 @@ abstract class _Menu implements Menu {
   String get imageUrl;
   @override
   bool get isFeatured;
+  @override
+  Map<String, dynamic>? get choices;
   @override
   @JsonKey(ignore: true)
   _$$_MenuCopyWith<_$_Menu> get copyWith => throw _privateConstructorUsedError;

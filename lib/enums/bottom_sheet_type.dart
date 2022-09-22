@@ -1,0 +1,1 @@
+enum BottomSheetType { floating, floatingBox }

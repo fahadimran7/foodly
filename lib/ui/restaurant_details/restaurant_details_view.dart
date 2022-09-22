@@ -222,56 +222,62 @@ class RestaurantDetailsView extends StatelessWidget {
                       separatorBuilder: (BuildContext context, int index) {
                         return horizontalSpaceRegular;
                       },
-                      itemBuilder: (BuildContext context, int index) => Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: CachedNetworkImage(
-                              imageUrl: model.featuredItems[index].imageUrl,
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) => Center(
-                                child: CircularProgressIndicator(
-                                  value: downloadProgress.progress,
+                      itemBuilder: (BuildContext context, int index) =>
+                          GestureDetector(
+                        onTap: () => model.displayMenuDetails(
+                          menuDetails: model.featuredItems[index],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10.0),
+                              child: CachedNetworkImage(
+                                imageUrl: model.featuredItems[index].imageUrl,
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) => Center(
+                                  child: CircularProgressIndicator(
+                                    value: downloadProgress.progress,
+                                  ),
                                 ),
+                                fit: BoxFit.cover,
+                                height: screenHeightPercentage(context,
+                                    percentage: 0.19),
+                                width: screenWidthPercentage(context,
+                                    percentage: 0.38),
                               ),
-                              fit: BoxFit.cover,
-                              height: screenHeightPercentage(context,
-                                  percentage: 0.19),
-                              width: screenWidthPercentage(context,
-                                  percentage: 0.38),
                             ),
-                          ),
-                          verticalSpaceSmall,
-                          Text(
-                            model.featuredItems[index].name,
-                            style: const TextStyle(
-                              fontSize: kBodyTextNormal,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          verticalSpaceTiny,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Text(
-                                '\$\$',
-                                style: TextStyle(
-                                  fontSize: kBodyTextSmall1,
-                                  color: kcDarkGreyColor,
-                                ),
+                            verticalSpaceSmall,
+                            Text(
+                              model.featuredItems[index].name,
+                              style: const TextStyle(
+                                fontSize: kBodyTextNormal,
+                                fontWeight: FontWeight.w500,
                               ),
-                              horizontalSpaceSmall,
-                              Text(
-                                model.featuredItems[index].category,
-                                style: const TextStyle(
-                                  fontSize: kBodyTextSmall1,
-                                  color: kcDarkGreyColor,
+                            ),
+                            verticalSpaceTiny,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  '\$\$',
+                                  style: TextStyle(
+                                    fontSize: kBodyTextSmall1,
+                                    color: kcDarkGreyColor,
+                                  ),
                                 ),
-                              )
-                            ],
-                          )
-                        ],
+                                horizontalSpaceSmall,
+                                Text(
+                                  model.featuredItems[index].category,
+                                  style: const TextStyle(
+                                    fontSize: kBodyTextSmall1,
+                                    color: kcDarkGreyColor,
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -312,6 +318,8 @@ class RestaurantDetailsView extends StatelessWidget {
                               return ListView.builder(
                                 itemBuilder: (context, index) {
                                   return MenuListCard(
+                                    onTap: () => model.displayMenuDetails(
+                                        menuDetails: menuList[index]),
                                     name: menuList[index].name,
                                     description: menuList[index].description,
                                     price: menuList[index].price,
@@ -345,6 +353,7 @@ class MenuListCard extends StatelessWidget {
     required this.price,
     required this.category,
     required this.imageUrl,
+    this.onTap,
   }) : super(key: key);
 
   final String name;
@@ -352,88 +361,92 @@ class MenuListCard extends StatelessWidget {
   final String price;
   final String category;
   final String imageUrl;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 120,
-            height: 120,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    Center(
-                  child: CircularProgressIndicator(
-                    value: downloadProgress.progress,
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 120,
+              height: 120,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Center(
+                    child: CircularProgressIndicator(
+                      value: downloadProgress.progress,
+                    ),
                   ),
+                  fit: BoxFit.cover,
                 ),
-                fit: BoxFit.cover,
               ),
             ),
-          ),
-          horizontalSpaceSmall,
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: kBodyTextLarge1,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                verticalSpaceSmall,
-                Text(
-                  description,
-                  style: const TextStyle(
-                    color: kcDarkGreyColor,
-                    fontSize: kBodyTextSmall1,
-                  ),
-                ),
-                verticalSpaceRegular,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const Text(
-                          '\$\$',
-                          style: TextStyle(
-                            fontSize: kBodyTextSmall1,
-                            color: kcDarkGreyColor,
-                          ),
-                        ),
-                        horizontalSpaceSmall,
-                        Text(
-                          category,
-                          style: const TextStyle(
-                            fontSize: kBodyTextSmall1,
-                            color: kcDarkGreyColor,
-                          ),
-                        ),
-                      ],
+            horizontalSpaceSmall,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      fontSize: kBodyTextLarge1,
+                      fontWeight: FontWeight.w500,
                     ),
-                    Text(
-                      'USD $price',
-                      style: const TextStyle(
-                        color: kcPrimaryColor,
-                        fontWeight: FontWeight.w700,
+                  ),
+                  verticalSpaceSmall,
+                  Text(
+                    description,
+                    style: const TextStyle(
+                      color: kcDarkGreyColor,
+                      fontSize: kBodyTextSmall1,
+                    ),
+                  ),
+                  verticalSpaceRegular,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            '\$\$',
+                            style: TextStyle(
+                              fontSize: kBodyTextSmall1,
+                              color: kcDarkGreyColor,
+                            ),
+                          ),
+                          horizontalSpaceSmall,
+                          Text(
+                            category,
+                            style: const TextStyle(
+                              fontSize: kBodyTextSmall1,
+                              color: kcDarkGreyColor,
+                            ),
+                          ),
+                        ],
                       ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+                      Text(
+                        'USD $price',
+                        style: const TextStyle(
+                          color: kcPrimaryColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
