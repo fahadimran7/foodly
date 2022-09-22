@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
       case 0:
         return const RestaurantsHomeView();
       case 1:
-        return const SearchRestaurantsView();
+        return SearchRestaurantsView();
       case 2:
         return const OrderView();
       case 3:

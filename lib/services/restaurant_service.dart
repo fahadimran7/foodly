@@ -10,7 +10,11 @@ class RestaurantService {
   final _firestoreApi = locator<FirestoreApi>();
 
   Stream<List<Restaurant>> streamOfFeaturedRestaurants() {
-    return _firestoreApi.getListOfFeaturedRestaurants();
+    return _firestoreApi.getListOfFeaturedRestaurantsAsStream();
+  }
+
+  Future<dynamic> listOfRestaurants() async {
+    return _firestoreApi.getListOfRestaurants();
   }
 
   Stream<List<Restaurant>> streamOfEditorsPickRestaurants() {

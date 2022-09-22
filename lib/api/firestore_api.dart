@@ -139,7 +139,7 @@ class FirestoreApi {
     return cityDocument.exists;
   }
 
-  Stream<List<Restaurant>> getListOfFeaturedRestaurants() {
+  Stream<List<Restaurant>> getListOfFeaturedRestaurantsAsStream() {
     final featuredRestaurantsStream = featuredRestaurantsCollection.snapshots();
 
     final streamToPublish = featuredRestaurantsStream.map((snapshot) {
@@ -154,6 +154,22 @@ class FirestoreApi {
     });
 
     return streamToPublish;
+  }
+
+  Future<dynamic> getListOfRestaurants() async {
+    try {
+      final featuredRestaurants = await restaurantsCollection.get();
+      final featuredRestaurantsList = featuredRestaurants.docs
+          .map((featuredRestaurant) => Restaurant.fromJson(
+              featuredRestaurant.data() as Map<String, dynamic>))
+          .toList();
+
+      log.v('All restaurants as a Future: $featuredRestaurantsList');
+
+      return featuredRestaurantsList;
+    } catch (e) {
+      return false;
+    }
   }
 
   Stream<List<Restaurant>> getListOfEditorsPickRestaurants() {
