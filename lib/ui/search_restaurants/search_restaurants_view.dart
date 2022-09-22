@@ -42,9 +42,18 @@ class SearchRestaurantsView extends StatelessWidget
                   right: globalContentPadding,
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     verticalSpaceMedium,
                     verticalSpaceSmall,
+                    const Text(
+                      'Search',
+                      style: TextStyle(
+                        fontSize: kH2Title,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    verticalSpaceRegular,
                     TextField(
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
@@ -63,13 +72,26 @@ class SearchRestaurantsView extends StatelessWidget
                         ),
                         fillColor: kcLightGreyColor,
                         filled: true,
-                        labelText: 'Search Restaurants',
+                        labelText: 'Search Foodly',
                       ),
                       controller: searchController,
                       onChanged: (value) => model.filterResults(value),
                     ),
                     verticalSpaceMedium,
+                    verticalSpaceTiny,
                     // Add featured restaurants here
+                    if (searchController.text == '')
+                      Column(
+                        children: const [
+                          Text(
+                            'Top Restaurants',
+                            style: TextStyle(
+                              fontSize: kBodyTextNormal,
+                            ),
+                          ),
+                          verticalSpaceSmall,
+                        ],
+                      ),
                     Expanded(
                       child: GridView.builder(
                         padding: const EdgeInsets.symmetric(
