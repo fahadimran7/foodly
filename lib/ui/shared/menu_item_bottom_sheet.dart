@@ -2,10 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/models/application_models.dart';
-import 'package:stacked_architecture/ui/dumb_widgets/buttons/block_button.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/buttons/busy_button.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/layout/no_glow_behaviour.dart';
-import 'package:stacked_architecture/ui/shared/bottom_sheet_viewmodel.dart';
+import 'package:stacked_architecture/ui/shared/menu_item_viewmodel.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -40,11 +39,11 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<BottomSheetViewModel>.reactive(
       viewModelBuilder: () => BottomSheetViewModel(
-        choices: request.data.choices ?? {},
+        choices: request.data['menuDetails'].choices ?? {},
       ),
       onModelReady: (model) => model.setDefaultChoice(),
       builder: (context, model, child) {
-        final menuDetails = request.data as Menu;
+        final menuDetails = request.data['menuDetails'] as Menu;
 
         return ScrollConfiguration(
           behavior: NoGlowBehaviour(),
@@ -191,7 +190,9 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
                         BusyButton(
                           busy: model.isBusy,
                           onTapped: () {
-                            model.addItemToCart(menuDetails: menuDetails);
+                            model.addItemToCart(
+                                menuDetails: menuDetails,
+                                restaurantName: request.data['restaurantName']);
                           },
                           title: 'ADD TO ORDER (\$${menuDetails.price})',
                         ),

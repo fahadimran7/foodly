@@ -6,20 +6,17 @@ import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/services/restaurant_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SearchRestaurantsViewModel extends FormViewModel {
+class SearchRestaurantsViewModel extends FutureViewModel {
   final log = getLogger('SearchRestaurantsViewModel');
 
   final _restaurantService = locator<RestaurantService>();
   final _navigationService = locator<NavigationService>();
 
-  List _restaurantList = [];
   final List _searchResults = [];
 
-  get restaurantList => _restaurantList;
   get searchResults => _searchResults;
 
-  Future<void> getDataFromServer() async {
-    setBusy(true);
+  Future<dynamic> getDataFromServer() async {
     final res = await _restaurantService.listOfRestaurants();
 
     if (res is bool) {
@@ -27,16 +24,13 @@ class SearchRestaurantsViewModel extends FormViewModel {
       throw Exception('An error occured');
     }
 
-    _restaurantList = res;
-    setBusy(false);
-    notifyListeners();
+    return res;
   }
 
   void filterResults(String searchText) {
-    log.v('formValueMap for search: $formValueMap');
     _searchResults.clear();
 
-    for (var restaurant in _restaurantList) {
+    for (var restaurant in data) {
       if (restaurant.name.contains(searchText)) {
         _searchResults.add(restaurant);
       }
@@ -56,5 +50,10 @@ class SearchRestaurantsViewModel extends FormViewModel {
   }
 
   @override
-  void setFormStatus() {}
+  Future<dynamic> futureToRun() => getDataFromServer();
+
+  @override
+  void onError(error) {
+    log.e('Something went wrong $error');
+  }
 }

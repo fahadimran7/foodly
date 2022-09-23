@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:stacked_architecture/app/app.locator.dart';
-import 'package:stacked_architecture/ui/shared/setup_bottom_sheet_ui.dart';
+import 'package:stacked_architecture/ui/shared/menu_item_bottom_sheet.dart';
 import 'package:stacked_architecture/ui/shared/setup_dialog_ui.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_services/stacked_services.dart';

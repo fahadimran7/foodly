@@ -804,6 +804,7 @@ mixin _$Menu {
   String get description => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   bool get isFeatured => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   Map<String, dynamic>? get choices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -822,6 +823,7 @@ abstract class $MenuCopyWith<$Res> {
       String description,
       String imageUrl,
       bool isFeatured,
+      String? id,
       Map<String, dynamic>? choices});
 }
 
@@ -841,6 +843,7 @@ class _$MenuCopyWithImpl<$Res> implements $MenuCopyWith<$Res> {
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? isFeatured = freezed,
+    Object? id = freezed,
     Object? choices = freezed,
   }) {
     return _then(_value.copyWith(
@@ -868,6 +871,10 @@ class _$MenuCopyWithImpl<$Res> implements $MenuCopyWith<$Res> {
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       choices: choices == freezed
           ? _value.choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -888,6 +895,7 @@ abstract class _$$_MenuCopyWith<$Res> implements $MenuCopyWith<$Res> {
       String description,
       String imageUrl,
       bool isFeatured,
+      String? id,
       Map<String, dynamic>? choices});
 }
 
@@ -908,6 +916,7 @@ class __$$_MenuCopyWithImpl<$Res> extends _$MenuCopyWithImpl<$Res>
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? isFeatured = freezed,
+    Object? id = freezed,
     Object? choices = freezed,
   }) {
     return _then(_$_Menu(
@@ -935,6 +944,10 @@ class __$$_MenuCopyWithImpl<$Res> extends _$MenuCopyWithImpl<$Res>
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       choices: choices == freezed
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -953,6 +966,7 @@ class _$_Menu implements _Menu {
       required this.description,
       required this.imageUrl,
       required this.isFeatured,
+      this.id,
       final Map<String, dynamic>? choices})
       : _choices = choices;
 
@@ -970,6 +984,8 @@ class _$_Menu implements _Menu {
   final String imageUrl;
   @override
   final bool isFeatured;
+  @override
+  final String? id;
   final Map<String, dynamic>? _choices;
   @override
   Map<String, dynamic>? get choices {
@@ -981,7 +997,7 @@ class _$_Menu implements _Menu {
 
   @override
   String toString() {
-    return 'Menu(name: $name, price: $price, category: $category, description: $description, imageUrl: $imageUrl, isFeatured: $isFeatured, choices: $choices)';
+    return 'Menu(name: $name, price: $price, category: $category, description: $description, imageUrl: $imageUrl, isFeatured: $isFeatured, id: $id, choices: $choices)';
   }
 
   @override
@@ -997,6 +1013,7 @@ class _$_Menu implements _Menu {
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality()
                 .equals(other.isFeatured, isFeatured) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other._choices, _choices));
   }
 
@@ -1010,6 +1027,7 @@ class _$_Menu implements _Menu {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(isFeatured),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(_choices));
 
   @JsonKey(ignore: true)
@@ -1033,6 +1051,7 @@ abstract class _Menu implements Menu {
       required final String description,
       required final String imageUrl,
       required final bool isFeatured,
+      final String? id,
       final Map<String, dynamic>? choices}) = _$_Menu;
 
   factory _Menu.fromJson(Map<String, dynamic> json) = _$_Menu.fromJson;
@@ -1050,6 +1069,8 @@ abstract class _Menu implements Menu {
   @override
   bool get isFeatured;
   @override
+  String? get id;
+  @override
   Map<String, dynamic>? get choices;
   @override
   @JsonKey(ignore: true)
@@ -1066,6 +1087,8 @@ mixin _$Cart {
   String get decription => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
   String get quantity => throw _privateConstructorUsedError;
+  String get restaurant => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   Map<String, dynamic>? get choices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1082,6 +1105,8 @@ abstract class $CartCopyWith<$Res> {
       String decription,
       String price,
       String quantity,
+      String restaurant,
+      String? id,
       Map<String, dynamic>? choices});
 }
 
@@ -1099,6 +1124,8 @@ class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
     Object? decription = freezed,
     Object? price = freezed,
     Object? quantity = freezed,
+    Object? restaurant = freezed,
+    Object? id = freezed,
     Object? choices = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1118,6 +1145,14 @@ class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as String,
+      restaurant: restaurant == freezed
+          ? _value.restaurant
+          : restaurant // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       choices: choices == freezed
           ? _value.choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -1136,6 +1171,8 @@ abstract class _$$_CartCopyWith<$Res> implements $CartCopyWith<$Res> {
       String decription,
       String price,
       String quantity,
+      String restaurant,
+      String? id,
       Map<String, dynamic>? choices});
 }
 
@@ -1154,6 +1191,8 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
     Object? decription = freezed,
     Object? price = freezed,
     Object? quantity = freezed,
+    Object? restaurant = freezed,
+    Object? id = freezed,
     Object? choices = freezed,
   }) {
     return _then(_$_Cart(
@@ -1173,6 +1212,14 @@ class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as String,
+      restaurant: restaurant == freezed
+          ? _value.restaurant
+          : restaurant // ignore: cast_nullable_to_non_nullable
+              as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       choices: choices == freezed
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -1189,6 +1236,8 @@ class _$_Cart implements _Cart {
       required this.decription,
       required this.price,
       required this.quantity,
+      required this.restaurant,
+      this.id,
       final Map<String, dynamic>? choices})
       : _choices = choices;
 
@@ -1202,6 +1251,10 @@ class _$_Cart implements _Cart {
   final String price;
   @override
   final String quantity;
+  @override
+  final String restaurant;
+  @override
+  final String? id;
   final Map<String, dynamic>? _choices;
   @override
   Map<String, dynamic>? get choices {
@@ -1213,7 +1266,7 @@ class _$_Cart implements _Cart {
 
   @override
   String toString() {
-    return 'Cart(name: $name, decription: $decription, price: $price, quantity: $quantity, choices: $choices)';
+    return 'Cart(name: $name, decription: $decription, price: $price, quantity: $quantity, restaurant: $restaurant, id: $id, choices: $choices)';
   }
 
   @override
@@ -1226,6 +1279,9 @@ class _$_Cart implements _Cart {
                 .equals(other.decription, decription) &&
             const DeepCollectionEquality().equals(other.price, price) &&
             const DeepCollectionEquality().equals(other.quantity, quantity) &&
+            const DeepCollectionEquality()
+                .equals(other.restaurant, restaurant) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other._choices, _choices));
   }
 
@@ -1237,6 +1293,8 @@ class _$_Cart implements _Cart {
       const DeepCollectionEquality().hash(decription),
       const DeepCollectionEquality().hash(price),
       const DeepCollectionEquality().hash(quantity),
+      const DeepCollectionEquality().hash(restaurant),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(_choices));
 
   @JsonKey(ignore: true)
@@ -1258,6 +1316,8 @@ abstract class _Cart implements Cart {
       required final String decription,
       required final String price,
       required final String quantity,
+      required final String restaurant,
+      final String? id,
       final Map<String, dynamic>? choices}) = _$_Cart;
 
   factory _Cart.fromJson(Map<String, dynamic> json) = _$_Cart.fromJson;
@@ -1270,6 +1330,10 @@ abstract class _Cart implements Cart {
   String get price;
   @override
   String get quantity;
+  @override
+  String get restaurant;
+  @override
+  String? get id;
   @override
   Map<String, dynamic>? get choices;
   @override

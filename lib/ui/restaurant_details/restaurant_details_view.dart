@@ -225,8 +225,8 @@ class RestaurantDetailsView extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) =>
                           GestureDetector(
                         onTap: () => model.displayMenuDetails(
-                          menuDetails: model.featuredItems[index],
-                        ),
+                            menuDetails: model.featuredItems[index],
+                            restaurantName: restaurantDetails.name),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -319,7 +319,8 @@ class RestaurantDetailsView extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return MenuListCard(
                                     onTap: () => model.displayMenuDetails(
-                                        menuDetails: menuList[index]),
+                                        menuDetails: menuList[index],
+                                        restaurantName: restaurantDetails.name),
                                     name: menuList[index].name,
                                     description: menuList[index].description,
                                     price: menuList[index].price,

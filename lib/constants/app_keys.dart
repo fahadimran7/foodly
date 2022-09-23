@@ -5,3 +5,4 @@ const String restaurantsFirestoreKey = 'restaurants';
 const String featuredRestaurantsFirestoreKey = 'featured-restaurants';
 const String editorsPickRestaurantsFirestoreKey = 'editors-choice-restaurants';
 const String restaurantMenuFirestoreKey = 'menu';
+const String userCartFirestoreKey = 'cart';

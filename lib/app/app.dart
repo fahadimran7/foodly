@@ -1,5 +1,6 @@
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_architecture/api/firestore_api.dart';
+import 'package:stacked_architecture/services/cart_service.dart';
 import 'package:stacked_architecture/services/restaurant_service.dart';
 import 'package:stacked_architecture/services/user_service.dart';
 import 'package:stacked_architecture/ui/address_selection/address_selection_view.dart';
@@ -35,6 +36,7 @@ import 'package:places_service/places_service.dart';
   LazySingleton(classType: DialogService),
   LazySingleton(classType: BottomSheetService),
   LazySingleton(classType: RestaurantService),
+  LazySingleton(classType: CartService),
   Singleton(classType: FirebaseAuthenticationService)
 ], logger: StackedLogger())
 class AppSetup {}

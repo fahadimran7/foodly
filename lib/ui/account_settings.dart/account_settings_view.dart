@@ -11,98 +11,101 @@ class AccountSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<AccountSettingsViewModel>.reactive(
       viewModelBuilder: () => AccountSettingsViewModel(),
+      disposeViewModel: false,
       builder: (context, model, child) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: globalContentPadding,
-            right: globalContentPadding,
-            bottom: globalContentPadding,
-          ),
+        child: SizedBox(
+          height: screenHeightPercentage(context),
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpaceMedium,
-                verticalSpaceSmall,
-                const Text(
-                  'Account Settings',
-                  style: TextStyle(
-                      fontSize: kH2Title, fontWeight: FontWeight.w500),
-                ),
-                verticalSpaceSmall,
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: SizedBox(
-                    width: screenWidthPercentage(context, percentage: 0.8),
-                    child: const Text(
-                      'Update your settings like notifications, payments, profile edit etc.',
-                      style: TextStyle(
-                        color: kcMediumGreyColor,
-                        fontSize: kBodyTextSmall2,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: globalContentPadding,
+                right: globalContentPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  verticalSpaceMedium,
+                  verticalSpaceSmall,
+                  const Text(
+                    'Account Settings',
+                    style: TextStyle(
+                        fontSize: kH2Title, fontWeight: FontWeight.w500),
+                  ),
+                  verticalSpaceSmall,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: screenWidthPercentage(context, percentage: 0.8),
+                      child: const Text(
+                        'Update your settings like notifications, payments, profile edit etc.',
+                        style: TextStyle(
+                          color: kcMediumGreyColor,
+                          fontSize: kBodyTextSmall2,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                verticalSpaceMedium,
-                verticalSpaceSmall,
-                _buildDetailsRow(
-                  'Profile Information',
-                  'Change your account information',
-                  Icons.person,
-                  model.navigateToProfileView,
-                ),
-                verticalSpaceSmall,
-                const Divider(),
-                verticalSpaceSmall,
-                _buildDetailsRow(
-                  'Change Password',
-                  'Change your password',
-                  Icons.lock,
-                  model.navigateToUpdatePasswordView,
-                ),
-                verticalSpaceSmall,
-                const Divider(),
-                verticalSpaceSmall,
-                _buildDetailsRow(
-                  'Payment Methods',
-                  'Add your debit and credit cards',
-                  Icons.payment_rounded,
-                  model.navigateToProfileView,
-                ),
-                verticalSpaceSmall,
-                const Divider(),
-                verticalSpaceMedium,
-                const Text(
-                  'MORE',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
+                  verticalSpaceMedium,
+                  verticalSpaceSmall,
+                  _buildDetailsRow(
+                    'Profile Information',
+                    'Change your account information',
+                    Icons.person,
+                    model.navigateToProfileView,
                   ),
-                ),
-                verticalSpaceMedium,
-                _buildDetailsRow(
-                  'Rate Us',
-                  'Rate us on Google Play or App Store',
-                  Icons.star_rate_rounded,
-                  () {},
-                ),
-                const Divider(),
-                verticalSpaceSmall,
-                _buildDetailsRow(
-                  'FAQ',
-                  'Frequently asked questions',
-                  Icons.bookmark_rounded,
-                  () {},
-                ),
-                const Divider(),
-                verticalSpaceSmall,
-                _buildDetailsRow(
-                  'Logout',
-                  'Log out from the app',
-                  Icons.logout_rounded,
-                  model.showLogoutUserDialog,
-                )
-              ],
+                  verticalSpaceSmall,
+                  const Divider(),
+                  verticalSpaceSmall,
+                  _buildDetailsRow(
+                    'Change Password',
+                    'Change your password',
+                    Icons.lock,
+                    model.navigateToUpdatePasswordView,
+                  ),
+                  verticalSpaceSmall,
+                  const Divider(),
+                  verticalSpaceSmall,
+                  _buildDetailsRow(
+                    'Payment Methods',
+                    'Add your debit and credit cards',
+                    Icons.payment_rounded,
+                    model.navigateToProfileView,
+                  ),
+                  verticalSpaceSmall,
+                  const Divider(),
+                  verticalSpaceMedium,
+                  const Text(
+                    'MORE',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  verticalSpaceMedium,
+                  _buildDetailsRow(
+                    'Rate Us',
+                    'Rate us on Google Play or App Store',
+                    Icons.star_rate_rounded,
+                    () {},
+                  ),
+                  const Divider(),
+                  verticalSpaceSmall,
+                  _buildDetailsRow(
+                    'FAQ',
+                    'Frequently asked questions',
+                    Icons.bookmark_rounded,
+                    () {},
+                  ),
+                  const Divider(),
+                  verticalSpaceSmall,
+                  _buildDetailsRow(
+                    'Logout',
+                    'Log out from the app',
+                    Icons.logout_rounded,
+                    model.showLogoutUserDialog,
+                  )
+                ],
+              ),
             ),
           ),
         ),

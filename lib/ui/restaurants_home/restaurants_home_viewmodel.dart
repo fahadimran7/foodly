@@ -30,11 +30,12 @@ class RestaurantsHomeViewModel extends MultipleStreamViewModel {
   ];
 
   initialize() async {
-    await _getLocationForCurrentUser();
+    // await _getLocationForCurrentUser();
     _createPageController();
     _setStartingImage();
   }
 
+  // Not using current location for now but keeping the functionality as an optional extra
   Future<void> _getLocationForCurrentUser() async {
     setBusy(true);
     final location = await _fireStoreApi
@@ -63,6 +64,8 @@ class RestaurantsHomeViewModel extends MultipleStreamViewModel {
   get pageController => _pageController;
   get currentImage => _currentImage;
   get imagesList => _imagesList;
+  get featuredRestaurantsStreamKey => _featuredRestaurantsStreamKey;
+  get editorsPickRestaurantsStreamKey => _editorsPickRestaurantsStreamKey;
 
   List<Restaurant>? get featuredRestaurants =>
       dataMap![_featuredRestaurantsStreamKey];

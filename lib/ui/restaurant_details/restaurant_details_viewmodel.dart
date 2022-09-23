@@ -56,19 +56,12 @@ class RestaurantDetailsViewModel extends StreamViewModel {
     );
   }
 
-  void displayMenuDetails({required Menu menuDetails}) async {
-    var sheetResponse = await _bottomSheetService.showCustomSheet(
+  void displayMenuDetails(
+      {required Menu menuDetails, required String restaurantName}) async {
+    await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.floating,
-      mainButtonTitle: 'Place order',
-      secondaryButtonTitle: 'Cancel',
-      data: menuDetails,
+      data: {'menuDetails': menuDetails, 'restaurantName': restaurantName},
       isScrollControlled: true,
     );
-
-    if (sheetResponse != null) {
-      if (sheetResponse.confirmed) {
-        print('Confirmed');
-      }
-    }
   }
 }

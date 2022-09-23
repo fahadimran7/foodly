@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading_with_scaffold.dart';
 import 'package:stacked_architecture/ui/restaurants_home/components/restaurant_card.dart';
 import 'package:stacked_architecture/ui/restaurants_home/components/restaurant_home_header.dart';
 import 'package:stacked_architecture/ui/restaurants_home/restaurants_home_viewmodel.dart';
@@ -21,7 +22,10 @@ class RestaurantsHomeView extends StatelessWidget {
       initialiseSpecialViewModelsOnce: true,
       onModelReady: (model) => model.initialize(),
       builder: (context, model, child) {
-        if (!model.isBusy) {
+        if (!model.dataReady(model.featuredRestaurantsStreamKey) ||
+            !model.dataReady(model.editorsPickRestaurantsStreamKey)) {
+          return const AppLoading();
+        } else {
           final featuredRestaurants =
               model.featuredRestaurants as List<Restaurant>;
           final editorsPickRestaurants =
@@ -34,7 +38,8 @@ class RestaurantsHomeView extends StatelessWidget {
               child: Column(
                 children: [
                   verticalSpaceSmall,
-                  RestaurantHomeHeader(location: model.currentLocation),
+                  // RestaurantHomeHeader(location: model.currentLocation),
+                  const RestaurantHomeHeader(location: 'Foodly'),
                   verticalSpaceTiny,
                   const Divider(),
                   verticalSpaceSmall,
@@ -149,8 +154,6 @@ class RestaurantsHomeView extends StatelessWidget {
             ),
           );
         }
-
-        return const AppLoading();
       },
     );
   }

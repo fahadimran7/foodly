@@ -225,15 +225,45 @@ class FirestoreApi {
     log.v('cartItem $cartItem');
 
     try {
-      await usersCollection
+      // If item not in cart add new item to cart
+      final cartItemDocRef = usersCollection
           .doc(userId)
-          .collection('cart')
-          .add(cartItem.toJson());
+          .collection(userCartFirestoreKey)
+          .doc(cartItem.id);
+
+      final updatedItemWithId = cartItem.copyWith(id: cartItemDocRef.id);
+
+      await cartItemDocRef.set({...updatedItemWithId.toJson()});
 
       return true;
     } catch (e) {
       log.e(e);
       return false;
     }
+  }
+
+  Stream<List<Cart>> fetchCartItemsAsStream({required String userId}) {
+    final userCartStream = usersCollection
+        .doc(userId)
+        .collection(userCartFirestoreKey)
+        .snapshots();
+
+    final streamToPublish = userCartStream.map(
+      (snapshot) {
+        final userCartMap = snapshot.docs;
+
+        log.v('userCartMap: $userCartMap');
+
+        final userCartList = userCartMap
+            .map((cartItem) => Cart.fromJson(cartItem.data()))
+            .toList();
+
+        log.v('userCartList: $userCartList');
+
+        return userCartList;
+      },
+    );
+
+    return streamToPublish;
   }
 }

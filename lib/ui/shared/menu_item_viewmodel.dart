@@ -4,12 +4,13 @@ import 'package:stacked_architecture/app/app.router.dart';
 import 'package:stacked_architecture/enums/basic_dialog_status.dart';
 import 'package:stacked_architecture/enums/dialog_type.dart';
 import 'package:stacked_architecture/models/application_models.dart';
+import 'package:stacked_architecture/services/cart_service.dart';
 import 'package:stacked_architecture/services/restaurant_service.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class BottomSheetViewModel extends BaseViewModel {
-  final _restaurantService = locator<RestaurantService>();
+  final _cartService = locator<CartService>();
   final _firebaseAuthenticationService =
       locator<FirebaseAuthenticationService>();
   final _dialogService = locator<DialogService>();
@@ -47,18 +48,24 @@ class BottomSheetViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void addItemToCart({required Menu menuDetails}) async {
+  void addItemToCart(
+      {required Menu menuDetails, required String restaurantName}) async {
     setBusy(true);
     final Cart cartItem = Cart(
+      id: menuDetails.id,
       name: menuDetails.name,
       decription: menuDetails.description,
       price: menuDetails.price,
       quantity: _cartCount.toString(),
+      restaurant: restaurantName,
       choices: menuDetails.choices != null ? _choiceList : null,
     );
     final userId = _firebaseAuthenticationService.currentUser!.uid;
-    final res = await _restaurantService.addItemToCart(
-        cartItem: cartItem, userId: userId);
+
+    final res = await _cartService.addItemToCart(
+      cartItem: cartItem,
+      userId: userId,
+    );
 
     setBusy(false);
 
