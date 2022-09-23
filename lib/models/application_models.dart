@@ -65,3 +65,15 @@ abstract class Menu with _$Menu {
 
   factory Menu.fromJson(Map<String, dynamic> json) => _$MenuFromJson(json);
 }
+
+@freezed
+abstract class Cart with _$Cart {
+  factory Cart(
+      {required String name,
+      required String decription,
+      required String price,
+      required String quantity,
+      Map<String, dynamic>? choices}) = _Cart;
+
+  factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
+}

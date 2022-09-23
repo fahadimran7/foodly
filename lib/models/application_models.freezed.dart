@@ -1055,3 +1055,224 @@ abstract class _Menu implements Menu {
   @JsonKey(ignore: true)
   _$$_MenuCopyWith<_$_Menu> get copyWith => throw _privateConstructorUsedError;
 }
+
+Cart _$CartFromJson(Map<String, dynamic> json) {
+  return _Cart.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Cart {
+  String get name => throw _privateConstructorUsedError;
+  String get decription => throw _privateConstructorUsedError;
+  String get price => throw _privateConstructorUsedError;
+  String get quantity => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get choices => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CartCopyWith<Cart> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CartCopyWith<$Res> {
+  factory $CartCopyWith(Cart value, $Res Function(Cart) then) =
+      _$CartCopyWithImpl<$Res>;
+  $Res call(
+      {String name,
+      String decription,
+      String price,
+      String quantity,
+      Map<String, dynamic>? choices});
+}
+
+/// @nodoc
+class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
+  _$CartCopyWithImpl(this._value, this._then);
+
+  final Cart _value;
+  // ignore: unused_field
+  final $Res Function(Cart) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? decription = freezed,
+    Object? price = freezed,
+    Object? quantity = freezed,
+    Object? choices = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      decription: decription == freezed
+          ? _value.decription
+          : decription // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      quantity: quantity == freezed
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as String,
+      choices: choices == freezed
+          ? _value.choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_CartCopyWith<$Res> implements $CartCopyWith<$Res> {
+  factory _$$_CartCopyWith(_$_Cart value, $Res Function(_$_Cart) then) =
+      __$$_CartCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String name,
+      String decription,
+      String price,
+      String quantity,
+      Map<String, dynamic>? choices});
+}
+
+/// @nodoc
+class __$$_CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
+    implements _$$_CartCopyWith<$Res> {
+  __$$_CartCopyWithImpl(_$_Cart _value, $Res Function(_$_Cart) _then)
+      : super(_value, (v) => _then(v as _$_Cart));
+
+  @override
+  _$_Cart get _value => super._value as _$_Cart;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? decription = freezed,
+    Object? price = freezed,
+    Object? quantity = freezed,
+    Object? choices = freezed,
+  }) {
+    return _then(_$_Cart(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      decription: decription == freezed
+          ? _value.decription
+          : decription // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      quantity: quantity == freezed
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as String,
+      choices: choices == freezed
+          ? _value._choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Cart implements _Cart {
+  _$_Cart(
+      {required this.name,
+      required this.decription,
+      required this.price,
+      required this.quantity,
+      final Map<String, dynamic>? choices})
+      : _choices = choices;
+
+  factory _$_Cart.fromJson(Map<String, dynamic> json) => _$$_CartFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final String decription;
+  @override
+  final String price;
+  @override
+  final String quantity;
+  final Map<String, dynamic>? _choices;
+  @override
+  Map<String, dynamic>? get choices {
+    final value = _choices;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'Cart(name: $name, decription: $decription, price: $price, quantity: $quantity, choices: $choices)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Cart &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.decription, decription) &&
+            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.quantity, quantity) &&
+            const DeepCollectionEquality().equals(other._choices, _choices));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(decription),
+      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(quantity),
+      const DeepCollectionEquality().hash(_choices));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CartCopyWith<_$_Cart> get copyWith =>
+      __$$_CartCopyWithImpl<_$_Cart>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CartToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Cart implements Cart {
+  factory _Cart(
+      {required final String name,
+      required final String decription,
+      required final String price,
+      required final String quantity,
+      final Map<String, dynamic>? choices}) = _$_Cart;
+
+  factory _Cart.fromJson(Map<String, dynamic> json) = _$_Cart.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get decription;
+  @override
+  String get price;
+  @override
+  String get quantity;
+  @override
+  Map<String, dynamic>? get choices;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CartCopyWith<_$_Cart> get copyWith => throw _privateConstructorUsedError;
+}

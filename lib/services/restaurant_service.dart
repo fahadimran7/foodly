@@ -26,4 +26,9 @@ class RestaurantService {
       restaurantId: restaurantId,
     );
   }
+
+  Future<dynamic> addItemToCart(
+      {required Cart cartItem, required String userId}) {
+    return _firestoreApi.addMenuItemToCart(cartItem: cartItem, userId: userId);
+  }
 }

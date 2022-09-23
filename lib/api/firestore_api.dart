@@ -218,4 +218,22 @@ class FirestoreApi {
 
     return streamToPublish;
   }
+
+  Future<dynamic> addMenuItemToCart(
+      {required Cart cartItem, required String userId}) async {
+    log.v('userId passed in: $userId');
+    log.v('cartItem $cartItem');
+
+    try {
+      await usersCollection
+          .doc(userId)
+          .collection('cart')
+          .add(cartItem.toJson());
+
+      return true;
+    } catch (e) {
+      log.e(e);
+      return false;
+    }
+  }
 }

@@ -88,3 +88,19 @@ Map<String, dynamic> _$$_MenuToJson(_$_Menu instance) => <String, dynamic>{
       'isFeatured': instance.isFeatured,
       'choices': instance.choices,
     };
+
+_$_Cart _$$_CartFromJson(Map<String, dynamic> json) => _$_Cart(
+      name: json['name'] as String,
+      decription: json['decription'] as String,
+      price: json['price'] as String,
+      quantity: json['quantity'] as String,
+      choices: json['choices'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$$_CartToJson(_$_Cart instance) => <String, dynamic>{
+      'name': instance.name,
+      'decription': instance.decription,
+      'price': instance.price,
+      'quantity': instance.quantity,
+      'choices': instance.choices,
+    };

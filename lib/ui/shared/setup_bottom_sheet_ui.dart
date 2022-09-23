@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/buttons/block_button.dart';
+import 'package:stacked_architecture/ui/dumb_widgets/buttons/busy_button.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/layout/no_glow_behaviour.dart';
 import 'package:stacked_architecture/ui/shared/bottom_sheet_viewmodel.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
@@ -147,40 +148,51 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
+                            GestureDetector(
+                              onTap: model.decrementCount,
+                              child: Container(
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   color:
-                                      const Color.fromARGB(255, 236, 236, 236)),
-                              child: const Icon(
-                                Icons.minimize,
+                                      const Color.fromARGB(255, 236, 236, 236),
+                                ),
+                                child: const Icon(
+                                  Icons.minimize,
+                                ),
                               ),
                             ),
                             horizontalSpaceRegular,
-                            const Text(
-                              '01',
-                              style: TextStyle(
+                            Text(
+                              '${model.cartCount <= 9 ? '0${model.cartCount}' : model.cartCount}',
+                              style: const TextStyle(
                                   fontSize: kBodyTextLarge2,
                                   fontWeight: FontWeight.w500),
                             ),
                             horizontalSpaceRegular,
-                            Container(
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
+                            GestureDetector(
+                              onTap: model.incrementCount,
+                              child: Container(
+                                padding: const EdgeInsets.all(16),
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   color:
-                                      const Color.fromARGB(255, 236, 236, 236)),
-                              child: const Icon(
-                                Icons.add,
+                                      const Color.fromARGB(255, 236, 236, 236),
+                                ),
+                                child: const Icon(
+                                  Icons.add,
+                                ),
                               ),
                             ),
                           ],
                         ),
                         verticalSpaceMedium,
                         verticalSpaceSmall,
-                        BlockButton(
-                          onPressed: () {},
+                        BusyButton(
+                          busy: model.isBusy,
+                          onTapped: () {
+                            model.addItemToCart(menuDetails: menuDetails);
+                          },
                           title: 'ADD TO ORDER (\$${menuDetails.price})',
                         ),
                         verticalSpaceMedium
@@ -235,7 +247,6 @@ _buildChoiceListView(Map<String, dynamic> choices, model, context) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              verticalSpaceSmall,
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -262,7 +273,6 @@ _buildChoiceListView(Map<String, dynamic> choices, model, context) {
                   ),
                 ],
               ),
-              verticalSpaceSmall,
               const Divider()
             ],
           ),
