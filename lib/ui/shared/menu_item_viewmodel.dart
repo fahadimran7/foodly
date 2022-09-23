@@ -76,7 +76,7 @@ class BottomSheetViewModel extends BaseViewModel {
         title: 'Menu Added to Cart',
         description:
             'The order has been added to your cart successfully. You can continue browsing or view your cart to complete your order.',
-        mainButtonTitle: 'View Cart',
+        mainButtonTitle: 'Keep Browsing',
         secondaryButtonTitle: 'Back',
       );
 
@@ -90,7 +90,7 @@ class BottomSheetViewModel extends BaseViewModel {
         title: 'Menu Not Added',
         description:
             'The order could not be added to your cart. Please try again later. We are sorry for the inconvenience.',
-        mainButtonTitle: 'View Menu',
+        mainButtonTitle: 'Keep Browsing',
         secondaryButtonTitle: 'Back',
       );
 

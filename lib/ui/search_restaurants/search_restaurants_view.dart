@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'package:stacked_architecture/app/app.locator.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading.dart';
 import 'package:stacked_architecture/ui/search_restaurants/search_restaurants_view.form.dart';
 import 'package:stacked_architecture/ui/search_restaurants/search_restaurants_viewmodel.dart';
@@ -19,8 +20,6 @@ class SearchRestaurantsView extends StatelessWidget
   Widget build(BuildContext context) {
     return ViewModelBuilder<SearchRestaurantsViewModel>.reactive(
       viewModelBuilder: () => SearchRestaurantsViewModel(),
-      initialiseSpecialViewModelsOnce: true,
-      disposeViewModel: false,
       onDispose: (model) => disposeForm(),
       builder: (context, model, child) {
         return SafeArea(
@@ -67,21 +66,18 @@ class SearchRestaurantsView extends StatelessWidget
                 ),
                 verticalSpaceMedium,
                 verticalSpaceTiny,
-                // Add featured restaurants here
-
                 if (searchController.text == '')
                   Column(
                     children: const [
                       Text(
                         'Top Restaurants',
                         style: TextStyle(
-                          fontSize: kBodyTextNormal,
-                        ),
+                            fontSize: kBodyTextNormal,
+                            fontWeight: FontWeight.w500),
                       ),
                       verticalSpaceSmall,
                     ],
                   ),
-
                 model.isBusy
                     ? const AppLoading()
                     : Expanded(

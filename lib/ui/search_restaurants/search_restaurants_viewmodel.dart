@@ -6,7 +6,7 @@ import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/services/restaurant_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SearchRestaurantsViewModel extends FutureViewModel {
+class SearchRestaurantsViewModel extends FutureViewModel<dynamic> {
   final log = getLogger('SearchRestaurantsViewModel');
 
   final _restaurantService = locator<RestaurantService>();
@@ -18,6 +18,8 @@ class SearchRestaurantsViewModel extends FutureViewModel {
 
   Future<dynamic> getDataFromServer() async {
     final res = await _restaurantService.listOfRestaurants();
+
+    log.v('The future is called!');
 
     if (res is bool) {
       setError('Something went wrong. We are sorry for the inconvinience.');
