@@ -4,6 +4,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading_with_scaffold.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/layout/no_glow_behaviour.dart';
+import 'package:stacked_architecture/ui/restaurant_details/components/featured_menu_card.dart';
+import 'package:stacked_architecture/ui/restaurant_details/components/menu_list_card.dart';
 import 'package:stacked_architecture/ui/restaurant_details/restaurant_details_viewmodel.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
@@ -35,42 +37,9 @@ class RestaurantDetailsView extends StatelessWidget {
                 ),
                 children: [
                   verticalSpaceMedium,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        onPressed: model.navigateBack,
-                        icon: const Icon(Icons.arrow_back_ios_sharp),
-                      ),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: const Icon(Icons.search),
-                      )
-                    ],
-                  ),
+                  _buildTopRow(model),
                   verticalSpaceMedium,
-                  SizedBox(
-                    width: 220,
-                    height: 200,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: CachedNetworkImage(
-                        imageUrl: restaurantDetails.imageUrl,
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => Center(
-                          child: CircularProgressIndicator(
-                            value: downloadProgress.progress,
-                          ),
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                  _buildBannerImage(),
                   verticalSpaceMedium,
                   Text(
                     restaurantDetails.name,
@@ -80,130 +49,11 @@ class RestaurantDetailsView extends StatelessWidget {
                     ),
                   ),
                   verticalSpaceSmall,
-                  Row(
-                    children: [
-                      for (final tag in restaurantDetails.tags)
-                        Row(
-                          children: [
-                            Text(
-                              tag,
-                              style: const TextStyle(
-                                color: kcDarkGreyColor,
-                                fontSize: kBodyTextNormal,
-                              ),
-                            ),
-                            horizontalSpaceSmall,
-                          ],
-                        )
-                    ],
-                  ),
+                  _buildTagsRow(),
                   verticalSpaceRegular,
-                  Row(
-                    children: [
-                      Text(
-                        restaurantDetails.rating,
-                        style: const TextStyle(
-                          fontSize: kBodyTextCaption,
-                        ),
-                      ),
-                      const Icon(
-                        Icons.star_rate_rounded,
-                        color: kcPrimaryColor,
-                        size: 13,
-                      ),
-                      horizontalSpaceRegular,
-                      const Text(
-                        '200+ ratings',
-                        style: TextStyle(
-                          fontSize: kBodyTextCaption,
-                        ),
-                      )
-                    ],
-                  ),
+                  _buildRatingsRow(),
                   verticalSpaceRegular,
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 21,
-                        width: 21,
-                        decoration: BoxDecoration(
-                          color: kcPrimaryColor,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: const Icon(
-                          Icons.attach_money_rounded,
-                          color: Colors.white,
-                          size: 17,
-                        ),
-                      ),
-                      horizontalSpaceSmall,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            restaurantDetails.offersFreeDelivery
-                                ? 'Free'
-                                : 'Paid',
-                            style: const TextStyle(
-                              fontSize: kBodyTextNormal,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          verticalSpaceTiny,
-                          const Text(
-                            'Delivery',
-                            style: TextStyle(
-                              fontSize: kBodyTextTiny,
-                              color: kcDarkGreyColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                      horizontalSpaceRegular,
-                      const Icon(
-                        Icons.access_time_filled_rounded,
-                        color: kcPrimaryColor,
-                      ),
-                      horizontalSpaceSmall,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            restaurantDetails.deliveryTime,
-                            style: const TextStyle(
-                              fontSize: kBodyTextNormal,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          verticalSpaceTiny,
-                          const Text(
-                            'Minutes',
-                            style: TextStyle(
-                              fontSize: kBodyTextTiny,
-                              color: kcDarkGreyColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          )
-                        ],
-                      ),
-                      const Spacer(),
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          side: const BorderSide(
-                              width: 1.0, color: kcPrimaryColor),
-                        ),
-                        onPressed: () {},
-                        child: const Text(
-                          'TAKE AWAY',
-                          style: TextStyle(
-                              letterSpacing: 1.5, fontSize: kBodyTextTiny),
-                        ),
-                      ),
-                    ],
-                  ),
+                  _buildDetailsRow(),
                   verticalSpaceRegular,
                   const Text(
                     'Featured Items',
@@ -223,61 +73,10 @@ class RestaurantDetailsView extends StatelessWidget {
                         return horizontalSpaceRegular;
                       },
                       itemBuilder: (BuildContext context, int index) =>
-                          GestureDetector(
-                        onTap: () => model.displayMenuDetails(
-                            menuDetails: model.featuredItems[index],
-                            restaurantName: restaurantDetails.name),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: CachedNetworkImage(
-                                imageUrl: model.featuredItems[index].imageUrl,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Center(
-                                  child: CircularProgressIndicator(
-                                    value: downloadProgress.progress,
-                                  ),
-                                ),
-                                fit: BoxFit.cover,
-                                height: screenHeightPercentage(context,
-                                    percentage: 0.19),
-                                width: screenWidthPercentage(context,
-                                    percentage: 0.38),
-                              ),
-                            ),
-                            verticalSpaceSmall,
-                            Text(
-                              model.featuredItems[index].name,
-                              style: const TextStyle(
-                                fontSize: kBodyTextNormal,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            verticalSpaceTiny,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  '\$\$',
-                                  style: TextStyle(
-                                    fontSize: kBodyTextSmall1,
-                                    color: kcDarkGreyColor,
-                                  ),
-                                ),
-                                horizontalSpaceSmall,
-                                Text(
-                                  model.featuredItems[index].category,
-                                  style: const TextStyle(
-                                    fontSize: kBodyTextSmall1,
-                                    color: kcDarkGreyColor,
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
+                          FeaturedMenuCard(
+                        menuDetails: model.featuredItems[index],
+                        restaurantDetails: restaurantDetails,
+                        onTap: model.displayMenuDetails,
                       ),
                     ),
                   ),
@@ -286,51 +85,31 @@ class RestaurantDetailsView extends StatelessWidget {
                     length: model.menuMap.keys.length,
                     child: Column(
                       children: [
-                        TabBar(
-                          isScrollable: true,
-                          unselectedLabelColor: kcDarkGreyColor,
-                          indicatorColor: Colors.transparent,
-                          labelColor: Colors.black,
-                          labelStyle: const TextStyle(
-                            fontSize: kH3Title,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 0.5,
-                          ),
-                          unselectedLabelStyle: const TextStyle(
-                            fontSize: kH3Title,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 0.5,
-                          ),
-                          tabs: model.menuMap.keys
-                              .map<Widget>(
-                                (menuCategory) => Tab(
-                                  text: menuCategory,
-                                ),
-                              )
-                              .toList(),
-                        ),
+                        _buildTabBar(model),
                         SizedBox(
                           height:
                               screenHeightPercentage(context, percentage: 0.85),
                           child: TabBarView(
-                            children:
-                                model.menuMap.values.map<Widget>((menuList) {
-                              return ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return MenuListCard(
-                                    onTap: () => model.displayMenuDetails(
+                            children: model.menuMap.values.map<Widget>(
+                              (menuList) {
+                                return ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return MenuListCard(
+                                      onTap: () => model.displayMenuDetails(
                                         menuDetails: menuList[index],
-                                        restaurantName: restaurantDetails.name),
-                                    name: menuList[index].name,
-                                    description: menuList[index].description,
-                                    price: menuList[index].price,
-                                    category: menuList[index].category,
-                                    imageUrl: menuList[index].imageUrl,
-                                  );
-                                },
-                                itemCount: menuList.length,
-                              );
-                            }).toList(),
+                                        restaurantName: restaurantDetails.name,
+                                      ),
+                                      name: menuList[index].name,
+                                      description: menuList[index].description,
+                                      price: menuList[index].price,
+                                      category: menuList[index].category,
+                                      imageUrl: menuList[index].imageUrl,
+                                    );
+                                  },
+                                  itemCount: menuList.length,
+                                );
+                              },
+                            ).toList(),
                           ),
                         )
                       ],
@@ -344,111 +123,197 @@ class RestaurantDetailsView extends StatelessWidget {
       },
     );
   }
-}
 
-class MenuListCard extends StatelessWidget {
-  const MenuListCard({
-    Key? key,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.category,
-    required this.imageUrl,
-    this.onTap,
-  }) : super(key: key);
+  TabBar _buildTabBar(RestaurantDetailsViewModel model) {
+    return TabBar(
+      isScrollable: true,
+      unselectedLabelColor: kcDarkGreyColor,
+      indicatorColor: Colors.transparent,
+      labelColor: Colors.black,
+      labelStyle: const TextStyle(
+        fontSize: kH3Title,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.5,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: kH3Title,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.5,
+      ),
+      tabs: model.menuMap.keys
+          .map<Widget>(
+            (menuCategory) => Tab(
+              text: menuCategory,
+            ),
+          )
+          .toList(),
+    );
+  }
 
-  final String name;
-  final String description;
-  final String price;
-  final String category;
-  final String imageUrl;
-  final void Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Row(
+  Row _buildDetailsRow() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          height: 21,
+          width: 21,
+          decoration: BoxDecoration(
+            color: kcPrimaryColor,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: const Icon(
+            Icons.attach_money_rounded,
+            color: Colors.white,
+            size: 17,
+          ),
+        ),
+        horizontalSpaceSmall,
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: 120,
-              height: 120,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      Center(
-                    child: CircularProgressIndicator(
-                      value: downloadProgress.progress,
-                    ),
-                  ),
-                  fit: BoxFit.cover,
-                ),
+            Text(
+              restaurantDetails.offersFreeDelivery ? 'Free' : 'Paid',
+              style: const TextStyle(
+                fontSize: kBodyTextNormal,
+                fontWeight: FontWeight.w500,
               ),
             ),
-            horizontalSpaceSmall,
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    style: const TextStyle(
-                      fontSize: kBodyTextLarge1,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  verticalSpaceSmall,
-                  Text(
-                    description,
-                    style: const TextStyle(
-                      color: kcDarkGreyColor,
-                      fontSize: kBodyTextSmall1,
-                    ),
-                  ),
-                  verticalSpaceRegular,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Text(
-                            '\$\$',
-                            style: TextStyle(
-                              fontSize: kBodyTextSmall1,
-                              color: kcDarkGreyColor,
-                            ),
-                          ),
-                          horizontalSpaceSmall,
-                          Text(
-                            category,
-                            style: const TextStyle(
-                              fontSize: kBodyTextSmall1,
-                              color: kcDarkGreyColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'USD $price',
-                        style: const TextStyle(
-                          color: kcPrimaryColor,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )
-                    ],
-                  )
-                ],
+            verticalSpaceTiny,
+            const Text(
+              'Delivery',
+              style: TextStyle(
+                fontSize: kBodyTextTiny,
+                color: kcDarkGreyColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        horizontalSpaceRegular,
+        const Icon(
+          Icons.access_time_filled_rounded,
+          color: kcPrimaryColor,
+        ),
+        horizontalSpaceSmall,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              restaurantDetails.deliveryTime,
+              style: const TextStyle(
+                fontSize: kBodyTextNormal,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            verticalSpaceTiny,
+            const Text(
+              'Minutes',
+              style: TextStyle(
+                fontSize: kBodyTextTiny,
+                color: kcDarkGreyColor,
+                fontWeight: FontWeight.w500,
               ),
             )
           ],
         ),
+        const Spacer(),
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(width: 1.0, color: kcPrimaryColor),
+          ),
+          onPressed: () {},
+          child: const Text(
+            'TAKE AWAY',
+            style: TextStyle(letterSpacing: 1.5, fontSize: kBodyTextTiny),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _buildRatingsRow() {
+    return Row(
+      children: [
+        Text(
+          restaurantDetails.rating,
+          style: const TextStyle(
+            fontSize: kBodyTextCaption,
+          ),
+        ),
+        const Icon(
+          Icons.star_rate_rounded,
+          color: kcPrimaryColor,
+          size: 13,
+        ),
+        horizontalSpaceRegular,
+        const Text(
+          '200+ ratings',
+          style: TextStyle(
+            fontSize: kBodyTextCaption,
+          ),
+        )
+      ],
+    );
+  }
+
+  Row _buildTagsRow() {
+    return Row(
+      children: [
+        for (final tag in restaurantDetails.tags)
+          Row(
+            children: [
+              Text(
+                tag,
+                style: const TextStyle(
+                  color: kcDarkGreyColor,
+                  fontSize: kBodyTextNormal,
+                ),
+              ),
+              horizontalSpaceSmall,
+            ],
+          )
+      ],
+    );
+  }
+
+  SizedBox _buildBannerImage() {
+    return SizedBox(
+      width: 220,
+      height: 200,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.0),
+        child: CachedNetworkImage(
+          imageUrl: restaurantDetails.imageUrl,
+          progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+            child: CircularProgressIndicator(
+              value: downloadProgress.progress,
+            ),
+          ),
+          fit: BoxFit.cover,
+        ),
       ),
+    );
+  }
+
+  Row _buildTopRow(RestaurantDetailsViewModel model) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: model.navigateBack,
+          icon: const Icon(Icons.arrow_back_ios_sharp),
+        ),
+        IconButton(
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
+          onPressed: () {},
+          icon: const Icon(Icons.search),
+        )
+      ],
     );
   }
 }
