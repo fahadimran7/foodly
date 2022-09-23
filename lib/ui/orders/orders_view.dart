@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/app_flow/app_loading.dart';
 import 'package:stacked_architecture/ui/dumb_widgets/buttons/busy_button.dart';
+import 'package:stacked_architecture/ui/orders/components/order_list_item.dart';
 import 'package:stacked_architecture/ui/orders/orders_viewmodel.dart';
 import 'package:stacked_architecture/ui/shared/styles.dart';
 import 'package:stacked_architecture/ui/shared/ui_helpers.dart';
@@ -48,199 +49,49 @@ class OrderView extends StatelessWidget {
                       ),
                       verticalSpaceLarge,
                       for (final cartItem in cartItemList)
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 7,
-                                    vertical: 3,
-                                  ),
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: kcLightGreyColor2),
-                                      borderRadius: BorderRadius.circular(3)),
-                                  child: Text(
-                                    cartItem.quantity,
-                                    style: const TextStyle(
-                                      color: kcPrimaryColor,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          cartItem.name,
-                                          style: const TextStyle(
-                                            fontSize: kBodyTextLarge2,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        verticalSpaceSmall,
-                                        Text(
-                                          cartItem.decription,
-                                          style: const TextStyle(
-                                            color: kcMediumGreyColor,
-                                            fontSize: kBodyTextSmall2,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'USD ${cartItem.price}',
-                                  style: const TextStyle(
-                                      color: kcPrimaryColor,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            verticalSpaceRegular,
-                            const Divider(),
-                            verticalSpaceRegular,
-                          ],
-                        ),
-                      if (cartItemList.isEmpty)
-                        SizedBox(
-                          height:
-                              screenHeightPercentage(context, percentage: 0.75),
-                          child: const Center(
-                            child: Text(
-                              'No items in cart :(',
-                              style: TextStyle(
-                                fontSize: kBodyTextNormal,
-                                color: kcMediumGreyColor,
-                              ),
-                            ),
-                          ),
-                        ),
+                        OrderListItem(cartItem: cartItem),
+                      if (cartItemList.isEmpty) _buildNoResultsMessage(context),
                       if (cartItemList.isNotEmpty)
                         Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Subtotal',
-                                  style: TextStyle(
-                                    fontSize: kBodyTextNormal,
-                                  ),
-                                ),
-                                Text(
-                                  '\$${_calculateSubTotal(cartItemList).toStringAsFixed(2)}',
-                                  style: const TextStyle(
-                                    fontSize: kBodyTextNormal,
-                                  ),
-                                ),
-                              ],
+                            _buildOrderCalculationRow(
+                              name: 'Subtotal',
+                              amount: _calculateSubTotal(cartItemList)
+                                  .toStringAsFixed(2),
                             ),
                             verticalSpaceSmall,
                             verticalSpaceTiny,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text(
-                                  'Delivery',
-                                  style: TextStyle(
-                                    fontSize: kBodyTextNormal,
-                                  ),
-                                ),
-                                Text(
-                                  '\$0',
-                                  style: TextStyle(
-                                    fontSize: kBodyTextNormal,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            _buildOrderCalculationRow(
+                                name: 'Delivery', amount: '0'),
                             verticalSpaceSmall,
                             verticalSpaceTiny,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: const [
-                                    Text(
-                                      'Total',
-                                      style: TextStyle(
-                                          fontSize: kBodyTextNormal,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    horizontalSpaceTiny,
-                                    Text(
-                                      '(incl. VAT)',
-                                      style: TextStyle(
-                                        fontSize: kBodyTextNormal,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  '\$${_calculateTotal(_calculateSubTotal(cartItemList), 0).toStringAsFixed(2)}',
-                                  style: const TextStyle(
-                                    fontSize: kBodyTextNormal,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
+                            _buildOrderCalculationRow(
+                              name: 'Total',
+                              amount: _calculateTotal(
+                                      _calculateSubTotal(cartItemList), 0)
+                                  .toStringAsFixed(2),
+                              isTotalRow: true,
                             ),
                             verticalSpaceMedium,
                             verticalSpaceSmall,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Add more items',
-                                  style: TextStyle(
-                                      color: kcPrimaryColor,
-                                      fontSize: kBodyTextNormal,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                horizontalSpaceTiny,
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 18,
-                                )
-                              ],
+                            _buildTextLink(
+                              text: 'Add more items',
+                              color: kcPrimaryColor,
                             ),
                             verticalSpaceSmall,
-                            Divider(),
+                            const Divider(),
                             verticalSpaceSmall,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Promo code',
-                                  style: TextStyle(
-                                      fontSize: kBodyTextNormal,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                horizontalSpaceTiny,
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 18,
-                                )
-                              ],
+                            _buildTextLink(
+                              text: 'Promo code',
                             ),
                             verticalSpaceSmall,
-                            Divider(),
+                            const Divider(),
                             verticalSpaceMedium,
                             BusyButton(
                               onTapped: () {},
                               busy: model.isBusy,
                               title:
-                                  'CHECKOUT (\$${_calculateTotal(_calculateSubTotal(cartItemList), 0)})',
+                                  'CHECKOUT (\$${_calculateTotal(_calculateSubTotal(cartItemList), 0).toStringAsFixed(2)})',
                             ),
                             verticalSpaceMedium,
                           ],
@@ -253,6 +104,77 @@ class OrderView extends StatelessWidget {
           );
         }
       },
+    );
+  }
+
+  SizedBox _buildNoResultsMessage(BuildContext context) {
+    return SizedBox(
+      height: screenHeightPercentage(context, percentage: 0.75),
+      child: const Center(
+        child: Text(
+          'No items in cart :(',
+          style: TextStyle(
+            fontSize: kBodyTextNormal,
+            color: kcMediumGreyColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Row _buildTextLink({required String text, Color? color}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          text,
+          style: TextStyle(
+            color: color ?? Colors.black,
+            fontSize: kBodyTextNormal,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        horizontalSpaceTiny,
+        const Icon(
+          Icons.arrow_forward_ios,
+          size: 18,
+        )
+      ],
+    );
+  }
+
+  Row _buildOrderCalculationRow(
+      {required String name, required String amount, bool? isTotalRow}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: kBodyTextNormal,
+                fontWeight:
+                    isTotalRow != null ? FontWeight.w500 : FontWeight.normal,
+              ),
+            ),
+            if (isTotalRow != null) horizontalSpaceTiny,
+            if (isTotalRow != null)
+              const Text(
+                '(incl. VAT)',
+                style: TextStyle(
+                  fontSize: kBodyTextNormal,
+                ),
+              ),
+          ],
+        ),
+        Text(
+          '\$$amount',
+          style: const TextStyle(
+            fontSize: kBodyTextNormal,
+          ),
+        ),
+      ],
     );
   }
 }

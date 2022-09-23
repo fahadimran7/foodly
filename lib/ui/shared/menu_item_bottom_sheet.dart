@@ -60,42 +60,7 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        child: CachedNetworkImage(
-                          imageUrl: menuDetails.imageUrl,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Center(
-                            child: CircularProgressIndicator(
-                              value: downloadProgress.progress,
-                            ),
-                          ),
-                          fit: BoxFit.fitWidth,
-                          height:
-                              screenHeightPercentage(context, percentage: 0.35),
-                          width: screenWidthPercentage(context, percentage: 1),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => completer(SheetResponse(confirmed: false)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.5),
-                              borderRadius: BorderRadius.circular(30)),
-                          padding: const EdgeInsets.all(10),
-                          margin: const EdgeInsets.only(
-                            left: 16,
-                            top: 36,
-                          ),
-                          child: const Icon(
-                            Icons.close,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                  _buildMenuImage(menuDetails, context),
                   verticalSpaceMedium,
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -147,19 +112,9 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            GestureDetector(
-                              onTap: model.decrementCount,
-                              child: Container(
-                                padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color:
-                                      const Color.fromARGB(255, 236, 236, 236),
-                                ),
-                                child: const Icon(
-                                  Icons.minimize,
-                                ),
-                              ),
+                            _buildCountButton(
+                              Icons.minimize,
+                              model.decrementCount,
                             ),
                             horizontalSpaceRegular,
                             Text(
@@ -169,19 +124,9 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
                                   fontWeight: FontWeight.w500),
                             ),
                             horizontalSpaceRegular,
-                            GestureDetector(
-                              onTap: model.incrementCount,
-                              child: Container(
-                                padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color:
-                                      const Color.fromARGB(255, 236, 236, 236),
-                                ),
-                                child: const Icon(
-                                  Icons.add,
-                                ),
-                              ),
+                            _buildCountButton(
+                              Icons.add,
+                              model.incrementCount,
                             ),
                           ],
                         ),
@@ -194,7 +139,8 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
                                 menuDetails: menuDetails,
                                 restaurantName: request.data['restaurantName']);
                           },
-                          title: 'ADD TO ORDER (\$${menuDetails.price})',
+                          title:
+                              'ADD TO ORDER (\$${(double.parse(menuDetails.price) * model.cartCount).toStringAsFixed(2)})',
                         ),
                         verticalSpaceMedium
                       ],
@@ -206,6 +152,60 @@ class _FloatingBoxBottomSheet extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  GestureDetector _buildCountButton(IconData icon, void Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: const Color.fromARGB(255, 236, 236, 236),
+        ),
+        child: Icon(
+          icon,
+        ),
+      ),
+    );
+  }
+
+  Stack _buildMenuImage(Menu menuDetails, BuildContext context) {
+    return Stack(
+      children: [
+        ClipRRect(
+          child: CachedNetworkImage(
+            imageUrl: menuDetails.imageUrl,
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                Center(
+              child: CircularProgressIndicator(
+                value: downloadProgress.progress,
+              ),
+            ),
+            fit: BoxFit.fitWidth,
+            height: screenHeightPercentage(context, percentage: 0.35),
+            width: screenWidthPercentage(context, percentage: 1),
+          ),
+        ),
+        GestureDetector(
+          onTap: () => completer(SheetResponse(confirmed: false)),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(30)),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.only(
+              left: 16,
+              top: 36,
+            ),
+            child: const Icon(
+              Icons.close,
+              color: Colors.white,
+            ),
+          ),
+        )
+      ],
     );
   }
 }
