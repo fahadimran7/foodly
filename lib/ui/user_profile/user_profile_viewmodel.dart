@@ -101,5 +101,12 @@ class UserProfileViewModel extends FormViewModel {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+
+    super.dispose();
+  }
+
+  @override
   void setFormStatus() {}
 }
