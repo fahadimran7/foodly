@@ -88,7 +88,7 @@ class OrderView extends StatelessWidget {
                             const Divider(),
                             verticalSpaceMedium,
                             BusyButton(
-                              onTapped: () {},
+                              onTapped: model.showPaymentDialog,
                               busy: model.isBusy,
                               title:
                                   'CHECKOUT (\$${_calculateTotal(_calculateSubTotal(cartItemList), 0).toStringAsFixed(2)})',

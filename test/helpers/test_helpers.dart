@@ -1,5 +1,6 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:places_service/places_service.dart';
 import 'package:stacked_architecture/app/app.locator.dart';
 import 'package:stacked_architecture/models/application_models.dart';
 import 'package:stacked_architecture/services/user_service.dart';
@@ -9,6 +10,7 @@ import 'test_helpers.mocks.dart';
 @GenerateMocks([], customMocks: [
   MockSpec<UserService>(returnNullOnMissingStub: true),
   MockSpec<NavigationService>(returnNullOnMissingStub: true),
+  MockSpec<PlacesService>(returnNullOnMissingStub: true),
 ])
 UserService getAndRegisterUserService(
     {bool hasLoggedInUser = false, User? currentUser}) {
@@ -27,9 +29,17 @@ NavigationService getAndRegisterNavigationService() {
   return service;
 }
 
+PlacesService getAndRegisterPlacesService() {
+  _removeRegistrationIfExists<PlacesService>();
+  final service = MockPlacesService();
+  locator.registerSingleton<PlacesService>(service);
+  return service;
+}
+
 void registerServices() {
   getAndRegisterUserService();
   getAndRegisterNavigationService();
+  getAndRegisterPlacesService();
 }
 
 void unregisterServices() {
