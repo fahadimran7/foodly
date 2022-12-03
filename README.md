@@ -1,16 +1,26 @@
-# stacked_architecture
+# 🍕 Foodly
 
-A new Flutter project.
+> Food delivery app implemented using Flutter, Firebase backend and the [stacked framework](https://pub.dev/packages/stacked). I used the same overall setup as explained by FilledStacks in his Food delivery service playlist but added a lot of additional features and tests.
+
+## Screenshots
+
+For app screenshots, see the [upload](https://github.com/fahadimran11/foodly/tree/main/upload) folder 🚀
+
+## UI Designs
+
+Complete UI designs for the app can be found on [Figma](https://www.figma.com/file/52cl0l9ipvV7knFCt6YUrW/Foodly-Online-Food-ordering-figma-app-design)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```bash
 
-A few resources to get you started if this is your first Flutter project:
+# clone the repo
+$ git clone https://github.com/fahadimran11/foodly.git
+$ cd foodly
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# install dependencies
+$ flutter pub get
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# run the app
+$ flutter run
+```
